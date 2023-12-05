@@ -3,13 +3,15 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <algorithm>
 
 class PrimalSolver
 {
 public:
     PrimalSolver();
     ~PrimalSolver();
-    void test();
+    std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
+
 private:
     void Init();
     void StandardForm();
@@ -17,8 +19,7 @@ private:
     void PrintSolution();
 
     std::vector<float> objFunction;
-    // std::vector<float> Constraints = {2, 1, 1, 1, 1, 0,};
     std::vector<std::vector<float>> constraints;
-
-    
+    //canonical form vector of strings
+    std::vector<std::vector<std::string>> canonical;
 };
