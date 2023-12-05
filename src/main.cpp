@@ -1,58 +1,6 @@
-// #include "raylib.h"
-
-// #include "imgui.h"
-// #include "rlImGui.h"
-
-// #include "PrimalSolver.hpp"
-
-// int main(int argc, char* argv[])
-// {
-// 	// Initialization
-// 	//--------------------------------------------------------------------------------------
-// 	int screenWidth = 1280;
-// 	int screenHeight = 800;
-
-// 	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
-// 	InitWindow(screenWidth, screenHeight, "raylib-Extras [ImGui] example - simple ImGui Demo");
-// 	// SetTargetFPS(144);
-// 	rlImGuiSetup(true);
-
-// 	PrimalSolver ps;
-// 	ps.test();
-
-// 	// Main game loop
-// 	while (!WindowShouldClose())    // Detect window close button or ESC key
-// 	{
-// 		BeginDrawing();
-// 		ClearBackground(DARKGRAY);
-
-// 		// start ImGui Conent
-// 		rlImGuiBegin();
-
-// 		// ImGui Content fill the whole screen
-// 		ImGui::SetNextWindowSize({static_cast<float>(GetScreenWidth()), static_cast<float>(GetScreenHeight())}, ImGuiCond_Always);
-// 		ImGui::SetNextWindowPos({0, 0}, ImGuiCond_Always);
-
-// 		// ImGui Content stop resizing and remove title bar
-// 		ImGui::Begin("My ImGui Window", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
-
-// 		// end ImGui Content
-// 		rlImGuiEnd();
-
-// 		EndDrawing();
-// 		//----------------------------------------------------------------------------------
-// 	}
-// 	rlImGuiShutdown();
-
-// 	// De-Initialization
-// 	//--------------------------------------------------------------------------------------
-// 	CloseWindow();        // Close window and OpenGL context
-// 	//--------------------------------------------------------------------------------------
-
-// 	return 0;
-// }
-
 #include "raylib.h"
+// #include "rlgl.h"
+
 
 #include "imgui.h"
 #include "rlImGui.h"
@@ -105,7 +53,7 @@ int main(int argc, char *argv[])
 	int screenHeight = 800;
 
 	SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
-	InitWindow(screenWidth, screenHeight, "raylib-Extras [ImGui] example - simple ImGui Demo");
+	InitWindow(screenWidth, screenHeight, "Liner Programming Solver Tool");
 	// SetTargetFPS(144);
 	rlImGuiSetup(true);
 
