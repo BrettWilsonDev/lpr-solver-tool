@@ -11,9 +11,11 @@ PrimalSolver::~PrimalSolver()
 
 void PrimalSolver::Init()
 {
+    // TODO handle this as input from the user
 
     objFunction = {3, 2};
 
+    // TODO have a check to see if there are only zeros and no 1s at the end of the user input indicating primal simplex
     // 0 or 1 at the end for <= or >= ... 0 being <= and 1 being >=
     constraints = {
         {2, 1, 100, 0},
@@ -21,7 +23,18 @@ void PrimalSolver::Init()
         {1, 0, 40, 0},
     };
 
+    // //extra test values
+    // objFunction = {3, 2, 3};
+
+    // constraints = {
+    //     {2, 1, 3, 100, 0},
+    //     {1, 1, 3, 80, 0},
+    //     {1, 0, 3, 40, 0},
+    //     {1, 2, 3, 50, 0},
+    // };
+
     StandardForm();
+    BuildTableau();
 }
 
 void PrimalSolver::StandardForm()
@@ -184,14 +197,92 @@ void PrimalSolver::StandardForm()
         }
     }
 
+    // TODO move display to imgui not through cout
 
     // display the canonical form temporay here until implemented in imgui
-    std::cout << "canonical form:" << std::endl;
-    for (const auto &row : canonical)
+    // std::cout << "canonical form:" << std::endl;
+    // for (const auto &row : canonical)
+    // {
+    //     for (auto element : row)
+    //     {
+    //         std::cout << element << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+
+    tempVec.clear();
+    tempVec.shrink_to_fit();
+    canonical.shrink_to_fit();
+}
+
+void PrimalSolver::BuildTableau()
+{
+    // std::cout << "objective function:" << std::endl;
+    // for (auto &item : objFunction)
+    // {
+    //     std::cout << item << " ";
+    // }
+    // std::cout << std::endl;
+
+    // std::cout << "constraints:" << std::endl;
+    // for (auto &row : constraints)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+
+    std::vector<std::vector<float>> constraintsTab = constraints;
+    std::vector<float> objFunctionRow = objFunction;
+
+    for (auto &row : constraintsTab)
     {
-        for (auto element : row)
+        row.pop_back();
+    }
+
+    // add slack vars spots
+    int lenOfObjFunction = objFunction.size();
+    int lenOfConstraints = constraintsTab.size();
+    // std::cout << (lenOfObjFunction) << std::endl;
+    for (int i = 0; i < constraintsTab.size(); i++)
+    {
+        for (int j = 0; j < lenOfConstraints; j++)
         {
-            std::cout << element << " ";
+            constraintsTab[i].insert(constraintsTab[i].begin() + lenOfObjFunction, 0.0f);
+        }
+    }
+
+    // fill in slack vars in thier correct spots
+    for (int i = 0; i < constraintsTab.size(); i++)
+    {
+        // it just so happens i is the same amount of slack vars ex: 3 rows 3 slack vars
+        constraintsTab[i][i + lenOfObjFunction] = 1;
+    }
+
+    //TODO handle max or min
+    for (auto &item : objFunctionRow)
+    {
+        item = -item;
+    }
+    
+    // fill in objective function with 0s
+    for (int i = 0; i < constraintsTab.size() + 1; i++)
+    {
+        objFunctionRow.push_back(0.0f);
+    }
+
+    // combine the tables
+    tableauMathForm = constraintsTab;
+    tableauMathForm.insert(tableauMathForm.begin(), objFunctionRow);
+
+    std::cout << "display:" << std::endl;
+    for (auto &row : tableauMathForm)
+    {
+        for (auto &item : row)
+        {
+            std::cout << item << " ";
         }
         std::cout << std::endl;
     }
