@@ -321,8 +321,16 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
 
     std::cout << "\nperforming steps" << std::endl;
 
-    // std::vector<std::vector<float>> tableauStageOne = tableauMathForm;
-    // std::vector<float> objFunction = tableauMathForm[0];
+    //make sure it's not the initial mathematical form
+    if (tab[0].back() != 0)
+    {
+        //stop theta column from stacking
+        for (int i = 1; i < static_cast<int>(tab.size()); i++)
+        {
+            tab[i].pop_back();
+        }
+    }
+
     std::vector<std::vector<float>> tableauStageOne = tab;
     std::vector<float> objFunctionMath = tab[0];
 
@@ -332,10 +340,10 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         objFunctionMath.pop_back();
     }
 
-    for (auto &item : objFunctionMath)
-    {
-        std::cout << item << " ";
-    }
+    // for (auto &item : objFunctionMath)
+    // {
+    //     std::cout << item << " ";
+    // }
 
     // select column based on largest value
     // int max = std::max(*std::max_element(objFunctionMath.begin(), objFunctionMath.end()), -*std::min_element(objFunctionMath.begin(), objFunctionMath.end()));
@@ -346,8 +354,8 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
                                             { return std::abs(value) == std::abs(max); });
     int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
 
-    std::cout << "max: " << max << std::endl;
-    std::cout << "pivot column: " << pivotColumn << std::endl;
+    // std::cout << "max: " << max << std::endl;
+    // std::cout << "pivot column: " << pivotColumn << std::endl;
 
     // calculate percentages in theta column
     for (int i = 1; i < static_cast<int>(tableauStageOne.size()); i++)
@@ -355,14 +363,14 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         tableauStageOne[i].push_back(tableauStageOne[i].back() / tableauStageOne[i][pivotColumn]);
     }
 
-    for (auto &row : tableauStageOne)
-    {
-        for (auto &item : row)
-        {
-            std::cout << item << " ";
-        }
-        std::cout << std::endl;
-    }
+    // for (auto &row : tableauStageOne)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
 
     // create a temporay vector to hold theta column and items
     std::vector<std::vector<float>> tempTab = tableauStageOne;
@@ -389,7 +397,14 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         }
     }
 
-    std::cout << "pivot row: " << pivotRow << std::endl;
+    //fix theta back its correct values in place of infinity
+    for (int i = 1; i < static_cast<int>(tempTab.size()); i++)
+    {
+        tempTab[i].pop_back();
+        tempTab[i].push_back(tableauStageOne[i].back());
+    }
+
+    // std::cout << "pivot row: " << pivotRow << std::endl;
 
     // move on to new tableau
     std::vector<std::vector<float>> tableauStageTwo = tableauStageOne;
@@ -417,7 +432,7 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
             }
             if (i < static_cast<int>(tableauStageTwo.size()) && j < static_cast<int>(tableauStageTwo[i].size()))
             {
-                // Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
+                //the formula: Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
                 tableauStageTwo[i][j] = ((tableauStageOne[i][j]) - (tableauStageOne[i][pivotColumn] * tableauStageTwo[pivotRow][j]));
             }
         }
@@ -427,7 +442,11 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
     tableauStageTwo.erase(tableauStageTwo.begin() + pivotRow);
     tableauStageTwo.insert(tableauStageTwo.begin() + pivotRow, pivotRowVec);
 
-    // TODO make an array of tableaus for display
+    //add theta column back
+    for (int i = 1; i < static_cast<int>(tableauStageTwo.size()); i++)
+    {
+        tableauStageTwo[i].push_back(tempTab[i].back());
+    }
 
     std::cout << "display math:" << std::endl;
 
@@ -440,9 +459,11 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         std::cout << std::endl;
     }
 
+    // TODO make an array of tableaus for display
     tableau = tableauStageTwo;
-    // tableauStageOne.clear();
-    // tableauStageTwo.clear();
-    // objFunctionMath.clear();
-    // pivotRowVec.clear();
+    tableauStageOne.clear();
+    tableauStageTwo.clear();
+    objFunctionMath.clear();
+    pivotRowVec.clear();
+    tempTab.clear();
 }
