@@ -139,9 +139,30 @@ void PrimalSolver::StandardForm()
     {
         for (auto &element : row)
         {
+            if (element == "z -" || element == "-" || element == "+" || element == "=" || element == "= 0")
+            {
+                continue;
+            }
+
+            bool con{};
+            for (int i = 1; i < static_cast<int>(constraints.size() + 1); i++)
+            {
+                if (element == "s" + std::to_string(i))
+                {
+                    con = true;
+                    break;
+                }
+            }
+            if (con)
+            {
+                continue;
+            }
+
             try
             {
+                // WASM dose not like stof
                 float floatValue = std::stof(element);
+                // float floatValue = std::atof(element.c_str());
                 if (floatValue == 0.0f)
                 {
                     element = "b";
@@ -154,11 +175,13 @@ void PrimalSolver::StandardForm()
             catch (const std::invalid_argument &)
             {
                 // Handle the case where `element` cannot be converted to a float
+                std::cout << "Invalid argument: " << element << std::endl;
                 continue;
             }
             catch (const std::out_of_range &)
             {
                 // Handle the case where the converted float value is out of range
+                std::cout << "Out of range: " << element << std::endl;
                 continue;
             }
         }
@@ -203,15 +226,15 @@ void PrimalSolver::StandardForm()
     // TODO move display to imgui not through cout
 
     // display the canonical form temporay here until implemented in imgui
-    // std::cout << "canonical form:" << std::endl;
-    // for (const auto &row : canonical)
-    // {
-    //     for (auto element : row)
-    //     {
-    //         std::cout << element << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
+    std::cout << "canonical form:" << std::endl;
+    for (const auto &row : canonical)
+    {
+        for (auto element : row)
+        {
+            std::cout << element << " ";
+        }
+        std::cout << std::endl;
+    }
 
     tempVec.clear();
     tempVec.shrink_to_fit();
@@ -341,34 +364,7 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         std::cout << std::endl;
     }
 
-    // select row based on smallest value in last column (Theta)
-    // TODO chack first elemtn is not negative and then ifa any elemnt after is not negative
-    // int skipRow{0};
-    // if (tableauStageOne[1].back() < 0)
-    // {
-    //     skipRow++;
-    //     std::cout << "skipRow: " << tableauStageOne[1].back() << std::endl;
-    // }
-
-    // float smallest = tableauStageOne[1 + skipRow].back();
-    // // int pivotRow = 1;
-    // int pivotRow = 1 + skipRow;
-    // // int pivotRow{};
-    // for (int i = 2; i < static_cast<int>(tableauStageOne.size()); i++)
-    // {
-    //     if (tableauStageOne[i].back() < 0)
-    //     {
-    //         continue;
-    //     }
-
-    //     float current = tableauStageOne[i].back();
-    //     if (current < smallest)
-    //     {
-    //         smallest = current;
-    //         pivotRow = i;
-    //     }
-    // }
-
+    // create a temporay vector to hold theta column and items
     std::vector<std::vector<float>> tempTab = tableauStageOne;
 
     // remove any negative from the theta column test by making them infinity
@@ -379,7 +375,8 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
             tempTab[1].back() = std::numeric_limits<float>::infinity();
         }
     }
-    
+
+    // find smallest theta value and set pivot row
     float smallest = tempTab[1].back();
     int pivotRow{1};
     for (int i = 2; i < static_cast<int>(tempTab.size()); i++)

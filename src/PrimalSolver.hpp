@@ -5,6 +5,7 @@
 #include <string>
 #include <algorithm>
 #include <cmath>
+#include <cstdlib>
 
 class PrimalSolver
 {
