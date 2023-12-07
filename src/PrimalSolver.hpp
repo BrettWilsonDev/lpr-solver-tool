@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include <algorithm>
+#include <cmath>
 
 class PrimalSolver
 {
@@ -16,7 +17,8 @@ public:
 private:
     void Init();
     void StandardForm();
-    void BuildTableau();
+    void BuildTableauMathForm();
+    void PerformMathSteps();
     void Solve();
     void PrintSolution();
 
