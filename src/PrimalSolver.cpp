@@ -35,7 +35,9 @@ void PrimalSolver::Init()
 
     StandardForm();
     BuildTableauMathForm();
-    PerformMathSteps();
+    PerformPivotOperations(tableauMathForm);
+    PerformPivotOperations(tableau);
+    PerformPivotOperations(tableau);
 }
 
 void PrimalSolver::StandardForm()
@@ -270,16 +272,16 @@ void PrimalSolver::BuildTableauMathForm()
     tableauMathForm = constraintsTab;
     tableauMathForm.insert(tableauMathForm.begin(), objFunctionRow);
 
-    // TODO move display to imgui not through cout
-    std::cout << "display simple:" << std::endl;
-    for (auto &row : tableauMathForm)
-    {
-        for (auto &item : row)
-        {
-            std::cout << item << " ";
-        }
-        std::cout << std::endl;
-    }
+    // Servers a test display
+    // std::cout << "display simple:" << std::endl;
+    // for (auto &row : tableauMathForm)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
 }
 
 /**
@@ -291,91 +293,120 @@ void PrimalSolver::BuildTableauMathForm()
  *
  * @throws None
  */
-void PrimalSolver::PerformMathSteps()
+void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
 {
 
     std::cout << "\nperforming steps" << std::endl;
 
-    std::vector<std::vector<float>> tableauStageOne = tableauMathForm;
-    std::vector<float> objFunction = tableauMathForm[0];
+    // std::vector<std::vector<float>> tableauStageOne = tableauMathForm;
+    // std::vector<float> objFunction = tableauMathForm[0];
+    std::vector<std::vector<float>> tableauStageOne = tab;
+    std::vector<float> objFunctionMath = tab[0];
+
+    // TODO acknowledge only negative for max
+    if (objFunctionMath.back() != 0)
+    {
+        objFunctionMath.pop_back();
+    }
+
+    for (auto &item : objFunctionMath)
+    {
+        std::cout << item << " ";
+    }
 
     // select column based on largest value
-    // auto max = std::max_element(objFunction.begin(), objFunction.end());
-
-    // int max = std::max(*std::max_element(objFunction.begin(), objFunction.end()), -*std::min_element(objFunction.begin(), objFunction.end()));
-    // int pivotColumn{};
-    // // if (max != objFunction.end())
-    // // {
-    // pivotColumn = std::distance(objFunction.begin(), max);
-    // pivotColumn = std::distance(objFunction.begin(), std::max_element(objFunction.begin(), objFunction.end()));
-    //     // std::cout << "The largest value is: " << *max << std::endl;
-    // }
-    // else
-    // {
-    //     std::cout << "no max found" << std::endl;
-    // }
-
-    // auto it = std::find(objFunction.begin(), objFunction.end(), max);
-    // if (it != objFunction.end())
-    // {
-    //     int index = std::distance(objFunction.begin(), it);
-    //     std::cout << "Index of element " << max << ": " << index << std::endl;
-    // }
-    // else
-    // {
-    //     std::cout << "Element not found" << std::endl;
-    // }
-
-    // pivotColumn = max;
-
-    int max = std::max(*std::max_element(objFunction.begin(), objFunction.end()), -*std::min_element(objFunction.begin(), objFunction.end()));
-    // int pivotColumn = std::distance(objFunction.begin(), std::max_element(objFunction.begin(), objFunction.end()));
-
-    std::cout << "max: " << max << std::endl;
+    // int max = std::max(*std::max_element(objFunctionMath.begin(), objFunctionMath.end()), -*std::min_element(objFunctionMath.begin(), objFunctionMath.end()));
+    int max = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
 
     // dont forget the sign check
-    //  auto pivotColumnIterator = std::find(objFunction.begin(), objFunction.end(), -max);
-    //  int pivotColumn = std::distance(objFunction.begin(), pivotColumnIterator);
-
-    auto pivotColumnIterator = std::find_if(objFunction.begin(), objFunction.end(), [max](int value)
+    auto pivotColumnIterator = std::find_if(objFunctionMath.begin(), objFunctionMath.end(), [max](int value)
                                             { return std::abs(value) == std::abs(max); });
-    int pivotColumn = std::distance(objFunction.begin(), pivotColumnIterator);
-    std::cout << "max index: " << pivotColumn << std::endl;
+    int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
+
+    std::cout << "max: " << max << std::endl;
+    std::cout << "pivot column: " << pivotColumn << std::endl;
 
     // calculate percentages in theta column
-    int len{tableauStageOne.size()};
-    for (int i = 1; i < len; i++)
+    for (int i = 1; i < static_cast<int>(tableauStageOne.size()); i++)
     {
         tableauStageOne[i].push_back(tableauStageOne[i].back() / tableauStageOne[i][pivotColumn]);
     }
 
-    // select row based on smallest value in last column (Theta)
-    float smallest = tableauStageOne[1].back(); // Initialize with the first row's last element
-    int pivotRow = 1;                           // Initialize with the index of the first row
-    for (int i = 2; i < static_cast<int>(tableauStageOne.size()); i++)
+    for (auto &row : tableauStageOne)
     {
-        float current = tableauStageOne[i].back(); // Get the last element of the current row
-        if (current < smallest)
+        for (auto &item : row)
         {
-            smallest = current; // Update the smallest if the current element is smaller
-            pivotRow = i;       // Update the index of the smallest row
+            std::cout << item << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    // select row based on smallest value in last column (Theta)
+    // TODO chack first elemtn is not negative and then ifa any elemnt after is not negative
+    // int skipRow{0};
+    // if (tableauStageOne[1].back() < 0)
+    // {
+    //     skipRow++;
+    //     std::cout << "skipRow: " << tableauStageOne[1].back() << std::endl;
+    // }
+
+    // float smallest = tableauStageOne[1 + skipRow].back();
+    // // int pivotRow = 1;
+    // int pivotRow = 1 + skipRow;
+    // // int pivotRow{};
+    // for (int i = 2; i < static_cast<int>(tableauStageOne.size()); i++)
+    // {
+    //     if (tableauStageOne[i].back() < 0)
+    //     {
+    //         continue;
+    //     }
+
+    //     float current = tableauStageOne[i].back();
+    //     if (current < smallest)
+    //     {
+    //         smallest = current;
+    //         pivotRow = i;
+    //     }
+    // }
+
+    std::vector<std::vector<float>> tempTab = tableauStageOne;
+
+    // remove any negative from the theta column test by making them infinity
+    for (int i = 0; i < static_cast<int>(tempTab.size()); i++)
+    {
+        if (tempTab[i].back() < 0)
+        {
+            tempTab[1].back() = std::numeric_limits<float>::infinity();
         }
     }
-    // std::cout << "Smallest number: " << smallest << std::endl;
-    // std::cout << "Row with the smallest number: " << pivotRow << std::endl;
+    
+    float smallest = tempTab[1].back();
+    int pivotRow{1};
+    for (int i = 2; i < static_cast<int>(tempTab.size()); i++)
+    {
+        float current = tempTab[i].back();
+        if (current < smallest)
+        {
+            smallest = current;
+            pivotRow = i;
+        }
+    }
 
-    // move on to tableau two
+    std::cout << "pivot row: " << pivotRow << std::endl;
+
+    // move on to new tableau
     std::vector<std::vector<float>> tableauStageTwo = tableauStageOne;
-    // std::vector<std::vector<float>> tableauStageTwo = {};
+    // std::vector<std::vector<float>> tableauStageTwo;
     // tableauStageTwo.reserve(tableauStageOne.size());
 
-    // remove theta
+    // remove theta column
     for (int i = 1; i < static_cast<int>(tableauStageTwo.size()); i++)
     {
         tableauStageTwo[i].pop_back();
+        tableauStageOne[i].pop_back();
     }
 
-    // pivot row
+    // save the pivot row for later
     std::vector<float> pivotRowVec = {tableauStageTwo[pivotRow]};
 
     // pivot operation for new tableau primal simplex
@@ -383,14 +414,23 @@ void PrimalSolver::PerformMathSteps()
     {
         for (int j = 0; j < static_cast<int>(tableauStageOne[i].size()); j++)
         {
-            // Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
-            tableauStageTwo[i][j] = tableauStageOne[i][j] - tableauStageOne[i][pivotColumn] * tableauStageTwo[pivotRow][j];
+            if (i == pivotRow)
+            {
+                continue;
+            }
+            if (i < static_cast<int>(tableauStageTwo.size()) && j < static_cast<int>(tableauStageTwo[i].size()))
+            {
+                // Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
+                tableauStageTwo[i][j] = ((tableauStageOne[i][j]) - (tableauStageOne[i][pivotColumn] * tableauStageTwo[pivotRow][j]));
+            }
         }
     }
 
-    // add back the pivot row from being zeroed out
+    // add back the pivot row from being zeroed out after pivot operation
     tableauStageTwo.erase(tableauStageTwo.begin() + pivotRow);
     tableauStageTwo.insert(tableauStageTwo.begin() + pivotRow, pivotRowVec);
+
+    // TODO make an array of tableaus for display
 
     std::cout << "display math:" << std::endl;
 
@@ -402,4 +442,10 @@ void PrimalSolver::PerformMathSteps()
         }
         std::cout << std::endl;
     }
+
+    tableau = tableauStageTwo;
+    // tableauStageOne.clear();
+    // tableauStageTwo.clear();
+    // objFunctionMath.clear();
+    // pivotRowVec.clear();
 }

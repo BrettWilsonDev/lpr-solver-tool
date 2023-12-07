@@ -18,7 +18,7 @@ private:
     void Init();
     void StandardForm();
     void BuildTableauMathForm();
-    void PerformMathSteps();
+    void PerformPivotOperations(std::vector<std::vector<float>> tab);
     void Solve();
     void PrintSolution();
 
@@ -28,4 +28,5 @@ private:
     std::vector<std::vector<std::string>> canonical;
     //tableau math form
     std::vector<std::vector<float>> tableauMathForm;
+    std::vector<std::vector<float>> tableau;
 };
