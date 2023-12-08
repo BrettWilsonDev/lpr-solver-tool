@@ -40,20 +40,20 @@ void PrimalSolver::Init()
     //     {1, 2, 3, 50, 0},
     // };
 
-    // objFunction = {60, 30, 20};
-
-    // constraints = {
-    //     {8, 6, 1, 48, 0},
-    //     {4, 2, 1.5, 20, 0},
-    //     {2, 1.5, 0.5, 8, 0},
-    // };
-
-    objFunction = {3, 5};
+    objFunction = {60, 30, 20};
 
     constraints = {
-        {2, 3, 25, 0},
-        {1, 2, 15, 0},
+        {8, 6, 1, 48, 0},
+        {4, 2, 1.5, 20, 0},
+        {2, 1.5, 0.5, 8, 0},
     };
+
+    // objFunction = {3, 5};
+
+    // constraints = {
+    //     {2, 3, 25, 0},
+    //     {1, 2, 15, 0},
+    // };
 
     StandardForm();
     BuildTableauMathForm();
@@ -448,9 +448,6 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         tableauStageTwo[pivotRow][j] = tableauStageOne[pivotRow][j] / tableauStageOne[pivotRow][pivotColumn];
     }
 
-    // save the pivot row for later
-    std::vector<float> pivotRowVec = {tableauStageTwo[pivotRow]};
-
     // pivot operation for new tableau primal simplex
     for (int i = 0; i < static_cast<int>(tableauMathForm.size()); i++)
     {
@@ -467,10 +464,6 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
             }
         }
     }
-
-    // add back the pivot row from being zeroed out after pivot operation
-    tableauStageTwo.erase(tableauStageTwo.begin() + pivotRow);
-    tableauStageTwo.insert(tableauStageTwo.begin() + pivotRow, pivotRowVec);
 
     // add theta column back
     for (int i = 1; i < static_cast<int>(tableauStageTwo.size()); i++)
@@ -491,9 +484,4 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
 
     // TODO make an array of tableaus for display
     tableau = tableauStageTwo;
-    tableauStageOne.clear();
-    tableauStageTwo.clear();
-    objFunctionMath.clear();
-    pivotRowVec.clear();
-    tempTab.clear();
 }
