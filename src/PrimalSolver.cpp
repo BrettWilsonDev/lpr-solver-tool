@@ -24,6 +24,13 @@ void PrimalSolver::Init()
     };
 
     // //extra test values
+    // objFunction = {3, 5};
+
+    // constraints = {
+    //     {2, 3, 25, 0},
+    //     {1, 2, 15, 0},
+    // };
+
     // objFunction = {3, 2, 3};
 
     // constraints = {
@@ -32,6 +39,21 @@ void PrimalSolver::Init()
     //     {1, 0, 3, 40, 0},
     //     {1, 2, 3, 50, 0},
     // };
+
+    // objFunction = {60, 30, 20};
+
+    // constraints = {
+    //     {8, 6, 1, 48, 0},
+    //     {4, 2, 1.5, 20, 0},
+    //     {2, 1.5, 0.5, 8, 0},
+    // };
+
+    objFunction = {3, 5};
+
+    constraints = {
+        {2, 3, 25, 0},
+        {1, 2, 15, 0},
+    };
 
     StandardForm();
     BuildTableauMathForm();
@@ -318,13 +340,12 @@ void PrimalSolver::BuildTableauMathForm()
  */
 void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
 {
-
     std::cout << "\nperforming steps" << std::endl;
 
-    //make sure it's not the initial mathematical form
+    // make sure it's not the initial mathematical form
     if (tab[0].back() != 0)
     {
-        //stop theta column from stacking
+        // stop theta column from stacking
         for (int i = 1; i < static_cast<int>(tab.size()); i++)
         {
             tab[i].pop_back();
@@ -355,7 +376,7 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
     int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
 
     // std::cout << "max: " << max << std::endl;
-    // std::cout << "pivot column: " << pivotColumn << std::endl;
+    std::cout << "pivot column: " << pivotColumn << std::endl;
 
     // calculate percentages in theta column
     for (int i = 1; i < static_cast<int>(tableauStageOne.size()); i++)
@@ -397,7 +418,9 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         }
     }
 
-    //fix theta back its correct values in place of infinity
+    std::cout << "pivot row: " << pivotRow << std::endl;
+
+    // fix theta back its correct values in place of infinity
     for (int i = 1; i < static_cast<int>(tempTab.size()); i++)
     {
         tempTab[i].pop_back();
@@ -418,21 +441,28 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         tableauStageOne[i].pop_back();
     }
 
+    //do pivot row operation step
+    for (int j = 0; j < static_cast<int>(tableauStageTwo[pivotRow].size()); j++)
+    {
+
+        tableauStageTwo[pivotRow][j] = tableauStageOne[pivotRow][j] / tableauStageOne[pivotRow][pivotColumn];
+    }
+
     // save the pivot row for later
     std::vector<float> pivotRowVec = {tableauStageTwo[pivotRow]};
 
     // pivot operation for new tableau primal simplex
-    for (int i = 0; i < static_cast<int>(tableauStageOne.size()); i++)
+    for (int i = 0; i < static_cast<int>(tableauMathForm.size()); i++)
     {
-        for (int j = 0; j < static_cast<int>(tableauStageOne[i].size()); j++)
+        for (int j = 0; j < static_cast<int>(tableauMathForm[i].size()); j++)
         {
             if (i == pivotRow)
             {
                 continue;
             }
-            if (i < static_cast<int>(tableauStageTwo.size()) && j < static_cast<int>(tableauStageTwo[i].size()))
+            if (i < static_cast<int>(tableauMathForm.size()) && j < static_cast<int>(tableauMathForm[i].size()))
             {
-                //the formula: Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
+                // the formula: Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
                 tableauStageTwo[i][j] = ((tableauStageOne[i][j]) - (tableauStageOne[i][pivotColumn] * tableauStageTwo[pivotRow][j]));
             }
         }
@@ -442,7 +472,7 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
     tableauStageTwo.erase(tableauStageTwo.begin() + pivotRow);
     tableauStageTwo.insert(tableauStageTwo.begin() + pivotRow, pivotRowVec);
 
-    //add theta column back
+    // add theta column back
     for (int i = 1; i < static_cast<int>(tableauStageTwo.size()); i++)
     {
         tableauStageTwo[i].push_back(tempTab[i].back());
