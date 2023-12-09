@@ -1,7 +1,6 @@
 #include "raylib.h"
 // #include "rlgl.h"
 
-
 #include "imgui.h"
 #include "rlImGui.h"
 
@@ -56,6 +55,7 @@ int main(int argc, char *argv[])
 	InitWindow(screenWidth, screenHeight, "Liner Programming Solver Tool");
 	// SetTargetFPS(144);
 	rlImGuiSetup(true);
+	ImGui::GetIO().IniFilename = "";
 
 	// Create an instance of the custom stream buffer
 	ImGuiStreamBuffer imguiStreamBuffer;

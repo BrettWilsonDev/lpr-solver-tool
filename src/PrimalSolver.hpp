@@ -30,5 +30,5 @@ private:
     //tableau math form
     std::vector<std::vector<float>> tableauMathForm;
     std::vector<std::vector<float>> tableau;
-    bool max{};
+    bool maxObj{};
 };

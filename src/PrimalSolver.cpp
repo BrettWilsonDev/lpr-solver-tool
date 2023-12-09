@@ -289,11 +289,11 @@ void PrimalSolver::BuildTableauMathForm()
 
     if (ctrMax == static_cast<int>(constraints.size()))
     {
-        max = true;
+        maxObj = true;
     }
     else if (ctrMin == static_cast<int>(constraints.size()))
     {
-        max = false;
+        maxObj = false;
     }
     else
     {
@@ -332,7 +332,7 @@ void PrimalSolver::BuildTableauMathForm()
     }
 
     // handle max or min var signs
-    if (max)
+    if (maxObj)
     {
         for (auto &item : objFunctionRow)
         {
@@ -412,7 +412,7 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
     // int max = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
 
     int pivotElement{};
-    if (max)
+    if (maxObj)
     {
         pivotElement = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
     }
@@ -540,24 +540,24 @@ void PrimalSolver::Solve()
 {
     //check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
     int ctr{};
-    bool allPositive{};
+    bool allPosOrNeg{};
     bool isSolved{};
     while (!isSolved && ctr < 100)
     {
         PerformPivotOperations(tableau);
 
-        if (max)
+        if (maxObj)
         {
-            allPositive = std::all_of(tableau[0].begin(), tableau[0].end(), [](int num)
+            allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
                                       { return num >= 0; });
         }
         else
         {
-            allPositive = std::all_of(tableau[0].begin(), tableau[0].end(), [](int num)
+            allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
                                       { return num <= 0; });
         }
 
-        if (allPositive)
+        if (allPosOrNeg)
         {
             isSolved = true;
         }
