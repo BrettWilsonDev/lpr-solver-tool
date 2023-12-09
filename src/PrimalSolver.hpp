@@ -21,7 +21,9 @@ private:
     void BuildTableauMathForm();
     void PerformPivotOperations(std::vector<std::vector<float>> tab);
     void Solve();
-    void PrintSolution();
+    void PrepSolutionDisplay();
+
+    bool maxObj{};
 
     std::vector<float> objFunction;
     std::vector<std::vector<float>> constraints;
@@ -30,5 +32,6 @@ private:
     //tableau math form
     std::vector<std::vector<float>> tableauMathForm;
     std::vector<std::vector<float>> tableau;
-    bool maxObj{};
+
+    std::vector<std::vector<std::vector<float>>> tableaus;
 };

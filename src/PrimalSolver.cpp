@@ -22,41 +22,10 @@ void PrimalSolver::Init()
         {1, 0, 40, 0},
     };
 
-    // //extra test values
-    // objFunction = {3, 5};
-
-    // constraints = {
-    //     {2, 3, 25, 0},
-    //     {1, 2, 15, 0},
-    // };
-
-    // objFunction = {3, 2, 3};
-
-    // constraints = {
-    //     {2, 1, 3, 100, 0},
-    //     {1, 1, 3, 80, 0},
-    //     {1, 0, 3, 40, 0},
-    //     {1, 2, 3, 50, 0},
-    // };
-
-    // objFunction = {60, 30, 20};
-
-    // constraints = {
-    //     {8, 6, 1, 48, 0},
-    //     {4, 2, 1.5, 20, 0},
-    //     {2, 1.5, 0.5, 8, 0},
-    // };
-
-    // objFunction = {3, 5};
-
-    // constraints = {
-    //     {2, 3, 25, 0},
-    //     {1, 2, 15, 0},
-    // };
-
     StandardForm();
     BuildTableauMathForm();
     Solve();
+    PrepSolutionDisplay();
 }
 
 void PrimalSolver::StandardForm()
@@ -358,17 +327,18 @@ void PrimalSolver::BuildTableauMathForm()
     tableauMathForm.insert(tableauMathForm.begin(), objFunctionRow);
 
     // Servers a test display
-    std::cout << "display simple:" << std::endl;
-    for (auto &row : tableauMathForm)
-    {
-        for (auto &item : row)
-        {
-            std::cout << item << " ";
-        }
-        std::cout << std::endl;
-    }
+    // std::cout << "display simple:" << std::endl;
+    // for (auto &row : tableauMathForm)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
 
     tableau = tableauMathForm;
+    tableaus.push_back(tableauMathForm);
 }
 
 /**
@@ -382,7 +352,7 @@ void PrimalSolver::BuildTableauMathForm()
  */
 void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
 {
-    std::cout << "\nperforming steps" << std::endl;
+    // std::cout << "\nperforming steps" << std::endl;
 
     // make sure it's not the initial mathematical form
     if (tab[0].back() != 0)
@@ -427,7 +397,7 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
     int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
 
     // std::cout << "max: " << max << std::endl;
-    std::cout << "pivot column: " << pivotColumn << std::endl;
+    // std::cout << "pivot column: " << pivotColumn << std::endl;
 
     // calculate percentages in theta column
     for (int i = 1; i < static_cast<int>(tableauStageOne.size()); i++)
@@ -469,7 +439,9 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         }
     }
 
-    std::cout << "pivot row: " << pivotRow << std::endl;
+    std::vector<std::vector<float>> theta = tempTab;
+
+    // std::cout << "pivot row: " << pivotRow << std::endl;
 
     // fix theta back its correct values in place of infinity
     for (int i = 1; i < static_cast<int>(tempTab.size()); i++)
@@ -482,14 +454,12 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
 
     // move on to new tableau
     std::vector<std::vector<float>> tableauStageTwo = tableauStageOne;
-    // std::vector<std::vector<float>> tableauStageTwo;
-    // tableauStageTwo.reserve(tableauStageOne.size());
 
     // remove theta column
     for (int i = 1; i < static_cast<int>(tableauStageTwo.size()); i++)
     {
         tableauStageTwo[i].pop_back();
-        tableauStageOne[i].pop_back();
+        // tableauStageOne[i].pop_back();
     }
 
     // do pivot row operation step
@@ -521,24 +491,24 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         tableauStageTwo[i].push_back(tempTab[i].back());
     }
 
-    std::cout << "display math:" << std::endl;
+    // std::cout << "\ndisplay math:" << std::endl;
 
-    for (auto &row : tableauStageTwo)
-    {
-        for (auto &item : row)
-        {
-            std::cout << item << " ";
-        }
-        std::cout << std::endl;
-    }
+    // for (auto &row : tableauStageTwo)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
 
-    // TODO make an array of tableaus for display
     tableau = tableauStageTwo;
+    tableaus.push_back(tableauStageTwo);
 }
 
 void PrimalSolver::Solve()
 {
-    //check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
+    // check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
     int ctr{};
     bool allPosOrNeg{};
     bool isSolved{};
@@ -575,7 +545,38 @@ void PrimalSolver::Solve()
     {
         std::cout << "the solution is: " << tableau[0].back() << std::endl;
     }
-    
+
+}
+
+void PrimalSolver::PrepSolutionDisplay()
+{
+    //move theta to the correct table for display
+    for (int i = 1; i < static_cast<int>(tableaus.size()); i++)
+    {
+        for (int j = 1; j < static_cast<int>(tableaus[i].size()); j++)
+        {
+            tableaus[i - 1][j].back() = tableaus[i][j].back();
+        }
+    }
+
+    //zero out theta column in last table
+    for (int j = 1; j < static_cast<int>(tableaus[0].size()); j++)
+    {
+        tableaus.back()[j].back() = 0; 
+    }
 
     std::cout << std::endl;
+
+    for (const auto &table : tableaus)
+    {
+        for (const auto &row : table)
+        {
+            for (auto element : row)
+            {
+                std::cout << element << " ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+    }
 }
