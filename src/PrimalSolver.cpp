@@ -15,7 +15,6 @@ void PrimalSolver::Init()
 
     objFunction = {3, 2};
 
-    // TODO have a check to see if there are only zeros and no 1s at the end of the user input indicating primal simplex
     // 0 or 1 at the end for <= or >= ... 0 being <= and 1 being >=
     constraints = {
         {2, 1, 100, 0},
@@ -40,13 +39,13 @@ void PrimalSolver::Init()
     //     {1, 2, 3, 50, 0},
     // };
 
-    objFunction = {60, 30, 20};
+    // objFunction = {60, 30, 20};
 
-    constraints = {
-        {8, 6, 1, 48, 0},
-        {4, 2, 1.5, 20, 0},
-        {2, 1.5, 0.5, 8, 0},
-    };
+    // constraints = {
+    //     {8, 6, 1, 48, 0},
+    //     {4, 2, 1.5, 20, 0},
+    //     {2, 1.5, 0.5, 8, 0},
+    // };
 
     // objFunction = {3, 5};
 
@@ -274,6 +273,38 @@ void PrimalSolver::StandardForm()
  */
 void PrimalSolver::BuildTableauMathForm()
 {
+    int ctrMax{};
+    int ctrMin{};
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        if (constraints[i].back() == 0)
+        {
+            ctrMax++;
+        }
+
+        if (constraints[i].back() == 1)
+        {
+            ctrMin++;
+        }
+        
+    }
+
+    if (ctrMax == static_cast<int>(constraints.size()))
+    {
+        max = true;
+    }
+    else if (ctrMin == static_cast<int>(constraints.size()))
+    {
+        max = false;
+    }
+    else
+    {
+        // TODO handle the case this not a primal simplex problem
+        std::cout << "critical error" << std::endl;
+        std::cout << "this is not a primal simplex problem and thus you should not be seeing this message" << std::endl;
+    }
+    
+
     std::vector<std::vector<float>> constraintsTab = constraints;
     std::vector<float> objFunctionRow = objFunction;
 
@@ -301,10 +332,21 @@ void PrimalSolver::BuildTableauMathForm()
         constraintsTab[i][i + lenOfObjFunction] = 1;
     }
 
-    // TODO handle max or min
-    for (auto &item : objFunctionRow)
+
+
+    if (max)
     {
-        item = -item;
+        for (auto &item : objFunctionRow)
+        {
+            item = -item;
+        }
+    }
+    else
+    {
+        for (auto &item : objFunctionRow)
+        {
+            item = abs(item);
+        }
     }
 
     // fill in objective function with 0s
@@ -318,15 +360,15 @@ void PrimalSolver::BuildTableauMathForm()
     tableauMathForm.insert(tableauMathForm.begin(), objFunctionRow);
 
     // Servers a test display
-    // std::cout << "display simple:" << std::endl;
-    // for (auto &row : tableauMathForm)
-    // {
-    //     for (auto &item : row)
-    //     {
-    //         std::cout << item << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
+    std::cout << "display simple:" << std::endl;
+    for (auto &row : tableauMathForm)
+    {
+        for (auto &item : row)
+        {
+            std::cout << item << " ";
+        }
+        std::cout << std::endl;
+    }
 }
 
 /**
@@ -355,7 +397,6 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
     std::vector<std::vector<float>> tableauStageOne = tab;
     std::vector<float> objFunctionMath = tab[0];
 
-    // TODO acknowledge only negative for max
     if (objFunctionMath.back() != 0)
     {
         objFunctionMath.pop_back();
@@ -368,11 +409,21 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
 
     // select column based on largest value
     // int max = std::max(*std::max_element(objFunctionMath.begin(), objFunctionMath.end()), -*std::min_element(objFunctionMath.begin(), objFunctionMath.end()));
-    int max = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
+    // int max = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
+
+    int pivotElement{};
+    if (max)
+    {
+        pivotElement = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
+    }
+    else
+    {
+        pivotElement = *std::max_element(objFunctionMath.rbegin(), objFunctionMath.rend());
+    }
 
     // dont forget the sign check
-    auto pivotColumnIterator = std::find_if(objFunctionMath.begin(), objFunctionMath.end(), [max](int value)
-                                            { return std::abs(value) == std::abs(max); });
+    auto pivotColumnIterator = std::find_if(objFunctionMath.begin(), objFunctionMath.end(), [pivotElement](int value)
+                                            { return std::abs(value) == std::abs(pivotElement); });
     int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
 
     // std::cout << "max: " << max << std::endl;
@@ -441,10 +492,9 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
         tableauStageOne[i].pop_back();
     }
 
-    //do pivot row operation step
+    // do pivot row operation step
     for (int j = 0; j < static_cast<int>(tableauStageTwo[pivotRow].size()); j++)
     {
-
         tableauStageTwo[pivotRow][j] = tableauStageOne[pivotRow][j] / tableauStageOne[pivotRow][pivotColumn];
     }
 
