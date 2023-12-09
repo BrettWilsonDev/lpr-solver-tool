@@ -56,9 +56,7 @@ void PrimalSolver::Init()
 
     StandardForm();
     BuildTableauMathForm();
-    PerformPivotOperations(tableauMathForm);
-    PerformPivotOperations(tableau);
-    PerformPivotOperations(tableau);
+    Solve();
 }
 
 void PrimalSolver::StandardForm()
@@ -273,6 +271,7 @@ void PrimalSolver::StandardForm()
  */
 void PrimalSolver::BuildTableauMathForm()
 {
+    // check if the problem is max or min
     int ctrMax{};
     int ctrMin{};
     for (int i = 0; i < static_cast<int>(constraints.size()); i++)
@@ -286,7 +285,6 @@ void PrimalSolver::BuildTableauMathForm()
         {
             ctrMin++;
         }
-        
     }
 
     if (ctrMax == static_cast<int>(constraints.size()))
@@ -303,11 +301,12 @@ void PrimalSolver::BuildTableauMathForm()
         std::cout << "critical error" << std::endl;
         std::cout << "this is not a primal simplex problem and thus you should not be seeing this message" << std::endl;
     }
-    
 
+    // create new vectors keeping the original input untouched
     std::vector<std::vector<float>> constraintsTab = constraints;
     std::vector<float> objFunctionRow = objFunction;
 
+    // remove max or min indicators
     for (auto &row : constraintsTab)
     {
         row.pop_back();
@@ -332,8 +331,7 @@ void PrimalSolver::BuildTableauMathForm()
         constraintsTab[i][i + lenOfObjFunction] = 1;
     }
 
-
-
+    // handle max or min var signs
     if (max)
     {
         for (auto &item : objFunctionRow)
@@ -369,6 +367,8 @@ void PrimalSolver::BuildTableauMathForm()
         }
         std::cout << std::endl;
     }
+
+    tableau = tableauMathForm;
 }
 
 /**
@@ -534,4 +534,48 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
 
     // TODO make an array of tableaus for display
     tableau = tableauStageTwo;
+}
+
+void PrimalSolver::Solve()
+{
+    //check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
+    int ctr{};
+    bool allPositive{};
+    bool isSolved{};
+    while (!isSolved && ctr < 100)
+    {
+        PerformPivotOperations(tableau);
+
+        if (max)
+        {
+            allPositive = std::all_of(tableau[0].begin(), tableau[0].end(), [](int num)
+                                      { return num >= 0; });
+        }
+        else
+        {
+            allPositive = std::all_of(tableau[0].begin(), tableau[0].end(), [](int num)
+                                      { return num <= 0; });
+        }
+
+        if (allPositive)
+        {
+            isSolved = true;
+        }
+
+        ctr++;
+    }
+
+    // TODO move this output to imgui
+    if (ctr == 100)
+    {
+        std::cout << "unbounded" << std::endl;
+    }
+
+    if (isSolved)
+    {
+        std::cout << "the solution is: " << tableau[0].back() << std::endl;
+    }
+    
+
+    std::cout << std::endl;
 }
