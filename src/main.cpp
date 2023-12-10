@@ -5,6 +5,7 @@
 #include "rlImGui.h"
 
 #include "PrimalSolver.hpp"
+#include "TwoPhase.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -63,7 +64,8 @@ int main(int argc, char *argv[])
 	// Redirect std::cout to the custom stream buffer
 	std::streambuf *coutBuffer = std::cout.rdbuf(&imguiStreamBuffer);
 
-	PrimalSolver ps;
+	// PrimalSolver ps;
+	TwoPhase ps;
 
 	// Main game loop
 	while (!WindowShouldClose()) // Detect window close button or ESC key

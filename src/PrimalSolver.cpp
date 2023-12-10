@@ -224,9 +224,9 @@ void PrimalSolver::StandardForm()
         std::cout << std::endl;
     }
 
-    tempVec.clear();
-    tempVec.shrink_to_fit();
-    canonical.shrink_to_fit();
+    // tempVec.clear();
+    // tempVec.shrink_to_fit();
+    // canonical.shrink_to_fit();
 }
 
 /**
