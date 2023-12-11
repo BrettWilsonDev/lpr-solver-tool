@@ -25,7 +25,7 @@ void TwoPhase::Init()
     // constraints = {
     //     {2, 3, 4, 1},
     //     {5, -6, 7, 1},
-    //     {0, 7, -8, 2},
+    //     {0, 7, -8, 0},
     // };
 
     // objFunction = {100, 30, 20};
@@ -37,7 +37,8 @@ void TwoPhase::Init()
     //     {0, 7, -8, 4, 2},
     // };
 
-    StandardForm();
+    // StandardForm();
+    BuildTableauMathForm();
 }
 
 void TwoPhase::StandardForm()
@@ -241,24 +242,8 @@ void TwoPhase::StandardForm()
 
 void TwoPhase::standardFormExtended()
 {
+
     std::vector<std::vector<std::string>> temp;
-
-    // for (int i = 1; i < static_cast<int>(constraints.size()); i++)
-    // {
-    //     if (constraints[i].back() == 1)
-    //     {
-    //         for (int j = 0; j < static_cast<int>(canonical[i].size()); j++)
-    //         {
-    //             temp.push_back(canonical[i][j]);
-    //         }
-    //     }
-    // }
-
-    // for (int i = 0; i < static_cast<int>(constraints.size()); i++)
-    // {
-    //     std::cout << temp[i] << " ";
-    // }
-    // std::cout << std::endl;
 
     // remove the rows from the string with the incorrect max or min constraint
     for (int i = static_cast<int>(constraints.size()) - 1; i >= 0; i--)
@@ -300,16 +285,6 @@ void TwoPhase::standardFormExtended()
         }
     }
 
-    // for (int i = 0; i < static_cast<int>(temp.size()); i++)
-    // {
-    //     for (int j = 0; j < static_cast<int>(temp[i].size()); j++)
-    //     {
-    //         std::cout << temp[i][j] << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-    // std::cout << std::endl;
-
     // add the two phase standard form rows
     for (int i = 0; i < static_cast<int>(temp.size()); i++)
     {
@@ -320,6 +295,7 @@ void TwoPhase::standardFormExtended()
     std::vector<std::string> tempObj;
     if (temp.size() == 1)
     {
+        // single row
         for (auto &element : temp[0])
         {
             if (element.find('a') != std::string::npos)
@@ -347,7 +323,7 @@ void TwoPhase::standardFormExtended()
     }
     else
     {
-        // TODO handle multiple rows w
+        // multiple rows
         std::vector<std::vector<float>> tempCon;
         tempCon.reserve(temp.size());
 
@@ -397,16 +373,6 @@ void TwoPhase::standardFormExtended()
             }
         }
 
-        // for (int i = 0; i < static_cast<int>(tempCon.size() - 1); i++)
-        // {
-        //     for (int j = 0; j < static_cast<int>(tempCon[i].size()); j++)
-        //     {
-        //         std::cout << tempCon[i][j] << " + " << tempCon[i + 1][j + 1] << " = " << (tempCon[i][j] + tempCon[i + 1][j]) << " \n";
-        //         // tempObj.push_back(std::to_string(tempCon[i][j] + tempCon[i + 1][j]));
-        //     }
-        //     std::cout << std::endl;
-        // }
-
         // do the arithmetic for the w function
         for (int j = 0; j < static_cast<int>(tempCon[0].size()); j++)
         {
@@ -451,31 +417,238 @@ void TwoPhase::standardFormExtended()
 
         tempObj.insert(tempObj.begin(), "w +");
         tempObj.insert(tempObj.end() - 1, "=");
-        // std::cout << static_cast<int>(std::stof(tempObj.at(tempObj.size() - 2))) << std::endl;
-
-        // for (int i = 0; i < static_cast<int>(tempObj.size()); i++)
-        // {
-        //     float floatValue = std::stof(tempObj[i]);
-        //     floatValue = -floatValue;
-        //     tempObj[i] = std::to_string(floatValue);
-        // }
-
-        // for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
-        // {
-        //     for (int j = 0; j < static_cast<int>(tempCon[i].size()); j++)
-        //     {
-        //         std::cout << tempCon[i][j] << " ";
-        //     }
-        //     std::cout << std::endl;
-        // }
-        // std::cout << std::endl;
-
-        // for (auto &item : tempObj)
-        // {
-        //     std::cout << item << " ";
-        // }
-        std::cout << std::endl;
 
         canonical.insert(canonical.begin(), tempObj);
     }
+}
+
+void TwoPhase::BuildTableauMathForm()
+{
+    // check if the problem is max or min
+    int ctrMax{};
+    int ctrMin{};
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        if (constraints[i].back() == 0)
+        {
+            ctrMax++;
+        }
+
+        if (constraints[i].back() == 1)
+        {
+            ctrMin++;
+        }
+    }
+
+    if (ctrMax == static_cast<int>(constraints.size()))
+    {
+        maxObj = true;
+    }
+    else if (ctrMin == static_cast<int>(constraints.size()))
+    {
+        maxObj = false;
+    }
+    else
+    {
+        // TODO handle the case this not a primal simplex problem
+        std::cout << "critical error" << std::endl;
+        std::cout << "this is not a primal simplex problem and thus you should not be seeing this message" << std::endl;
+    }
+
+    // create new vectors keeping the original input untouched
+    std::vector<std::vector<float>> constraintsTab = constraints;
+    std::vector<float> objFunctionRow = objFunction;
+
+    // remove max or min indicators
+    for (auto &row : constraintsTab)
+    {
+        row.pop_back();
+    }
+
+    // add slack vars spots
+    int lenOfObjFunction = objFunction.size();
+    int lenOfConstraints = constraintsTab.size();
+    // std::cout << (lenOfObjFunction) << std::endl;
+    for (int i = 0; i < static_cast<int>(constraintsTab.size()); i++)
+    {
+        for (int j = 0; j < lenOfConstraints; j++)
+        {
+            constraintsTab[i].insert(constraintsTab[i].begin() + lenOfObjFunction, 0.0f);
+        }
+    }
+
+    // fill in slack vars in thier correct spots
+    for (int i = 0; i < static_cast<int>(constraintsTab.size()); i++)
+    {
+        // it just so happens i is the same amount of slack vars ex: 3 rows 3 slack vars
+        constraintsTab[i][i + lenOfObjFunction] = 1;
+    }
+
+    // handle max or min var signs
+    if (maxObj)
+    {
+        for (auto &item : objFunctionRow)
+        {
+            item = -item;
+        }
+    }
+    else
+    {
+        for (auto &item : objFunctionRow)
+        {
+            item = abs(item);
+        }
+    }
+
+    // fill in objective function with 0s
+    for (int i = 0; i < static_cast<int>(constraintsTab.size() + 1); i++)
+    {
+        objFunctionRow.push_back(0.0f);
+    }
+
+    // combine the tables
+    tableauMathForm = constraintsTab;
+    tableauMathForm.insert(tableauMathForm.begin(), objFunctionRow);
+
+    BuildTableauMathFormExtended();
+
+    // Servers a test display
+    // std::cout << "display simple:" << std::endl;
+    // for (auto &row : tableauMathForm)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+
+    tableau = tableauMathForm;
+    tableaus.push_back(tableauMathForm);
+}
+
+void TwoPhase::BuildTableauMathFormExtended()
+{
+    std::vector<std::vector<float>> tempTableau = tableauMathForm;
+    std::vector<std::vector<float>> temp;
+    std::vector<float> tempObj;
+
+    // start the array by adding the vars
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        // TODO handle min
+        if (constraints[i].back() == 1 || constraints[i].back() == 2)
+        {
+            temp.push_back(constraints[i]);
+        }
+    }
+
+    // build the constraints function in math form
+    for (int i = 0; i < static_cast<int>(temp.size()); i++)
+    {
+        float tempNum{};
+        tempNum = temp[i][temp[i].size() - 2];
+        temp[i].pop_back();
+        temp[i].pop_back();
+        temp[i].push_back(0);
+        temp[i].push_back(-1);
+        temp[i].push_back(tempNum);
+    }
+
+    //count amount of = constraints
+    int ctr{};
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        if (constraints[i].back() == 2)
+        {
+            ctr++;
+        }
+    }
+
+    // make a dummy row of zeros to avoid out of bounds errors
+    temp.push_back(std::vector<float>());
+    for (int i = 0; i < static_cast<int>(temp[0].size()); i++)
+    {
+        temp.back().push_back(0);
+    }
+
+    // convert all the negative numbers to positive
+    for (int i = 0; i < static_cast<int>(temp.size() - 1); i++)
+    {
+        for (int j = 0; j < static_cast<int>(temp[i].size() - 1); j++)
+        {
+            if (temp[i][j] != 0)
+            {
+                temp[i][j] = -temp[i][j];
+            }
+        }
+    }
+
+    // do the arithmetic for the w function
+    for (int j = 0; j < static_cast<int>(temp[0].size()); j++)
+    {
+        float sum{};
+        for (int i = 0; i < static_cast<int>(temp.size()); i++)
+        {
+            sum += temp[i][j];
+        }
+        tempObj.push_back(sum);
+        // std::cout << "Sum of column " << j << ": " << sum << std::endl;
+    }
+
+    int len = abs(tempObj[tempObj.size() - 2]) - ctr;
+    // tempObj.erase(tempObj.end() - 2);
+    float tempObjNum{};
+    tempObjNum = tempObj.back();
+    tempObj.pop_back();
+    tempObj.pop_back();
+
+    for (int i = 0; i < len; i++)
+    {
+        tempObj.push_back(1);
+    }
+
+    //count amount of slack vars
+    ctr = 0;
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        // TODO handle min
+        if (constraints[i].back() == 0)
+        {
+            ctr++;
+        }
+    }
+    
+    // add slack vars
+    for (int i = 0; i < ctr; i++)
+    {
+        tempObj.push_back(0);
+    }
+
+    // add back the last var
+    tempObj.push_back(tempObjNum);
+
+    // convert the sign back
+    for (int j = 0; j < static_cast<int>(tempObj.size() - 1); j++)
+    {
+        if (tempObj[j] != 0)
+        {
+            tempObj[j] = -tempObj[j];
+        }
+    }
+
+    //add w function on top of objective function
+    tempTableau.insert(tempTableau.begin(), tempObj);
+
+    // servers a test display
+    std::cout << "display extended:" << std::endl;
+    for (auto &row : tempTableau)
+    {
+        for (auto &item : row)
+        {
+            std::cout << item << " ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
 }

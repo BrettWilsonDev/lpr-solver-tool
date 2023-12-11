@@ -19,6 +19,7 @@ private:
     void Init();
     void StandardForm();
     void standardFormExtended();
+    void BuildTableauMathFormExtended();
     void BuildTableauMathForm();
     void PerformPivotOperations(std::vector<std::vector<float>> tab);
     void Solve();
