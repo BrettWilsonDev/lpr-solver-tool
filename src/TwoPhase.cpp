@@ -25,7 +25,7 @@ void TwoPhase::Init()
     // constraints = {
     //     {2, 3, 4, 1},
     //     {5, -6, 7, 1},
-    //     {0, 7, -8, 0},
+    //     {0, 7, -8, 2},
     // };
 
     // objFunction = {100, 30, 20};
@@ -35,6 +35,21 @@ void TwoPhase::Init()
     //     {5, -6, 7, 4, 2},
     //     {5, -6, 7, 4, 1},
     //     {0, 7, -8, 4, 2},
+    // };
+
+    // objFunction = {4, 5};
+
+    // // 0 or 1 at the end for <= or >= ... 0 being <= and 1 being >= 2 being =
+    // constraints = {
+    //     {2, 3, 6, 0},
+    //     {1, 1, 7, 1},
+    // };
+
+    // objFunction = {50, 100};
+
+    // constraints = {
+    //     {7, 2, 28, 1},
+    //     {2, 12, 24, 1},
     // };
 
     // StandardForm();
@@ -527,120 +542,141 @@ void TwoPhase::BuildTableauMathForm()
     tableaus.push_back(tableauMathForm);
 }
 
+/**
+ * Builds the tableau math form extended.
+ *
+ * @param None
+ *
+ * @return None
+ *
+ * @throws None
+ */
 void TwoPhase::BuildTableauMathFormExtended()
 {
     std::vector<std::vector<float>> tempTableau = tableauMathForm;
-    std::vector<std::vector<float>> temp;
-    std::vector<float> tempObj;
+    std::vector<std::vector<float>> tempCon;
 
-    // start the array by adding the vars
+    // init tempCon
+    int amtSlacks{};
     for (int i = 0; i < static_cast<int>(constraints.size()); i++)
     {
-        // TODO handle min
-        if (constraints[i].back() == 1 || constraints[i].back() == 2)
+        if (constraints[i].back() == 1)
         {
-            temp.push_back(constraints[i]);
+            tempCon.push_back(constraints[i]);
+        }
+
+        if (constraints[i].back() == 0)
+        {
+            amtSlacks++;
         }
     }
 
-    // build the constraints function in math form
-    for (int i = 0; i < static_cast<int>(temp.size()); i++)
+    // zero out the correct amount of artificial spots
+    for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
     {
         float tempNum{};
-        tempNum = temp[i][temp[i].size() - 2];
-        temp[i].pop_back();
-        temp[i].pop_back();
-        temp[i].push_back(0);
-        temp[i].push_back(-1);
-        temp[i].push_back(tempNum);
+        tempNum = tempCon[i][tempCon[i].size() - 2];
+        tempCon[i].insert(tempCon[i].begin(), tempNum);
+        tempCon[i].pop_back();
+        tempCon[i].pop_back();
+
+        for (int j = 0; j < static_cast<int>(tempCon.size()); j++)
+        {
+            tempCon[i].push_back(0);
+            tempCon[i].push_back(0);
+        }
     }
 
-    //count amount of = constraints
+    // put -1 and 1 in correct spots : a1 e1 etc
     int ctr{};
-    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
     {
-        if (constraints[i].back() == 2)
+        for (int j = static_cast<int>(objFunction.size() + 1 + ctr); j < static_cast<int>(tempCon[i].size()); j += 2)
         {
-            ctr++;
-        }
-    }
-
-    // make a dummy row of zeros to avoid out of bounds errors
-    temp.push_back(std::vector<float>());
-    for (int i = 0; i < static_cast<int>(temp[0].size()); i++)
-    {
-        temp.back().push_back(0);
-    }
-
-    // convert all the negative numbers to positive
-    for (int i = 0; i < static_cast<int>(temp.size() - 1); i++)
-    {
-        for (int j = 0; j < static_cast<int>(temp[i].size() - 1); j++)
-        {
-            if (temp[i][j] != 0)
+            if (j + 1 == static_cast<int>(tempCon[i].size()))
             {
-                temp[i][j] = -temp[i][j];
+                break;
             }
+
+            tempCon[i][j] = 1;
+            tempCon[i][j + 1] = -1;
+            break;
         }
+        ctr += 2;
+    }
+
+    // add correct amount of 0s from slack vars
+    for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
+    {
+        for (int j = 0; j < amtSlacks; j++)
+        {
+            tempCon[i].push_back(0);
+        }
+
+        tempTableau[0].push_back(0);
+
+        // put the sum in the correct spot
+        tempCon[i].push_back(tempCon[i].front());
+        tempCon[i].erase(tempCon[i].begin());
     }
 
     // do the arithmetic for the w function
-    for (int j = 0; j < static_cast<int>(temp[0].size()); j++)
+    std::vector<float> tempObj;
+    for (int j = 0; j < static_cast<int>(tempCon[0].size()); j++)
     {
         float sum{};
-        for (int i = 0; i < static_cast<int>(temp.size()); i++)
+        for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
         {
-            sum += temp[i][j];
+            sum += tempCon[i][j];
         }
         tempObj.push_back(sum);
         // std::cout << "Sum of column " << j << ": " << sum << std::endl;
     }
 
-    int len = abs(tempObj[tempObj.size() - 2]) - ctr;
-    // tempObj.erase(tempObj.end() - 2);
-    float tempObjNum{};
-    tempObjNum = tempObj.back();
-    tempObj.pop_back();
-    tempObj.pop_back();
-
-    for (int i = 0; i < len; i++)
+    // remove artificial variables from the w function
+    for (int i = static_cast<int>(objFunction.size()); i < static_cast<int>(tempObj.size() - 1); i++)
     {
-        tempObj.push_back(1);
-    }
-
-    //count amount of slack vars
-    ctr = 0;
-    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
-    {
-        // TODO handle min
-        if (constraints[i].back() == 0)
+        if (tempObj[i] == 1)
         {
-            ctr++;
-        }
-    }
-    
-    // add slack vars
-    for (int i = 0; i < ctr; i++)
-    {
-        tempObj.push_back(0);
-    }
-
-    // add back the last var
-    tempObj.push_back(tempObjNum);
-
-    // convert the sign back
-    for (int j = 0; j < static_cast<int>(tempObj.size() - 1); j++)
-    {
-        if (tempObj[j] != 0)
-        {
-            tempObj[j] = -tempObj[j];
+            tempObj[i] = 0;
         }
     }
 
-    //add w function on top of objective function
+    // put the w function in the table
     tempTableau.insert(tempTableau.begin(), tempObj);
 
-    // servers a test display
+    // for (auto row : tempCon)
+    // {
+    //     for (auto i : row)
+    //     {
+    //         std::cout << i << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
+
+    // add tempCon and leading zeros to the table
+    int len = static_cast<int>(tempCon.size());
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        if (constraints[i].back() == 0)
+        {
+            // i += 2;
+            for (int j = 0; j < len; j++)
+            {
+                tempTableau[i + 2].insert(tempTableau[i + 2].begin() + static_cast<int>(objFunction.size()), 0);
+            }
+
+            // tempTableau[i].insert(tempTableau[i].begin() + static_cast<int>(objFunction.size()), 0);
+            // i -= 2;
+        }
+        if (constraints[i].back() == 1)
+        {
+            tempTableau[i + 2] = tempCon.front();
+            tempCon.erase(tempCon.begin());
+        }
+    }
+
     std::cout << "display extended:" << std::endl;
     for (auto &row : tempTableau)
     {
@@ -652,3 +688,209 @@ void TwoPhase::BuildTableauMathFormExtended()
     }
     std::cout << std::endl;
 }
+
+// void TwoPhase::BuildTableauMathFormExtended()
+// {
+// std::vector<std::vector<float>> tempTableau = tableauMathForm;
+// std::vector<std::vector<float>> temp;
+// std::vector<float> tempObj;
+
+// // start the array by adding the vars
+// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+// {
+//     // TODO handle min
+//     if (constraints[i].back() == 1 || constraints[i].back() == 2)
+//     {
+//         temp.push_back(constraints[i]);
+//     }
+// }
+
+// // build the constraints function in math form
+// for (int i = 0; i < static_cast<int>(temp.size()); i++)
+// {
+//     float tempNum{};
+//     tempNum = temp[i][temp[i].size() - 2];
+//     temp[i].pop_back();
+//     temp[i].pop_back();
+//     temp[i].push_back(0);
+//     temp[i].push_back(-1);
+//     temp[i].push_back(tempNum);
+// }
+
+// // count amount of = constraints
+// int ctr{};
+// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+// {
+//     if (constraints[i].back() == 2)
+//     {
+//         ctr++;
+//     }
+// }
+
+// // make a dummy row of zeros to avoid out of bounds errors
+// temp.push_back(std::vector<float>());
+// for (int i = 0; i < static_cast<int>(temp[0].size()); i++)
+// {
+//     temp.back().push_back(0);
+// }
+
+// // convert all the negative numbers to positive
+// for (int i = 0; i < static_cast<int>(temp.size() - 1); i++)
+// {
+//     for (int j = 0; j < static_cast<int>(temp[i].size() - 1); j++)
+//     {
+//         if (temp[i][j] != 0)
+//         {
+//             temp[i][j] = -temp[i][j];
+//         }
+//     }
+// }
+
+// // do the arithmetic for the w function
+// for (int j = 0; j < static_cast<int>(temp[0].size()); j++)
+// {
+//     float sum{};
+//     for (int i = 0; i < static_cast<int>(temp.size()); i++)
+//     {
+//         sum += temp[i][j];
+//     }
+//     tempObj.push_back(sum);
+//     // std::cout << "Sum of column " << j << ": " << sum << std::endl;
+// }
+
+// int len = abs(tempObj[tempObj.size() - 2]) - ctr;
+// // tempObj.erase(tempObj.end() - 2);
+// float tempObjNum{};
+// tempObjNum = tempObj.back();
+// tempObj.pop_back();
+// tempObj.pop_back();
+
+// for (int i = 0; i < len; i++)
+// {
+//     tempObj.push_back(1);
+// }
+
+// // count amount of slack vars
+// ctr = 0;
+// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+// {
+//     // TODO handle min
+//     if (constraints[i].back() == 0)
+//     {
+//         ctr++;
+//     }
+// }
+
+// // add slack vars
+// for (int i = 0; i < ctr; i++)
+// {
+//     tempObj.push_back(0);
+// }
+
+// // add back the last var
+// tempObj.push_back(tempObjNum);
+
+// // convert the sign back
+// for (int j = 0; j < static_cast<int>(tempObj.size() - 1); j++)
+// {
+//     if (tempObj[j] != 0)
+//     {
+//         tempObj[j] = -tempObj[j];
+//     }
+// }
+
+// // add w function on top of objective function
+// tempTableau.insert(tempTableau.begin(), tempObj);
+
+// std::vector<std::vector<float>> tempCon;
+
+// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+// {
+//     if (constraints[i].back() == 1 || constraints[i].back() == 2)
+//     {
+//         tempCon.push_back(constraints[i]);
+//     }
+// }
+
+// for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
+// {
+//     float tempNum{};
+//     tempNum = temp[i][temp[i].size() - 1];
+//     tempCon[i].pop_back();
+//     tempCon[i].pop_back();
+//     tempCon[i].push_back(1);
+//     tempCon[i].push_back(-1);
+
+//     for (int j = 0; j < ctr; j++)
+//     {
+//         tempCon[i].push_back(0);
+//     }
+//     tempCon[i].push_back(tempNum);
+// }
+
+// // for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
+// // {
+// //     for (int j = 0; j < ctr; j++)
+// //     {
+// //         tempCon[i].push_back(0);
+// //     }
+// // }
+
+// for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
+// {
+//     for (int j = 0; j < static_cast<int>(tempCon[i].size()); j++)
+//     {
+//         std::cout << tempCon[i][j] << " ";
+//     }
+//     std::cout << std::endl;
+// }
+
+// // insert 0 for the a vars
+// for (int i = 0; i < static_cast<int>(tempTableau.size()); i++)
+// {
+//     // for (int j = 0; j < static_cast<int>(objFunction.size()); j++)
+//     // {
+//     //     std::cout << tempTableau[i][j] << " ";
+//     // }
+//     // std::cout << objFunction.size() << std::endl;
+//     // std::cout << tempTableau[i][objFunction.size()] << " ";
+//     for (int j = 0; j < static_cast<int>(tempCon.size()); j++)
+//     {
+//         tempTableau[i].insert(tempTableau[i].begin() + objFunction.size(), 0);
+//     }
+// }
+// std::cout << std::endl;
+
+// // replace the rows with an e and a with correct row
+// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+// {
+//     if (constraints[i].back() == 1 || constraints[i].back() == 2)
+//     {
+//         // tempTableau.erase(tempTableau.begin() + i + 2);
+//         tempTableau[i + 2] = tempCon.front();
+//         tempCon.erase(tempCon.begin());
+//     }
+// }
+
+// // std::vector<std::vector<float>> tempConBuild;
+
+// // for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+// // {
+// //     if (constraints[i].back() == 1 || constraints[i].back() == 2)
+// //     {
+// //         tempConBuild.push_back(constraints[i]);
+// //     }
+// // }
+
+// servers a test display
+// std::cout << "display extended:" << std::endl;
+// for (auto &row : tempTableau)
+// {
+//     for (auto &item : row)
+//     {
+//         std::cout << item << " ";
+//     }
+//     std::cout << std::endl;
+// }
+// std::cout << std::endl;
+// }
