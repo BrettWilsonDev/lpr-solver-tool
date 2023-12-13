@@ -52,8 +52,39 @@ void TwoPhase::Init()
     //     {2, 12, 24, 1},
     // };
 
-    // StandardForm();
+    objFunction = {4, 1};
+
+    // 0 or 1 at the end for <= or >= ... 0 being <= and 1 being >= 2 being =
+    constraints = {
+        {3, 1, 10, 1},
+        {1, 1, 5, 1},
+        {1, 0, 3, 1},
+    };
+
+    StandardForm();
     BuildTableauMathForm();
+    // Solve();
+    // PrepSolutionDisplay();
+
+    PerformPivotOperationsExtended(tableau);
+
+    PerformPivotOperationsExtended(tableau);
+    PerformPivotOperationsExtended(tableau);
+
+    PerformPivotOperations(tableau);
+
+    for (const auto &table : tableaus)
+    {
+        for (const auto &row : table)
+        {
+            for (auto element : row)
+            {
+                std::cout << element << " ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+    }
 }
 
 void TwoPhase::StandardForm()
@@ -525,7 +556,7 @@ void TwoPhase::BuildTableauMathForm()
     tableauMathForm = constraintsTab;
     tableauMathForm.insert(tableauMathForm.begin(), objFunctionRow);
 
-    BuildTableauMathFormExtended();
+    tableauMathForm = BuildTableauMathFormExtended();
 
     // Servers a test display
     // std::cout << "display simple:" << std::endl;
@@ -539,6 +570,7 @@ void TwoPhase::BuildTableauMathForm()
     // }
 
     tableau = tableauMathForm;
+    // tableausExtended.push_back(tableauMathForm);
     tableaus.push_back(tableauMathForm);
 }
 
@@ -549,9 +581,9 @@ void TwoPhase::BuildTableauMathForm()
  *
  * @return None
  *
- * @throws None
+ *  * @throws None
  */
-void TwoPhase::BuildTableauMathFormExtended()
+std::vector<std::vector<float>> TwoPhase::BuildTableauMathFormExtended()
 {
     std::vector<std::vector<float>> tempTableau = tableauMathForm;
     std::vector<std::vector<float>> tempCon;
@@ -645,16 +677,6 @@ void TwoPhase::BuildTableauMathFormExtended()
     // put the w function in the table
     tempTableau.insert(tempTableau.begin(), tempObj);
 
-    // for (auto row : tempCon)
-    // {
-    //     for (auto i : row)
-    //     {
-    //         std::cout << i << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-    // std::cout << std::endl;
-
     // add tempCon and leading zeros to the table
     int len = static_cast<int>(tempCon.size());
     for (int i = 0; i < static_cast<int>(constraints.size()); i++)
@@ -677,220 +699,629 @@ void TwoPhase::BuildTableauMathFormExtended()
         }
     }
 
-    std::cout << "display extended:" << std::endl;
-    for (auto &row : tempTableau)
+    // for (int i = 2; i < static_cast<int>(tempTableau.size()); i++)
+    // {
+    //     tempTableau[i].push_back(0);
+    // }
+
+    // std::cout << "display extended:" << std::endl;
+    // for (auto &row : tempTableau)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
+
+    for (int i = 0; i < static_cast<int>(tempTableau[1].size() - 1); i++)
+    {
+        if (tempTableau[1][i] != 0)
+        {
+            tempTableau[1][i] = -tempTableau[1][i];
+        }
+    }
+
+    return tempTableau;
+}
+
+/**
+ * Performs pivot operations on a given tableau.
+ *
+ * @param tab the tableau to perform pivot operations on
+ *
+ * @return void
+ *
+ * @throws None
+ */
+void TwoPhase::PerformPivotOperations(std::vector<std::vector<float>> tab)
+{
+
+    // for (auto &row : tab)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         // item = -item;
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
+
+    // std::cout << "\nperforming steps" << std::endl;
+
+    // make sure it's not the initial mathematical form
+    if (tab[0].back() != 0)
+    {
+        // stop theta column from stacking
+        for (int i = 1; i < static_cast<int>(tab.size()); i++)
+        {
+            tab[i].pop_back();
+        }
+    }
+
+    std::vector<std::vector<float>> tableauStageOne = tab;
+    std::vector<float> objFunctionMath = tab[0];
+
+    // remove the sum form being included
+    if (objFunctionMath.back() != 0)
+    {
+        objFunctionMath.pop_back();
+    }
+
+    // for (auto &item : objFunctionMath)
+    // {
+    //     std::cout << item << " ";
+    // }
+    // std::cout << std::endl;
+
+    // // select column based on largest value
+    // // int max = std::max(*std::max_element(objFunctionMath.begin(), objFunctionMath.end()), -*std::min_element(objFunctionMath.begin(), objFunctionMath.end()));
+    // // int max = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
+
+    int pivotElement{};
+    if (maxObj)
+    {
+        pivotElement = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
+    }
+    else
+    {
+        pivotElement = *std::max_element(objFunctionMath.rbegin(), objFunctionMath.rend());
+    }
+
+    // dont forget the sign check
+    auto pivotColumnIterator = std::find_if(objFunctionMath.begin(), objFunctionMath.end(), [pivotElement](int value)
+                                            { return std::abs(value) == std::abs(pivotElement); });
+    int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
+
+    // std::cout << "max: " << pivotElement << std::endl;
+    // std::cout << "pivot column: " << pivotColumn << std::endl;
+
+    // calculate percentages in theta column
+    for (int i = 1; i < static_cast<int>(tableauStageOne.size()); i++)
+    {
+        tableauStageOne[i].push_back(tableauStageOne[i].back() / tableauStageOne[i][pivotColumn]);
+    }
+
+    // // for (auto &row : tableauStageOne)
+    // // {
+    // //     for (auto &item : row)
+    // //     {
+    // //         std::cout << item << " ";
+    // //     }
+    // //     std::cout << std::endl;
+    // // }
+
+    // create a temporay vector to hold theta column and items
+    std::vector<std::vector<float>> tempTab = tableauStageOne;
+
+    // remove any negative from the theta column test by making them infinity
+    for (int i = 0; i < static_cast<int>(tempTab.size()); i++)
+    {
+        if (tempTab[i].back() < 0)
+        {
+            tempTab[1].back() = std::numeric_limits<float>::infinity();
+        }
+    }
+
+    // find smallest theta value and set pivot row
+    float smallest = tempTab[1].back();
+    int pivotRow{1};
+    for (int i = 2; i < static_cast<int>(tempTab.size()); i++)
+    {
+        float current = tempTab[i].back();
+        if (current < smallest)
+        {
+            smallest = current;
+            pivotRow = i;
+        }
+    }
+
+    std::vector<std::vector<float>> theta = tempTab;
+
+    // std::cout << "pivot row: " << pivotRow << std::endl;
+
+    // fix theta back its correct values in place of infinity
+    for (int i = 1; i < static_cast<int>(tempTab.size()); i++)
+    {
+        tempTab[i].pop_back();
+        tempTab[i].push_back(tableauStageOne[i].back());
+    }
+
+    // std::cout << "pivot row: " << pivotRow << std::endl;
+
+    // move on to new tableau
+    std::vector<std::vector<float>> tableauStageTwo = tableauStageOne;
+
+    // remove theta column
+    for (int i = 1; i < static_cast<int>(tableauStageTwo.size()); i++)
+    {
+        tableauStageTwo[i].pop_back();
+        // tableauStageOne[i].pop_back();
+    }
+
+    // do pivot row operation step
+    for (int j = 0; j < static_cast<int>(tableauStageTwo[pivotRow].size()); j++)
+    {
+        tableauStageTwo[pivotRow][j] = tableauStageOne[pivotRow][j] / tableauStageOne[pivotRow][pivotColumn];
+    }
+
+    // for (auto &row : tableauStageTwo)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+
+    // pivot operation for new tableau primal simplex
+    for (int i = 0; i < static_cast<int>(tableauMathForm.size()); i++)
+    {
+        for (int j = 0; j < static_cast<int>(tableauMathForm[i].size()); j++)
+        {
+            if (i == pivotRow)
+            {
+                continue;
+            }
+            if (i < static_cast<int>(tableauStageTwo.size()) && j < static_cast<int>(tableauStageTwo[i].size()))
+            {
+                // the formula: Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
+                tableauStageTwo[i][j] = ((tableauStageOne[i][j]) - (tableauStageOne[i][pivotColumn] * tableauStageTwo[pivotRow][j]));
+            }
+        }
+    }
+
+    // add theta column back
+    for (int i = 1; i < static_cast<int>(tableauStageTwo.size()); i++)
+    {
+        tableauStageTwo[i].push_back(tempTab[i].back());
+    }
+
+    // std::cout << "\ndisplay math:" << std::endl;
+
+    // for (auto &row : tableauStageTwo)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+
+    tableau = tableauStageTwo;
+    tableaus.push_back(tableauStageTwo);
+}
+
+void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> tab)
+{
+    // for (auto const row : tab)
+    // {
+    //     for (auto const item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
+
+    if (tab[1].back() != 0)
+    {
+        // stop theta column from stacking
+        for (int i = 1; i < static_cast<int>(tab.size()); i++)
+        {
+            tab[i].pop_back();
+        }
+    }
+
+    std::vector<std::vector<float>> tableauStageOne = tab;
+    std::vector<float> objFunctionMath = tab[0];
+
+    // remove the sum form being included
+    if (objFunctionMath.back() != 0)
+    {
+        objFunctionMath.pop_back();
+    }
+
+    int pivotElement{};
+    if (maxObj)
+    {
+        pivotElement = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
+    }
+    else
+    {
+        pivotElement = *std::max_element(objFunctionMath.rbegin(), objFunctionMath.rend());
+    }
+
+    // dont forget the sign check
+    auto pivotColumnIterator = std::find_if(objFunctionMath.begin(), objFunctionMath.end(), [pivotElement](int value)
+                                            { return std::abs(value) == std::abs(pivotElement); });
+    int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
+
+    // std::cout << "pivotElement: " << pivotElement << std::endl;
+    // std::cout << "pivot column: " << pivotColumn << std::endl;
+
+    // calculate percentages in theta column
+    for (int i = 2; i < static_cast<int>(tableauStageOne.size()); i++)
+    {
+        tableauStageOne[i].push_back(tableauStageOne[i].back() / tableauStageOne[i][pivotColumn]);
+    }
+
+    // create a temporay vector to hold theta column and items
+    std::vector<std::vector<float>> tempTab = tableauStageOne;
+
+    // remove any negative from the theta column test by making them infinity
+    for (int i = 0; i < static_cast<int>(tempTab.size()); i++)
+    {
+        if (tempTab[i].back() < 0)
+        {
+            tempTab[1].back() = std::numeric_limits<float>::infinity();
+        }
+    }
+
+    // find smallest theta value and set pivot row
+    float smallest = tempTab[2].back();
+    int pivotRow{2};
+    for (int i = 3; i < static_cast<int>(tempTab.size()); i++)
+    {
+        float current = tempTab[i].back();
+        if (current < smallest)
+        {
+            smallest = current;
+            pivotRow = i;
+        }
+    }
+
+    std::vector<std::vector<float>> theta = tempTab;
+
+    // std::cout << "pivot element: " << smallest << std::endl;
+
+    // std::cout << "pivot row: " << pivotRow << std::endl;
+
+    // fix theta back its correct values in place of infinity
+    for (int i = 1; i < static_cast<int>(tempTab.size()); i++)
+    {
+        tempTab[i].pop_back();
+        tempTab[i].push_back(tableauStageOne[i].back());
+    }
+
+    // move on to new tableau
+    std::vector<std::vector<float>> tableauStageTwo = tableauStageOne;
+
+    // remove theta column
+    for (int i = 2; i < static_cast<int>(tableauStageTwo.size()); i++)
+    {
+        tableauStageTwo[i].pop_back();
+        // tableauStageOne[i].pop_back();
+    }
+
+    // do pivot row operation step
+    for (int j = 0; j < static_cast<int>(tableauStageTwo[pivotRow].size()); j++)
+    {
+        tableauStageTwo[pivotRow][j] = tableauStageOne[pivotRow][j] / tableauStageOne[pivotRow][pivotColumn];
+    }
+
+    // pivot operation for new tableau primal simplex
+    for (int i = 0; i < static_cast<int>(tableauMathForm.size()); i++)
+    {
+        for (int j = 0; j < static_cast<int>(tableauMathForm[i].size()); j++)
+        {
+            if (i == pivotRow)
+            {
+                continue;
+            }
+            if (i < static_cast<int>(tableauStageTwo.size()) && j < static_cast<int>(tableauStageTwo[i].size()))
+            {
+                // the formula: Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
+                tableauStageTwo[i][j] = ((tableauStageOne[i][j]) - (tableauStageOne[i][pivotColumn] * tableauStageTwo[pivotRow][j]));
+                // std::cout << tableauStageTwo[i][j] << ": " << tableauStageOne[i][j] << " - " << tableauStageOne[i][pivotColumn] << " * " << tableauStageTwo[pivotRow][j] << " ";
+            }
+            // std::cout << std::endl;
+        }
+        // std::cout << std::endl;
+    }
+
+    // //add theta column back
+    for (int i = 2; i < static_cast<int>(tableauStageTwo.size()); i++)
+    {
+        tableauStageTwo[i].push_back(tempTab[i].back());
+    }
+
+    // for (auto const row : tableauStageTwo)
+    // {
+    //     for (auto const item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
+
+    for (auto &row : tableauStageTwo)
     {
         for (auto &item : row)
         {
-            std::cout << item << " ";
+            if (std::abs(item) < 1e-6)
+            {
+                item = 0.0;
+            }
+        }
+    }
+
+    tableau = tableauStageTwo;
+    // tableausExtended.push_back(tableauStageTwo);
+    tableaus.push_back(tableauStageTwo);
+}
+
+void TwoPhase::Solve()
+{
+    SolveExtended();
+
+    // check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
+    int ctr{};
+    bool allPosOrNeg{};
+    bool isSolved{};
+    while (!isSolved && ctr < 100)
+    {
+        PerformPivotOperations(tableau);
+
+        if (maxObj)
+        {
+            // allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
+            //                           { return num >= 0; });
+            allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
+                                      { return num <= 0; });
+        }
+        // else
+        // {
+        //     allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
+        //                               { return num <= 0; });
+        // }
+
+        if (allPosOrNeg)
+        {
+            isSolved = true;
+        }
+
+        ctr++;
+    }
+
+    // TODO move this output to imgui
+    if (ctr == 100)
+    {
+        std::cout << "unbounded" << std::endl;
+    }
+
+    if (isSolved)
+    {
+        std::cout << "the solution is: " << tableau[0].back() << std::endl;
+    }
+}
+
+void TwoPhase::SolveExtended()
+{
+    // int ctr{};
+    // bool allPosOrNeg{};
+    // bool isSolved{};
+
+    // std::vector<std::vector<float>> tempTab = tableau;
+    // std::cout << std::endl;
+    // PerformPivotOperationsExtended(tableau);
+    // tempTab = tableau;
+
+    // for (const auto &row : tableau)
+    // {
+    //     for (auto element : row)
+    //     {
+    //         std::cout << element << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
+
+    // PerformPivotOperationsExtended(tableau);
+
+    // allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
+    //                           { return num <= 0; });
+
+    // // if (allPosOrNeg && tableau[0].back() == 0)
+    // if (allPosOrNeg && tableau[0].back() == 0)
+    // {
+    //     isSolved = true;
+    //     // PerformPivotOperations(tempTab);
+    //     std::cout << "aiofiwuasyhufuiahfhuashyuifghyu" << std::endl;
+    // }
+    // else
+    // {
+    //     std::cout << allPosOrNeg << "  " << (tableau[0].back()) << std::endl;
+    // }
+
+    // PerformPivotOperationsExtended(tableau);
+    // tableau[1].push_back(360);
+
+    // for (const auto &row : tableau)
+    // {
+    //     for (auto element : row)
+    //     {
+    //         std::cout << element << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
+
+    // check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
+    // int ctr{};
+    // bool allPosOrNeg{};
+    // bool isSolved{};
+    // // while (!isSolved && ctr < 100)
+    // while (!isSolved && ctr < 100)
+    // {
+    //     PerformPivotOperationsExtended(tableau);
+
+    //     allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
+    //                               { return num <= 0; });
+
+    //     // if (allPosOrNeg && tableau[0].back() == 0)
+    //     if (allPosOrNeg && tableau[0].back() == 0)
+    //     {
+    //         isSolved = true;
+    //     }
+    //     ctr++;
+    //     std::cout << (allPosOrNeg && tableau[0].back() == 0) << std::endl;
+    //     std::cout << tableau[0].back() << std::endl;
+    // }
+
+    // // std::cout << ctr << std::endl;
+
+    std::vector<std::vector<float>> tempTab = tableau;
+
+    // check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
+    int ctr{};
+    bool allPosOrNeg{};
+    bool isSolved{};
+    // while (!isSolved && ctr < 100)
+    while (!isSolved && ctr < 100)
+    {
+        PerformPivotOperationsExtended(tableau);
+        tempTab = tableau;
+
+        PerformPivotOperationsExtended(tableau);
+
+        allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
+                                  { return num <= 0; });
+
+        // if (allPosOrNeg && tableau[0].back() == 0)
+        if (allPosOrNeg && tableau[0].back() == 0)
+        {
+            isSolved = true;
+        }
+        ctr++;
+        // std::cout << (allPosOrNeg && tableau[0].back() == 0) << std::endl;
+        // std::cout << tableau[0].back() << std::endl;
+    }
+
+    if (isSolved)
+    {
+        tableau = tempTab;
+    }
+
+    tableau.erase(tableau.begin());
+
+    int amtAVar{0};
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        if (constraints[i].back() == 1)
+        {
+            amtAVar++;
+        }
+    }
+
+    int amtBVar{0};
+    for (int i = 0; i < amtAVar; i++)
+    {
+        for (int j = 0; j < static_cast<int>(tableau.size()); j++)
+        {
+            // std::cout << *(tableau[j].begin() + 1) << std::endl;
+            tableau[j].erase(tableau[j].begin() + 2 + amtBVar);
+        }
+        amtBVar++;
+    }
+
+    maxObj = true;
+    // // maxObj = false;
+
+    // // TODO move this output to imgui
+    // if (ctr == 100)
+    // {
+    //     std::cout << "unbounded" << std::endl;
+    // }
+}
+
+void TwoPhase::PrepSolutionDisplay()
+{
+    PrepSolutionDisplayExtended();
+
+    // move theta to the correct table for display
+    for (int i = 1; i < static_cast<int>(tableaus.size()); i++)
+    {
+        for (int j = 1; j < static_cast<int>(tableaus[i].size()); j++)
+        {
+            tableaus[i - 1][j].back() = tableaus[i][j].back();
+        }
+    }
+
+    // zero out theta column in last table
+    // for (int j = 1; j < static_cast<int>(tableaus[0].size()); j++)
+    // {
+    //     tableaus.back()[j].back() = 0;
+    // }
+
+    std::cout << std::endl;
+
+    for (const auto &table : tableaus)
+    {
+        for (const auto &row : table)
+        {
+            for (auto element : row)
+            {
+                std::cout << element << " ";
+            }
+            std::cout << std::endl;
         }
         std::cout << std::endl;
     }
-    std::cout << std::endl;
 }
 
-// void TwoPhase::BuildTableauMathFormExtended()
-// {
-// std::vector<std::vector<float>> tempTableau = tableauMathForm;
-// std::vector<std::vector<float>> temp;
-// std::vector<float> tempObj;
+void TwoPhase::PrepSolutionDisplayExtended()
+{
+    // move theta to the correct table for display
+    for (int i = 2; i < static_cast<int>(tableausExtended.size()); i++)
+    {
+        for (int j = 1; j < static_cast<int>(tableausExtended[i].size()); j++)
+        {
+            tableausExtended[i - 2][j].back() = tableausExtended[i][j].back();
+        }
+    }
 
-// // start the array by adding the vars
-// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
-// {
-//     // TODO handle min
-//     if (constraints[i].back() == 1 || constraints[i].back() == 2)
-//     {
-//         temp.push_back(constraints[i]);
-//     }
-// }
+    // zero out theta column in last table
+    // for (int j = 2; j < static_cast<int>(tableaus[0].size()); j++)
+    // {
+    //     tableausExtended.back()[j].back() = 0;
+    // }
 
-// // build the constraints function in math form
-// for (int i = 0; i < static_cast<int>(temp.size()); i++)
-// {
-//     float tempNum{};
-//     tempNum = temp[i][temp[i].size() - 2];
-//     temp[i].pop_back();
-//     temp[i].pop_back();
-//     temp[i].push_back(0);
-//     temp[i].push_back(-1);
-//     temp[i].push_back(tempNum);
-// }
+    std::cout << std::endl;
 
-// // count amount of = constraints
-// int ctr{};
-// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
-// {
-//     if (constraints[i].back() == 2)
-//     {
-//         ctr++;
-//     }
-// }
-
-// // make a dummy row of zeros to avoid out of bounds errors
-// temp.push_back(std::vector<float>());
-// for (int i = 0; i < static_cast<int>(temp[0].size()); i++)
-// {
-//     temp.back().push_back(0);
-// }
-
-// // convert all the negative numbers to positive
-// for (int i = 0; i < static_cast<int>(temp.size() - 1); i++)
-// {
-//     for (int j = 0; j < static_cast<int>(temp[i].size() - 1); j++)
-//     {
-//         if (temp[i][j] != 0)
-//         {
-//             temp[i][j] = -temp[i][j];
-//         }
-//     }
-// }
-
-// // do the arithmetic for the w function
-// for (int j = 0; j < static_cast<int>(temp[0].size()); j++)
-// {
-//     float sum{};
-//     for (int i = 0; i < static_cast<int>(temp.size()); i++)
-//     {
-//         sum += temp[i][j];
-//     }
-//     tempObj.push_back(sum);
-//     // std::cout << "Sum of column " << j << ": " << sum << std::endl;
-// }
-
-// int len = abs(tempObj[tempObj.size() - 2]) - ctr;
-// // tempObj.erase(tempObj.end() - 2);
-// float tempObjNum{};
-// tempObjNum = tempObj.back();
-// tempObj.pop_back();
-// tempObj.pop_back();
-
-// for (int i = 0; i < len; i++)
-// {
-//     tempObj.push_back(1);
-// }
-
-// // count amount of slack vars
-// ctr = 0;
-// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
-// {
-//     // TODO handle min
-//     if (constraints[i].back() == 0)
-//     {
-//         ctr++;
-//     }
-// }
-
-// // add slack vars
-// for (int i = 0; i < ctr; i++)
-// {
-//     tempObj.push_back(0);
-// }
-
-// // add back the last var
-// tempObj.push_back(tempObjNum);
-
-// // convert the sign back
-// for (int j = 0; j < static_cast<int>(tempObj.size() - 1); j++)
-// {
-//     if (tempObj[j] != 0)
-//     {
-//         tempObj[j] = -tempObj[j];
-//     }
-// }
-
-// // add w function on top of objective function
-// tempTableau.insert(tempTableau.begin(), tempObj);
-
-// std::vector<std::vector<float>> tempCon;
-
-// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
-// {
-//     if (constraints[i].back() == 1 || constraints[i].back() == 2)
-//     {
-//         tempCon.push_back(constraints[i]);
-//     }
-// }
-
-// for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
-// {
-//     float tempNum{};
-//     tempNum = temp[i][temp[i].size() - 1];
-//     tempCon[i].pop_back();
-//     tempCon[i].pop_back();
-//     tempCon[i].push_back(1);
-//     tempCon[i].push_back(-1);
-
-//     for (int j = 0; j < ctr; j++)
-//     {
-//         tempCon[i].push_back(0);
-//     }
-//     tempCon[i].push_back(tempNum);
-// }
-
-// // for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
-// // {
-// //     for (int j = 0; j < ctr; j++)
-// //     {
-// //         tempCon[i].push_back(0);
-// //     }
-// // }
-
-// for (int i = 0; i < static_cast<int>(tempCon.size()); i++)
-// {
-//     for (int j = 0; j < static_cast<int>(tempCon[i].size()); j++)
-//     {
-//         std::cout << tempCon[i][j] << " ";
-//     }
-//     std::cout << std::endl;
-// }
-
-// // insert 0 for the a vars
-// for (int i = 0; i < static_cast<int>(tempTableau.size()); i++)
-// {
-//     // for (int j = 0; j < static_cast<int>(objFunction.size()); j++)
-//     // {
-//     //     std::cout << tempTableau[i][j] << " ";
-//     // }
-//     // std::cout << objFunction.size() << std::endl;
-//     // std::cout << tempTableau[i][objFunction.size()] << " ";
-//     for (int j = 0; j < static_cast<int>(tempCon.size()); j++)
-//     {
-//         tempTableau[i].insert(tempTableau[i].begin() + objFunction.size(), 0);
-//     }
-// }
-// std::cout << std::endl;
-
-// // replace the rows with an e and a with correct row
-// for (int i = 0; i < static_cast<int>(constraints.size()); i++)
-// {
-//     if (constraints[i].back() == 1 || constraints[i].back() == 2)
-//     {
-//         // tempTableau.erase(tempTableau.begin() + i + 2);
-//         tempTableau[i + 2] = tempCon.front();
-//         tempCon.erase(tempCon.begin());
-//     }
-// }
-
-// // std::vector<std::vector<float>> tempConBuild;
-
-// // for (int i = 0; i < static_cast<int>(constraints.size()); i++)
-// // {
-// //     if (constraints[i].back() == 1 || constraints[i].back() == 2)
-// //     {
-// //         tempConBuild.push_back(constraints[i]);
-// //     }
-// // }
-
-// servers a test display
-// std::cout << "display extended:" << std::endl;
-// for (auto &row : tempTableau)
-// {
-//     for (auto &item : row)
-//     {
-//         std::cout << item << " ";
-//     }
-//     std::cout << std::endl;
-// }
-// std::cout << std::endl;
-// }
+    for (const auto &table : tableausExtended)
+    {
+        for (const auto &row : table)
+        {
+            for (auto element : row)
+            {
+                std::cout << element << " ";
+            }
+            std::cout << std::endl;
+        }
+        std::cout << std::endl;
+    }
+}

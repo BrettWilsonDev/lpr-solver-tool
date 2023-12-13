@@ -477,7 +477,8 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
             {
                 continue;
             }
-            if (i < static_cast<int>(tableauMathForm.size()) && j < static_cast<int>(tableauMathForm[i].size()))
+            // if (i < static_cast<int>(tableauMathForm.size()) && j < static_cast<int>(tableauMathForm[i].size())){
+            if (i < static_cast<int>(tableauStageTwo.size()) && j < static_cast<int>(tableauStageTwo[i].size()))
             {
                 // the formula: Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
                 tableauStageTwo[i][j] = ((tableauStageOne[i][j]) - (tableauStageOne[i][pivotColumn] * tableauStageTwo[pivotRow][j]));
@@ -545,12 +546,11 @@ void PrimalSolver::Solve()
     {
         std::cout << "the solution is: " << tableau[0].back() << std::endl;
     }
-
 }
 
 void PrimalSolver::PrepSolutionDisplay()
 {
-    //move theta to the correct table for display
+    // move theta to the correct table for display
     for (int i = 1; i < static_cast<int>(tableaus.size()); i++)
     {
         for (int j = 1; j < static_cast<int>(tableaus[i].size()); j++)
@@ -559,10 +559,10 @@ void PrimalSolver::PrepSolutionDisplay()
         }
     }
 
-    //zero out theta column in last table
+    // zero out theta column in last table
     for (int j = 1; j < static_cast<int>(tableaus[0].size()); j++)
     {
-        tableaus.back()[j].back() = 0; 
+        tableaus.back()[j].back() = 0;
     }
 
     std::cout << std::endl;

@@ -19,11 +19,14 @@ private:
     void Init();
     void StandardForm();
     void standardFormExtended();
-    void BuildTableauMathFormExtended();
     void BuildTableauMathForm();
+    std::vector<std::vector<float>> BuildTableauMathFormExtended();
     void PerformPivotOperations(std::vector<std::vector<float>> tab);
+    void PerformPivotOperationsExtended(std::vector<std::vector<float>> tab);
     void Solve();
+    void SolveExtended();
     void PrepSolutionDisplay();
+    void PrepSolutionDisplayExtended();
 
     bool maxObj{};
 
@@ -36,4 +39,5 @@ private:
     std::vector<std::vector<float>> tableau;
 
     std::vector<std::vector<std::vector<float>>> tableaus;
+    std::vector<std::vector<std::vector<float>>> tableausExtended;
 };
