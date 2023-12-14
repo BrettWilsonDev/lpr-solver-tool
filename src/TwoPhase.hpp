@@ -29,6 +29,7 @@ private:
     void PrepSolutionDisplayExtended();
 
     bool maxObj{};
+    bool minMixedObj{};
 
     std::vector<float> objFunction;
     std::vector<std::vector<float>> constraints;

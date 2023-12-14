@@ -515,7 +515,6 @@ void PrimalSolver::Solve()
     bool isSolved{};
     while (!isSolved && ctr < 100)
     {
-        PerformPivotOperations(tableau);
 
         if (maxObj)
         {
@@ -534,6 +533,7 @@ void PrimalSolver::Solve()
         }
 
         ctr++;
+        PerformPivotOperations(tableau);
     }
 
     // TODO move this output to imgui

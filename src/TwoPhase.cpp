@@ -63,16 +63,36 @@ void TwoPhase::Init()
 
     StandardForm();
     BuildTableauMathForm();
-    // Solve();
-    // PrepSolutionDisplay();
+    Solve();
+    PrepSolutionDisplay();
 
-    PerformPivotOperationsExtended(tableau);
+    // for (auto &row : tableau)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         int decimalPlaces = 8;
+    //         item = std::round(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
+    //         // item = std::round(item);
+    //     }
+    // }
 
-    PerformPivotOperationsExtended(tableau);
+    // PerformPivotOperationsExtended(tableau);
+
+    // for (auto &row : tableau)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         int decimalPlaces = 7;
+    //         item = std::round(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
+    //         // item = std::round(item);
+    //     }
+    // }
+
     // PerformPivotOperationsExtended(tableau);
 
     // PerformPivotOperationsExtended(tableau);
 
+    // PerformPivotOperationsExtended(tableau);
 
     // tableau.erase(tableau.begin());
 
@@ -520,12 +540,15 @@ void TwoPhase::BuildTableauMathForm()
     else if (ctrMin == static_cast<int>(constraints.size()))
     {
         maxObj = false;
+        minMixedObj = true;
     }
     else
     {
+        // maxObj = true;
+        // minMixedObj = true;
         // TODO handle the case this not a primal simplex problem
-        std::cout << "critical error" << std::endl;
-        std::cout << "this is not a primal simplex problem and thus you should not be seeing this message" << std::endl;
+        // std::cout << "critical error" << std::endl;
+        // std::cout << "this is not a primal simplex problem and thus you should not be seeing this message" << std::endl;
     }
 
     // create new vectors keeping the original input untouched
@@ -739,16 +762,16 @@ std::vector<std::vector<float>> TwoPhase::BuildTableauMathFormExtended()
         }
     }
 
-    std::cout << "display extended:" << std::endl;
-    for (auto &row : tempTableau)
-    {
-        for (auto &item : row)
-        {
-            std::cout << item << " ";
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
+    // std::cout << "display extended:" << std::endl;
+    // for (auto &row : tempTableau)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
 
     return tempTableau;
 }
@@ -775,6 +798,14 @@ void TwoPhase::PerformPivotOperations(std::vector<std::vector<float>> tab)
     //     std::cout << std::endl;
     // }
     // std::cout << std::endl;
+
+    // for (auto &row : tab)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         item = std::round(item);
+    //     }
+    // }
 
     // std::cout << "\nperforming steps" << std::endl;
 
@@ -998,8 +1029,8 @@ void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> ta
                                             { return std::abs(value) == std::abs(pivotElement); });
     int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
 
-    std::cout << "pivotElement: " << pivotElement << std::endl;
-    std::cout << "pivot column: " << pivotColumn << std::endl;
+    // std::cout << "pivotElement: " << pivotElement << std::endl;
+    // std::cout << "pivot column: " << pivotColumn << std::endl;
 
     // calculate percentages in theta column
     for (int i = 2; i < static_cast<int>(tableauStageOne.size()); i++)
@@ -1034,9 +1065,9 @@ void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> ta
 
     std::vector<std::vector<float>> theta = tempTab;
 
-    std::cout << "pivot element: " << smallest << std::endl;
+    // std::cout << "pivot element: " << smallest << std::endl;
 
-    std::cout << "pivot row: " << pivotRow << std::endl;
+    // std::cout << "pivot row: " << pivotRow << std::endl;
 
     // fix theta back its correct values in place of infinity
     for (int i = 1; i < static_cast<int>(tempTab.size()); i++)
@@ -1087,15 +1118,15 @@ void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> ta
         tableauStageTwo[i].push_back(tempTab[i].back());
     }
 
-    for (auto const row : tableauStageTwo)
-    {
-        for (auto const item : row)
-        {
-            std::cout << item << " ";
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
+    // for (auto const row : tableauStageTwo)
+    // {
+    //     for (auto const item : row)
+    //     {
+    //         std::cout << item << " ";
+    //     }
+    //     std::cout << std::endl;
+    // }
+    // std::cout << std::endl;
 
     for (auto &row : tableauStageTwo)
     {
@@ -1123,27 +1154,34 @@ void TwoPhase::Solve()
     bool isSolved{};
     while (!isSolved && ctr < 100)
     {
-        PerformPivotOperations(tableau);
 
         if (maxObj)
         {
             // allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
             //                           { return num >= 0; });
             allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
+                                      { return num >= 0; });
+        }
+        else
+        {
+            allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
                                       { return num <= 0; });
         }
-        // else
-        // {
-        //     allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
-        //                               { return num <= 0; });
-        // }
+
+        if (minMixedObj)
+        {
+            allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
+                                      { return num <= 0; });
+        }
 
         if (allPosOrNeg)
         {
             isSolved = true;
+            break;
         }
 
         ctr++;
+        PerformPivotOperations(tableau);
     }
 
     // TODO move this output to imgui
@@ -1160,81 +1198,6 @@ void TwoPhase::Solve()
 
 void TwoPhase::SolveExtended()
 {
-    // int ctr{};
-    // bool allPosOrNeg{};
-    // bool isSolved{};
-
-    // std::vector<std::vector<float>> tempTab = tableau;
-    // std::cout << std::endl;
-    // PerformPivotOperationsExtended(tableau);
-    // tempTab = tableau;
-
-    // for (const auto &row : tableau)
-    // {
-    //     for (auto element : row)
-    //     {
-    //         std::cout << element << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-    // std::cout << std::endl;
-
-    // PerformPivotOperationsExtended(tableau);
-
-    // allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
-    //                           { return num <= 0; });
-
-    // // if (allPosOrNeg && tableau[0].back() == 0)
-    // if (allPosOrNeg && tableau[0].back() == 0)
-    // {
-    //     isSolved = true;
-    //     // PerformPivotOperations(tempTab);
-    //     std::cout << "aiofiwuasyhufuiahfhuashyuifghyu" << std::endl;
-    // }
-    // else
-    // {
-    //     std::cout << allPosOrNeg << "  " << (tableau[0].back()) << std::endl;
-    // }
-
-    // PerformPivotOperationsExtended(tableau);
-    // tableau[1].push_back(360);
-
-    // for (const auto &row : tableau)
-    // {
-    //     for (auto element : row)
-    //     {
-    //         std::cout << element << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-    // std::cout << std::endl;
-
-    // check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
-    // int ctr{};
-    // bool allPosOrNeg{};
-    // bool isSolved{};
-    // // while (!isSolved && ctr < 100)
-    // while (!isSolved && ctr < 100)
-    // {
-    //     PerformPivotOperationsExtended(tableau);
-
-    //     allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
-    //                               { return num <= 0; });
-
-    //     // if (allPosOrNeg && tableau[0].back() == 0)
-    //     if (allPosOrNeg && tableau[0].back() == 0)
-    //     {
-    //         isSolved = true;
-    //     }
-    //     ctr++;
-    //     std::cout << (allPosOrNeg && tableau[0].back() == 0) << std::endl;
-    //     std::cout << tableau[0].back() << std::endl;
-    // }
-
-    // // std::cout << ctr << std::endl;
-
-    std::vector<std::vector<float>> tempTab = tableau;
-
     // check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
     int ctr{};
     bool allPosOrNeg{};
@@ -1242,10 +1205,6 @@ void TwoPhase::SolveExtended()
     // while (!isSolved && ctr < 100)
     while (!isSolved && ctr < 100)
     {
-        PerformPivotOperationsExtended(tableau);
-        tempTab = tableau;
-
-        PerformPivotOperationsExtended(tableau);
 
         allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
                                   { return num <= 0; });
@@ -1254,15 +1213,24 @@ void TwoPhase::SolveExtended()
         if (allPosOrNeg && tableau[0].back() == 0)
         {
             isSolved = true;
+            // std::cout << "the solution is: bob" << tableau[1].back() << std::endl;
+            break;
         }
+
         ctr++;
+        PerformPivotOperationsExtended(tableau);
+
+        for (auto &row : tableau)
+        {
+            for (auto &item : row)
+            {
+                int decimalPlaces = 7;
+                item = std::round(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
+                // item = std::round(item);
+            }
+        }
         // std::cout << (allPosOrNeg && tableau[0].back() == 0) << std::endl;
         // std::cout << tableau[0].back() << std::endl;
-    }
-
-    if (isSolved)
-    {
-        tableau = tempTab;
     }
 
     tableau.erase(tableau.begin());
@@ -1286,6 +1254,8 @@ void TwoPhase::SolveExtended()
         }
         amtBVar++;
     }
+
+    tableaus.push_back(tableau);
 
     maxObj = true;
     // // maxObj = false;
@@ -1334,6 +1304,8 @@ void TwoPhase::PrepSolutionDisplay()
 
 void TwoPhase::PrepSolutionDisplayExtended()
 {
+    // Dont forget its a e not e a or e e e aaa
+
     // move theta to the correct table for display
     for (int i = 2; i < static_cast<int>(tableausExtended.size()); i++)
     {
