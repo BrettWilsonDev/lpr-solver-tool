@@ -422,7 +422,7 @@ void PrimalSolver::PerformPivotOperations(std::vector<std::vector<float>> tab)
     {
         if (tempTab[i].back() < 0)
         {
-            tempTab[1].back() = std::numeric_limits<float>::infinity();
+            tempTab[i].back() = std::numeric_limits<float>::infinity();
         }
     }
 
