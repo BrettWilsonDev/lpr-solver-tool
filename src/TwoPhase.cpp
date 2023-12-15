@@ -20,6 +20,8 @@ void TwoPhase::Init()
         {10, 4, 40, 0},
     };
 
+    // twoPhaseMax = true;
+
     // objFunction = {100, 30};
 
     // constraints = {
@@ -45,12 +47,12 @@ void TwoPhase::Init()
     //     {1, 1, 7, 1},
     // };
 
-    objFunction = {50, 100};
+    // objFunction = {50, 100};
 
-    constraints = {
-        {7, 2, 28, 1},
-        {2, 12, 24, 1},
-    };
+    // constraints = {
+    //     {7, 2, 28, 1},
+    //     {2, 12, 24, 1},
+    // };
 
     // objFunction = {4, 1};
 
@@ -61,37 +63,17 @@ void TwoPhase::Init()
     //     {1, 0, 3, 1},
     // };
 
+    // objFunction = {7, 1};
+
+    // constraints = {
+    //     {2, 1, 12, 1},
+    //     {2, 3, 18, 1},
+    // };
+
     StandardForm();
     BuildTableauMathForm();
-    Solve();
-    PrepSolutionDisplay();
-
-    // for (auto &row : tableau)
-    // {
-    //     for (auto &item : row)
-    //     {
-    //         int decimalPlaces = 8;
-    //         item = std::round(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
-    //         // item = std::round(item);
-    //     }
-    // }
 
     // PerformPivotOperationsExtended(tableau);
-
-    // for (auto &row : tableau)
-    // {
-    //     for (auto &item : row)
-    //     {
-    //         int decimalPlaces = 7;
-    //         item = std::round(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
-    //         // item = std::round(item);
-    //     }
-    // }
-
-    // PerformPivotOperationsExtended(tableau);
-
-    // PerformPivotOperationsExtended(tableau);
-
     // PerformPivotOperationsExtended(tableau);
 
     // tableau.erase(tableau.begin());
@@ -116,22 +98,21 @@ void TwoPhase::Init()
     //     amtBVar++;
     // }
 
+    // tableaus.push_back(tableau);
+
+    // // maxObj = true;
+    // PerformPivotOperations(tableau);
+    // PerformPivotOperations(tableau);
     // PerformPivotOperations(tableau);
 
-    // // PerformPivotOperations(tableau);
+    // PerformPivotOperationsExtended(tableau);
+    // PerformPivotOperationsExtended(tableauMathForm);
+    // PerformPivotOperations(tableauMathForm);
+    // PerformPivotOperationsExtended(tableauMathForm);
+    // PerformPivotOperationsExtended(tableauMathForm);
 
-    // for (const auto &table : tableaus)
-    // {
-    //     for (const auto &row : table)
-    //     {
-    //         for (auto element : row)
-    //         {
-    //             std::cout << element << " ";
-    //         }
-    //         std::cout << std::endl;
-    //     }
-    //     std::cout << std::endl;
-    // }
+    Solve();
+    PrepSolutionDisplay();
 }
 
 void TwoPhase::StandardForm()
@@ -608,17 +589,6 @@ void TwoPhase::BuildTableauMathForm()
 
     tableauMathForm = BuildTableauMathFormExtended();
 
-    // Servers a test display
-    // std::cout << "display simple:" << std::endl;
-    // for (auto &row : tableauMathForm)
-    // {
-    //     for (auto &item : row)
-    //     {
-    //         std::cout << item << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-
     tableau = tableauMathForm;
     // tableausExtended.push_back(tableauMathForm);
     tableaus.push_back(tableauMathForm);
@@ -712,7 +682,6 @@ std::vector<std::vector<float>> TwoPhase::BuildTableauMathFormExtended()
             sum += tempCon[i][j];
         }
         tempObj.push_back(sum);
-        // std::cout << "Sum of column " << j << ": " << sum << std::endl;
     }
 
     // remove artificial variables from the w function
@@ -733,14 +702,10 @@ std::vector<std::vector<float>> TwoPhase::BuildTableauMathFormExtended()
     {
         if (constraints[i].back() == 0)
         {
-            // i += 2;
             for (int j = 0; j < len; j++)
             {
                 tempTableau[i + 2].insert(tempTableau[i + 2].begin() + static_cast<int>(objFunction.size()), 0);
             }
-
-            // tempTableau[i].insert(tempTableau[i].begin() + static_cast<int>(objFunction.size()), 0);
-            // i -= 2;
         }
         if (constraints[i].back() == 1)
         {
@@ -749,11 +714,6 @@ std::vector<std::vector<float>> TwoPhase::BuildTableauMathFormExtended()
         }
     }
 
-    // for (int i = 2; i < static_cast<int>(tempTableau.size()); i++)
-    // {
-    //     tempTableau[i].push_back(0);
-    // }
-
     for (int i = 0; i < static_cast<int>(tempTableau[1].size() - 1); i++)
     {
         if (tempTableau[1][i] != 0)
@@ -761,17 +721,6 @@ std::vector<std::vector<float>> TwoPhase::BuildTableauMathFormExtended()
             tempTableau[1][i] = -tempTableau[1][i];
         }
     }
-
-    // std::cout << "display extended:" << std::endl;
-    // for (auto &row : tempTableau)
-    // {
-    //     for (auto &item : row)
-    //     {
-    //         std::cout << item << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-    // std::cout << std::endl;
 
     return tempTableau;
 }
@@ -787,28 +736,6 @@ std::vector<std::vector<float>> TwoPhase::BuildTableauMathFormExtended()
  */
 void TwoPhase::PerformPivotOperations(std::vector<std::vector<float>> tab)
 {
-
-    // for (auto &row : tab)
-    // {
-    //     for (auto &item : row)
-    //     {
-    //         // item = -item;
-    //         std::cout << item << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-    // std::cout << std::endl;
-
-    // for (auto &row : tab)
-    // {
-    //     for (auto &item : row)
-    //     {
-    //         item = std::round(item);
-    //     }
-    // }
-
-    // std::cout << "\nperforming steps" << std::endl;
-
     // make sure it's not the initial mathematical form
     if (tab[0].back() != 0)
     {
@@ -828,16 +755,6 @@ void TwoPhase::PerformPivotOperations(std::vector<std::vector<float>> tab)
         objFunctionMath.pop_back();
     }
 
-    // for (auto &item : objFunctionMath)
-    // {
-    //     std::cout << item << " ";
-    // }
-    // std::cout << std::endl;
-
-    // // select column based on largest value
-    // // int max = std::max(*std::max_element(objFunctionMath.begin(), objFunctionMath.end()), -*std::min_element(objFunctionMath.begin(), objFunctionMath.end()));
-    // // int max = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
-
     int pivotElement{};
     if (maxObj)
     {
@@ -853,23 +770,14 @@ void TwoPhase::PerformPivotOperations(std::vector<std::vector<float>> tab)
                                             { return std::abs(value) == std::abs(pivotElement); });
     int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
 
-    // std::cout << "max: " << pivotElement << std::endl;
-    // std::cout << "pivot column: " << pivotColumn << std::endl;
+    std::cout << "pivotElement: " << pivotElement << std::endl;
+    std::cout << "pivot column: " << pivotColumn << std::endl;
 
     // calculate percentages in theta column
     for (int i = 1; i < static_cast<int>(tableauStageOne.size()); i++)
     {
         tableauStageOne[i].push_back(tableauStageOne[i].back() / tableauStageOne[i][pivotColumn]);
     }
-
-    // // for (auto &row : tableauStageOne)
-    // // {
-    // //     for (auto &item : row)
-    // //     {
-    // //         std::cout << item << " ";
-    // //     }
-    // //     std::cout << std::endl;
-    // // }
 
     // create a temporay vector to hold theta column and items
     std::vector<std::vector<float>> tempTab = tableauStageOne;
@@ -879,7 +787,7 @@ void TwoPhase::PerformPivotOperations(std::vector<std::vector<float>> tab)
     {
         if (tempTab[i].back() < 0)
         {
-            tempTab[1].back() = std::numeric_limits<float>::infinity();
+            tempTab[i].back() = std::numeric_limits<float>::infinity();
         }
     }
 
@@ -898,7 +806,9 @@ void TwoPhase::PerformPivotOperations(std::vector<std::vector<float>> tab)
 
     std::vector<std::vector<float>> theta = tempTab;
 
-    // std::cout << "pivot row: " << pivotRow << std::endl;
+    std::cout << "pivot element: " << smallest << std::endl;
+
+    std::cout << "pivot row: " << pivotRow << std::endl;
 
     // fix theta back its correct values in place of infinity
     for (int i = 1; i < static_cast<int>(tempTab.size()); i++)
@@ -974,16 +884,6 @@ void TwoPhase::PerformPivotOperations(std::vector<std::vector<float>> tab)
 
 void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> tab)
 {
-    // for (auto const row : tab)
-    // {
-    //     for (auto const item : row)
-    //     {
-    //         std::cout << item << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-    // std::cout << std::endl;
-
     if (tab[1].back() != 0)
     {
         // stop theta column from stacking
@@ -1006,22 +906,10 @@ void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> ta
     if (maxObj)
     {
         pivotElement = -*std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
-        // pivotElement = *std::max_element(objFunctionMath.rbegin(), objFunctionMath.rend());
-
-        // auto minElement = *std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
-        // if (minElement != 0)
-        // {
-        //     pivotElement = -minElement;
-        // }
     }
     else
     {
         pivotElement = *std::max_element(objFunctionMath.rbegin(), objFunctionMath.rend());
-        // auto minElement = *std::min_element(objFunctionMath.rbegin(), objFunctionMath.rend());
-        // if (minElement != 0)
-        // {
-        //     pivotElement = -minElement;
-        // }
     }
 
     // dont forget the sign check
@@ -1029,8 +917,8 @@ void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> ta
                                             { return std::abs(value) == std::abs(pivotElement); });
     int pivotColumn = std::distance(objFunctionMath.begin(), pivotColumnIterator);
 
-    // std::cout << "pivotElement: " << pivotElement << std::endl;
-    // std::cout << "pivot column: " << pivotColumn << std::endl;
+    std::cout << "pivotElement: " << pivotElement << std::endl;
+    std::cout << "pivot column: " << pivotColumn << std::endl;
 
     // calculate percentages in theta column
     for (int i = 2; i < static_cast<int>(tableauStageOne.size()); i++)
@@ -1065,9 +953,9 @@ void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> ta
 
     std::vector<std::vector<float>> theta = tempTab;
 
-    // std::cout << "pivot element: " << smallest << std::endl;
+    std::cout << "pivot element: " << smallest << std::endl;
 
-    // std::cout << "pivot row: " << pivotRow << std::endl;
+    std::cout << "pivot row: " << pivotRow << std::endl;
 
     // fix theta back its correct values in place of infinity
     for (int i = 1; i < static_cast<int>(tempTab.size()); i++)
@@ -1105,7 +993,6 @@ void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> ta
             {
                 // the formula: Element_New_Table((i, j)) = Element_Old_Table((i, j)) - (Element_Old_Table((i, Pivot_column)) * Element_New_Table((Pivot_Row, j)))
                 tableauStageTwo[i][j] = ((tableauStageOne[i][j]) - (tableauStageOne[i][pivotColumn] * tableauStageTwo[pivotRow][j]));
-                // std::cout << tableauStageTwo[i][j] << ": " << tableauStageOne[i][j] << " - " << tableauStageOne[i][pivotColumn] << " * " << tableauStageTwo[pivotRow][j] << " ";
             }
             // std::cout << std::endl;
         }
@@ -1117,16 +1004,6 @@ void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> ta
     {
         tableauStageTwo[i].push_back(tempTab[i].back());
     }
-
-    // for (auto const row : tableauStageTwo)
-    // {
-    //     for (auto const item : row)
-    //     {
-    //         std::cout << item << " ";
-    //     }
-    //     std::cout << std::endl;
-    // }
-    // std::cout << std::endl;
 
     for (auto &row : tableauStageTwo)
     {
@@ -1257,14 +1134,13 @@ void TwoPhase::SolveExtended()
 
     tableaus.push_back(tableau);
 
-    maxObj = true;
-    // // maxObj = false;
+    maxObj = twoPhaseMax;
 
     // // TODO move this output to imgui
-    // if (ctr == 100)
-    // {
-    //     std::cout << "unbounded" << std::endl;
-    // }
+    if (ctr == 100)
+    {
+        std::cout << "unbounded" << std::endl;
+    }
 }
 
 void TwoPhase::PrepSolutionDisplay()
@@ -1281,7 +1157,7 @@ void TwoPhase::PrepSolutionDisplay()
     }
 
     // zero out theta column in last table
-    // for (int j = 1; j < static_cast<int>(tableaus[0].size()); j++)
+    // for (int j = 2; j < static_cast<int>(tableaus[0].size()); j++)
     // {
     //     tableaus.back()[j].back() = 0;
     // }
@@ -1322,17 +1198,4 @@ void TwoPhase::PrepSolutionDisplayExtended()
     // }
 
     std::cout << std::endl;
-
-    for (const auto &table : tableausExtended)
-    {
-        for (const auto &row : table)
-        {
-            for (auto element : row)
-            {
-                std::cout << element << " ";
-            }
-            std::cout << std::endl;
-        }
-        std::cout << std::endl;
-    }
 }

@@ -30,6 +30,7 @@ private:
 
     bool maxObj{};
     bool minMixedObj{};
+    bool twoPhaseMax{};
 
     std::vector<float> objFunction;
     std::vector<std::vector<float>> constraints;
