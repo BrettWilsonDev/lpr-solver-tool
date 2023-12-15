@@ -6,32 +6,16 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
+#include "PrimalTwoPhaseBase.hpp"
 
-class PrimalSolver
+class PrimalSolver : public PrimalTwoPhaseBase
 {
 public:
     PrimalSolver();
     ~PrimalSolver();
-    std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
+    // std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
     // std::vector<std::vector<std::string>> GetTableau() { return canonical; }
+    void Init();
 
 private:
-    void Init();
-    void StandardForm();
-    void BuildTableauMathForm();
-    void PerformPivotOperations(std::vector<std::vector<float>> tab);
-    void Solve();
-    void PrepSolutionDisplay();
-
-    bool maxObj{};
-
-    std::vector<float> objFunction;
-    std::vector<std::vector<float>> constraints;
-    //canonical form vector of strings
-    std::vector<std::vector<std::string>> canonical;
-    //tableau math form
-    std::vector<std::vector<float>> tableauMathForm;
-    std::vector<std::vector<float>> tableau;
-
-    std::vector<std::vector<std::vector<float>>> tableaus;
 };

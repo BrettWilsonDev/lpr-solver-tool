@@ -13,7 +13,7 @@ class TwoPhase : public PrimalTwoPhaseBase
 public:
     TwoPhase();
     ~TwoPhase();
-    std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
+    // std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
     // std::vector<std::vector<std::string>> GetTableau() { return canonical; }
 
     void Init();

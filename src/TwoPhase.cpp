@@ -32,14 +32,14 @@ void TwoPhase::Init()
     // //     {0, 7, -8, 2},
     // // };
 
-    // // objFunction = {100, 30, 20};
+    objFunction = {100, 30, 20};
 
-    // // constraints = {
-    // //     {2, 3, 4, 4, 1},
-    // //     {5, -6, 7, 4, 2},
-    // //     {5, -6, 7, 4, 1},
-    // //     {0, 7, -8, 4, 2},
-    // // };
+    constraints = {
+        {2, 3, 4, 4, 1},
+        {5, -6, 7, 4, 1},
+        {5, -6, 7, 4, 1},
+        {0, 7, -8, 4, 1},
+    };
 
     // objFunction = {4, 5};
 
@@ -72,20 +72,27 @@ void TwoPhase::Init()
     //     {2, 3, 18, 1},
     // };
 
-    // objFunction = {2, 3, 4};
-
-    // constraints = {
-    //     {3, 2, 1, 10, 0},
-    //     {2, 3, 3, 15, 0},
-    //     {1, 1, -1, 4, 1},
-    // };
-
-    objFunction = {3, 2, 3};
+    objFunction = {2, 3, 4};
 
     constraints = {
-        {2, 1, 1, 2, 0},
-        {3, 4, 2, 8, 1},
+        {3, 2, 1, 10, 0},
+        {2, 3, 3, 15, 0},
+        {1, 1, -1, 4, 1},
     };
+
+    // objFunction = {3, 2, 3};
+
+    // constraints = {
+    //     {2, 1, 1, 2, 0},
+    //     {3, 4, 2, 8, 1},
+    // };
+
+    // objFunction = {1, 1};
+
+    // constraints = {
+    //     {2, 1, 12, 1},
+    //     {2, 3, 18, 1},
+    // };
 
     // StandardForm();
     // BuildTableauMathForm();
@@ -521,16 +528,16 @@ void TwoPhase::PerformPivotOperationsExtended(std::vector<std::vector<float>> ta
         tableauStageTwo[i].push_back(tempTab[i].back());
     }
 
-    for (auto &row : tableauStageTwo)
-    {
-        for (auto &item : row)
-        {
-            if (std::abs(item) < 1e-6)
-            {
-                item = 0.0;
-            }
-        }
-    }
+    // for (auto &row : tableauStageTwo)
+    // {
+    //     for (auto &item : row)
+    //     {
+    //         if (std::abs(item) < 1e-6)
+    //         {
+    //             item = 0.0;
+    //         }
+    //     }
+    // }
 
     tableau = tableauStageTwo;
     // tableausExtended.push_back(tableauStageTwo);
@@ -561,13 +568,47 @@ void TwoPhase::SolveExtended()
         ctr++;
         PerformPivotOperationsExtended(tableau);
 
+        // git rid of too many decimal places in the objective rows
+        //  for (int i = 0; i < static_cast<int>(tableau.size()); i++)
+        //  for (int i = 0; i < 1; i++)
+        //  {
+        //      for (int j = 0; j < static_cast<int>(tableau[i].size()); j++)
+        //      {
+        //          int decimalPlaces = 7;
+        //          tableau[i][j] = std::round(tableau[i][j] * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
+        //      }
+        //      // item = std::round(item);
+        //  }
+
         for (auto &row : tableau)
         {
             for (auto &item : row)
             {
                 int decimalPlaces = 7;
                 item = std::round(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
+
+                // int decimalPlaces = 7;
+                // item = std::round(item * std::pow(7, decimalPlaces)) / std::pow(7, decimalPlaces);
+
+                // item = std::ceil(item);
                 // item = std::round(item);
+
+                // int decimalPlaces = 1;
+                // item = std::round(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
+                // item = std::ceil(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
+
+                // std::cout << std::fixed << std::setprecision(decimalPlaces) << item << std::endl;
+
+                // int baseValue = std::pow(10, decimalPlaces);
+                // item = std::round(item * baseValue) / baseValue;
+
+                // std::cout << std::fixed << std::setprecision(decimalPlaces) << item << std::endl;
+
+                // std::ostringstream oss;
+                // oss << std::fixed << std::setprecision(decimalPlaces) << item;
+                // item = std::stod(oss.str());
+
+                // item = static_cast<int>(item);
             }
         }
         // std::cout << (allPosOrNeg && tableau[0].back() == 0) << std::endl;

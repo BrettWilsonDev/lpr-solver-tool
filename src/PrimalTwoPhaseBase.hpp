@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
+#include <iomanip>
 
 class PrimalTwoPhaseBase
 {
@@ -13,7 +14,7 @@ public:
     PrimalTwoPhaseBase();
     ~PrimalTwoPhaseBase();
     std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
-    // std::vector<std::vector<std::string>> GetTableau() { return canonical; }
+    std::vector<std::vector<std::vector<float>>> GetTableaus() { return tableaus; }
 
     virtual void Init();
     virtual void StandardForm();
@@ -40,6 +41,6 @@ public:
     std::vector<std::vector<float>> tableau;
 
     std::vector<std::vector<std::vector<float>>> tableaus;
-    std::vector<std::vector<std::vector<float>>> tableausExtended;
+    // std::vector<std::vector<std::vector<float>>> tableausExtended;
 private:
 };

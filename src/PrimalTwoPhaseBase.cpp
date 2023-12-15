@@ -580,7 +580,7 @@ void PrimalTwoPhaseBase::PrepSolutionDisplay()
     //     tableaus.back()[j].back() = 0;
     // }
 
-    std::cout << std::endl;
+    // std::cout << std::endl;
 
     for (const auto &table : tableaus)
     {
