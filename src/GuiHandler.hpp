@@ -60,6 +60,7 @@ public:
     void Init();
     void Unload();
     void HandelInput();
+    void PassInputToSimplex();
     void ConsoleInfo();
     void SetUpTables();
     void DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr);
@@ -94,13 +95,6 @@ private:
     int objFunctionCtr{2};
     int constraintsCtr{2};
 
-    std::vector<float> tempConstraints = {0.0f, 0.0f, 0.0f, 1.0f};
+    std::vector<float> tempConstraints = {0.0f, 0.0f, 0.0f, 0.0f};
     std::vector<std::vector<float>> constraints = {tempConstraints, tempConstraints};
-
-    // const char *items[2] = {"<=", ">="};
-    // // static const char *current_item = NULL;
-    // const char *current_item = items[0];
-
-    // std::vector<const char *> current_item(2, items[0]);
-
 };

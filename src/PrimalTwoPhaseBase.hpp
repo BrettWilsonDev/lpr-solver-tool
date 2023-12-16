@@ -15,6 +15,8 @@ public:
     ~PrimalTwoPhaseBase();
     std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
     std::vector<std::vector<std::vector<float>>> GetTableaus() { return tableaus; }
+    void SetObjFunction(std::vector<float> objFunc) { objFunction = objFunc; }
+    void SetConstraints(std::vector<std::vector<float>> con) { constraints = con; }
 
     virtual void Init();
     virtual void StandardForm();

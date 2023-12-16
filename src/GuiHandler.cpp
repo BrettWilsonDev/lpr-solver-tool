@@ -145,21 +145,21 @@ void GuiHandler::HandelInput()
             if (j == static_cast<int>(objFunction.size() - 1))
             {
                 int index = constraints[i].back();
-                const char *items[] = {"<=", ">="};
-                // std::vector<const char *> current_item(constraints.size(), items[0]);
-                const char *current_item = items[index];
+
+                // 0 or 1 at the end for <= or >= ... 0 being <= and 1 being >= 2 being =
+                const char *signs[] = {"<=", ">="};
+                const char *currentItem = signs[index];
 
                 std::string id = std::string("##") + std::to_string(i);
                 ImGui::PushID(id.c_str());
-                if (ImGui::BeginCombo("", current_item, ImGuiComboFlags_NoArrowButton)) // The second parameter is the label previewed before opening the combo.
+                if (ImGui::BeginCombo("", currentItem, ImGuiComboFlags_NoArrowButton)) // The second parameter is the label previewed before opening the combo.
                 {
 
-                    for (int n = 0; n < IM_ARRAYSIZE(items); n++)
+                    for (int n = 0; n < IM_ARRAYSIZE(signs); n++)
                     {
-                        bool is_selected = (current_item == items[n]); // You can store your selection however you want, outside or inside your objects
-                        if (ImGui::Selectable(items[n], is_selected))
+                        bool is_selected = (currentItem == signs[n]); // You can store your selection however you want, outside or inside your objects
+                        if (ImGui::Selectable(signs[n], is_selected))
                         {
-                            current_item = items[n];
                             constraints[i].back() = n;
                         }
                         if (is_selected)
@@ -184,6 +184,11 @@ void GuiHandler::HandelInput()
     ImGui::EndChild();
     ImGui::Spacing();
     ImGui::PopStyleColor();
+}
+
+void GuiHandler::PassInputToSimplex()
+{
+    //TODO check if it min or max and create new class based on its simplex type and pass constraints and obj function
 }
 
 void GuiHandler::SetUpTables()
