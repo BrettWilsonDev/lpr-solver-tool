@@ -59,6 +59,7 @@ public:
 
     void Init();
     void Unload();
+    void HandelInput();
     void ConsoleInfo();
     void SetUpTables();
     void DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr);
@@ -81,4 +82,25 @@ private:
     static void MainLoopHelper(void *userData);
     int screenWidth{};
     int screenHeight{};
+
+    // ImVec4 accentColor(204.0f / 255.0f, 51.0f / 255.0f, 0.0f, 1.0f);
+
+    ImVec4 accentColor{ImVec4(204.0f / 255.0f, 51.0f / 255.0f, 0.0f, 1.0f)};
+
+    std::vector<std::string> objFunctionLabels = {"x1", "x2"};
+
+    std::vector<float> objFunction = {0.0f, 0.0f};
+
+    int objFunctionCtr{2};
+    int constraintsCtr{2};
+
+    std::vector<float> tempConstraints = {0.0f, 0.0f, 0.0f, 1.0f};
+    std::vector<std::vector<float>> constraints = {tempConstraints, tempConstraints};
+
+    // const char *items[2] = {"<=", ">="};
+    // // static const char *current_item = NULL;
+    // const char *current_item = items[0];
+
+    // std::vector<const char *> current_item(2, items[0]);
+
 };

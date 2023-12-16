@@ -22,6 +22,8 @@ void GuiHandler::Init()
     rlImGuiSetup(true);
     ImGui::GetIO().IniFilename = "";
 
+    // ImVec4 accentColor(204.0f / 255.0f, 51.0f / 255.0f, 0.0f, 1.0f);
+
     // ImFontConfig fontConfig;
     // fontConfig.FontDataOwnedByAtlas = false;
     // ImGui::GetIO().Fonts->Clear();
@@ -35,6 +37,153 @@ void GuiHandler::Unload()
     std::cout.rdbuf(coutBuffer);
 
     CloseWindow();
+}
+
+void GuiHandler::HandelInput()
+{
+    // get the objective function
+
+    ImGui::PushStyleColor(ImGuiCol_Button, accentColor); // Set button color to red
+
+    // add and minus buttons for amount of objective functions
+    if (ImGui::Button("+"))
+    {
+
+        objFunctionCtr++;
+        objFunctionLabels.push_back("x" + std::to_string(objFunctionCtr));
+        objFunction.push_back(0.0f);
+        // amount of constraint variables is the amount of objective function variables
+        for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+        {
+            constraints[i].insert(constraints[i].begin(), 0.0f);
+        }
+        tempConstraints.insert(tempConstraints.end() - 1, 0.0f);
+    }
+
+    ImGui::SameLine();
+
+    if (ImGui::Button("-"))
+    {
+        if (objFunctionCtr > 2)
+        {
+            objFunctionCtr--;
+            objFunctionLabels.pop_back();
+            objFunction.pop_back();
+            for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+            {
+                constraints[i].erase(constraints[i].begin(), constraints[i].begin() + 1);
+            }
+            tempConstraints.erase(tempConstraints.end() - 2);
+        }
+    }
+
+    ImGui::PopStyleColor();
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, accentColor); // Set button color to red
+    ImGui::BeginChild("ScrollingRegion", ImVec2(0, 50), true, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoBackground);
+    ImGui::PushItemWidth(50);
+
+    // get inputs for constraints
+    for (int i = 0; i < static_cast<int>(objFunction.size()); i++)
+    {
+        ImGui::InputFloat(objFunctionLabels[i].c_str(), &objFunction[i], 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
+        ImGui::SameLine();
+    }
+
+    ImGui::PopItemWidth();
+    ImGui::EndChild();
+    ImGui::Spacing();
+    ImGui::PopStyleColor();
+
+    // get the constraints
+
+    ImGui::PushStyleColor(ImGuiCol_Button, accentColor); // Set button color to red
+
+    // add and minus buttons for amount of constraints
+    std::string identifierAdd = std::string("##ButtonPlus") + std::to_string(constraintsCtr);
+    if (ImGui::Button(("+" + identifierAdd).c_str()))
+    {
+        constraintsCtr++;
+        constraints.push_back(tempConstraints);
+    }
+
+    ImGui::SameLine();
+
+    std::string identifierMin = std::string("##ButtonMinus") + std::to_string(constraintsCtr);
+    if (ImGui::Button(("-" + identifierMin).c_str()))
+    {
+        if (constraintsCtr != 1)
+        {
+            constraintsCtr--;
+            constraints.pop_back();
+        }
+    }
+
+    ImGui::PopStyleColor();
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, accentColor); // Set button color to red
+    ImGui::BeginChild("ScrollingRegion2", ImVec2(0, 40 * static_cast<int>(constraints.size())), true, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoBackground);
+    ImGui::PushItemWidth(50);
+
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        int ctr{1};
+
+        for (int j = 0; j < static_cast<int>(constraints[i].size() - 1); j++)
+        {
+            std::string identifier = std::string("##") + std::to_string(i) + std::to_string(j);
+            ImGui::PushID(identifier.c_str());
+            ImGui::InputFloat("", &constraints[i][j], 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
+            ImGui::PopID();
+            ImGui::SameLine();
+
+            if (ctr != static_cast<int>(objFunction.size() + 1))
+            {
+                ImGui::Text("X%d", ctr);
+                ctr++;
+                ImGui::SameLine();
+            }
+
+            if (j == static_cast<int>(objFunction.size() - 1))
+            {
+                int index = constraints[i].back();
+                const char *items[] = {"<=", ">="};
+                // std::vector<const char *> current_item(constraints.size(), items[0]);
+                const char *current_item = items[index];
+
+                std::string id = std::string("##") + std::to_string(i);
+                ImGui::PushID(id.c_str());
+                if (ImGui::BeginCombo("", current_item, ImGuiComboFlags_NoArrowButton)) // The second parameter is the label previewed before opening the combo.
+                {
+
+                    for (int n = 0; n < IM_ARRAYSIZE(items); n++)
+                    {
+                        bool is_selected = (current_item == items[n]); // You can store your selection however you want, outside or inside your objects
+                        if (ImGui::Selectable(items[n], is_selected))
+                        {
+                            current_item = items[n];
+                            constraints[i].back() = n;
+                        }
+                        if (is_selected)
+                        {
+                            ImGui::SetItemDefaultFocus(); // You may set the initial focus when opening the combo (scrolling + for keyboard navigation support)
+                        }
+                    }
+
+                    ImGui::EndCombo();
+                }
+                ImGui::PopID();
+
+                // ImGui::PopItemWidth();
+
+                ImGui::SameLine();
+            }
+        }
+        ImGui::NewLine();
+    }
+
+    ImGui::PopItemWidth();
+    ImGui::EndChild();
+    ImGui::Spacing();
+    ImGui::PopStyleColor();
 }
 
 void GuiHandler::SetUpTables()
@@ -107,56 +256,8 @@ void GuiHandler::Draw()
 
     ImGui::Text("Welcome to Brett's LP Solver Tool");
 
-    // static float floatValue = 0.0f;
-    // static float floatValue2 = 0.0f;
-    // ImGui::PushItemWidth(100);
-    // ImGui::InputFloat("x1", &floatValue, 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
-    // ImGui::PopItemWidth();
-
-    // ImGui::SameLine();
-
-    // ImGui::PushItemWidth(100);
-    // ImGui::InputFloat("x2", &floatValue2, 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
-    // ImGui::PopItemWidth();
-
-    ImVec4 color(204.0f / 255.0f, 51.0f / 255.0f, 0.0f, 1.0f);
-    ImGui::PushStyleColor(ImGuiCol_Button, color); // Set button color to red
-
-    static std::vector<std::string> labels = {"x1", "x2"};
-
-    static int counter = 2;
-    // int counter{2};
-    if (ImGui::Button("+"))
-    {
-        counter++;
-
-        labels.resize(counter);                              // Resize the vector to accommodate the new element
-        labels[counter - 1] = "x" + std::to_string(counter); // Access the element at counter-1
-    }
-
-    ImGui::SameLine();
-
-    if (ImGui::Button("-"))
-    {
-        counter--;
-    }
-    ImGui::PopStyleColor();
-
-    std::vector<float> floatValues(counter); // Assuming you want to store 2 float values
-
-    ImGui::PushStyleColor(ImGuiCol_FrameBg, color); // Set button color to red
-
-    ImGui::PushItemWidth(100);
-    for (int i = 0; i < floatValues.size(); i++)
-    {
-        ImGui::InputFloat(labels[i].c_str(), &floatValues[i], 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
-        ImGui::SameLine();
-    }
-    ImGui::PopItemWidth();
-
-    ImGui::Spacing();
-
-    ImGui::PopStyleColor();
+    // ImVec4 color(204.0f / 255.0f, 51.0f / 255.0f, 0.0f, 1.0f);
+    HandelInput();
 
     OutPutToConsoleWindow();
     ImGui::Text("Table Output:");
