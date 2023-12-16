@@ -582,18 +582,18 @@ void PrimalTwoPhaseBase::PrepSolutionDisplay()
 
     // std::cout << std::endl;
 
-    for (const auto &table : tableaus)
-    {
-        for (const auto &row : table)
-        {
-            for (auto element : row)
-            {
-                std::cout << element << " ";
-            }
-            std::cout << std::endl;
-        }
-        std::cout << std::endl;
-    }
+    // for (const auto &table : tableaus)
+    // {
+    //     for (const auto &row : table)
+    //     {
+    //         for (auto element : row)
+    //         {
+    //             std::cout << element << " ";
+    //         }
+    //         std::cout << std::endl;
+    //     }
+    //     std::cout << std::endl;
+    // }
 }
 
 void PrimalTwoPhaseBase::PrepSolutionDisplayExtended()
