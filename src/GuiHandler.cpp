@@ -43,7 +43,12 @@ void GuiHandler::HandelInput()
 {
     // get the objective function
 
-    ImGui::PushStyleColor(ImGuiCol_Button, accentColor); // Set button color to red
+    ImGui::NewLine();
+
+    ImGui::PushStyleColor(ImGuiCol_Button, accentColor);
+
+    ImGui::Spacing();
+    ImGui::SameLine();
 
     // add and minus buttons for amount of objective functions
     if (ImGui::Button("+"))
@@ -55,7 +60,7 @@ void GuiHandler::HandelInput()
         // amount of constraint variables is the amount of objective function variables
         for (int i = 0; i < static_cast<int>(constraints.size()); i++)
         {
-            constraints[i].insert(constraints[i].begin(), 0.0f);
+            constraints[i].insert(constraints[i].begin() + 2, 0.0f);
         }
         tempConstraints.insert(tempConstraints.end() - 1, 0.0f);
     }
@@ -71,7 +76,8 @@ void GuiHandler::HandelInput()
             objFunction.pop_back();
             for (int i = 0; i < static_cast<int>(constraints.size()); i++)
             {
-                constraints[i].erase(constraints[i].begin(), constraints[i].begin() + 1);
+                // constraints[i].erase(constraints[i].begin() + 2, constraints[i].begin() + 3);
+                constraints[i].erase(constraints[i].begin() + 2);
             }
             tempConstraints.erase(tempConstraints.end() - 2);
         }
@@ -82,7 +88,7 @@ void GuiHandler::HandelInput()
     ImGui::Text("num of objective functions variables");
 
     ImGui::PopStyleColor();
-    ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(32.0f / 255.0f, 33.0f / 255.0f, 36.0f / 255.0f, 1.0f)); // Set button color to red
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(32.0f / 255.0f, 33.0f / 255.0f, 36.0f / 255.0f, 1.0f));
     ImGui::BeginChild("ScrollingRegion", ImVec2(0, 50), true, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoBackground);
     ImGui::PushItemWidth(50);
 
@@ -100,7 +106,10 @@ void GuiHandler::HandelInput()
 
     // get the constraints
 
-    ImGui::PushStyleColor(ImGuiCol_Button, accentColor); // Set button color to red
+    ImGui::PushStyleColor(ImGuiCol_Button, accentColor);
+
+    ImGui::Spacing();
+    ImGui::SameLine();
 
     // add and minus buttons for amount of constraints
     std::string identifierAdd = std::string("##ButtonPlus") + std::to_string(constraintsCtr);
@@ -199,19 +208,26 @@ void GuiHandler::HandelInput()
     ImGui::Spacing();
     ImGui::PopStyleColor();
 
-    // if (ImGui::Button("Solve"))
-    // {
-    // PassInputToSimplex();
-    solve = true;
-    // solve = false;
-    // }
+    ImGui::NewLine();
 
-    // if (ImGui::Button("Solve"))
-    // {
-    //     // PassInputToSimplex();
-    //     solve = true;
-    //     // solve = false;
-    // }
+    ImGui::PushStyleColor(ImGuiCol_Button, accentColor);
+    ImGui::Spacing();
+    ImGui::SameLine();
+    // reset all vector back to base values to reset
+    if (ImGui::Button("Clear All"))
+    {
+        objFunctionCtr = 2;
+        constraintsCtr = 1;
+        objFunctionLabels = {"x1", "x2"};
+        objFunction = {0.0f, 0.0f};
+        constraints = {{0.0f, 0.0f, 0.0f, 0.0f}};
+        tempConstraints = {0.0f, 0.0f, 0.0f, 0.0f};
+    }
+
+    ImGui::NewLine();
+    ImGui::PopStyleColor();
+
+    solve = true;
 }
 
 void GuiHandler::PassInputToSimplex()
@@ -292,7 +308,6 @@ void GuiHandler::SetUpTables(PrimalTwoPhaseBase *simplex)
     ImGui::Separator();
     ImGui::NewLine();
 
-
     ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(10.0f, 10.0f));
     for (int i = 0; i < static_cast<int>(simplex->GetTableaus().size()); i++)
     {
@@ -341,7 +356,15 @@ void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, 
     }
 
     headings.push_back("RHS");
-    headings.push_back("Theta");
+
+    if (ctr != 0)
+    {
+        headings.push_back("Theta from previous tableau");
+    }
+    else
+    {
+        headings.push_back("initial tableau");
+    }
 
     std::vector<std::vector<float>> tableau = tab[ctr];
     if (ImGui::BeginTable(("table" + std::to_string(ctr)).c_str(), static_cast<int>(tableau[0].size() + 1),
