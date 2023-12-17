@@ -2,6 +2,13 @@
 
 TwoPhase::TwoPhase()
 {
+}
+
+TwoPhase::TwoPhase(std::vector<float> objFunc, std::vector<std::vector<float>> con, bool max)
+{
+    objFunction = objFunc;
+    constraints = con;
+    twoPhaseMax = max;
     Init();
 }
 
@@ -13,16 +20,16 @@ void TwoPhase::Init()
 {
     // TODO add = case and fixed round up or down error
 
-    objFunction = {100, 30};
+    // objFunction = {100, 30};
 
-    // 0 or 1 at the end for <= or >= ... 0 being <= and 1 being >= 2 being =
-    constraints = {
-        {0, 1, 3, 1},
-        {1, 1, 7, 0},
-        {10, 4, 40, 0},
-    };
+    // // 0 or 1 at the end for <= or >= ... 0 being <= and 1 being >= 2 being =
+    // constraints = {
+    //     {0, 1, 3, 1},
+    //     {1, 1, 7, 0},
+    //     {10, 4, 40, 0},
+    // };
 
-    twoPhaseMax = true;
+    // twoPhaseMax = true;
 
     // // objFunction = {100, 30};
 
@@ -32,14 +39,14 @@ void TwoPhase::Init()
     // //     {0, 7, -8, 2},
     // // };
 
-    objFunction = {100, 30, 20};
+    // objFunction = {100, 30, 20};
 
-    constraints = {
-        {2, 3, 4, 4, 1},
-        {5, -6, 7, 4, 1},
-        {5, -6, 7, 4, 1},
-        {0, 7, -8, 4, 1},
-    };
+    // constraints = {
+    //     {2, 3, 4, 4, 1},
+    //     {5, -6, 7, 4, 1},
+    //     {5, -6, 7, 4, 1},
+    //     {0, 7, -8, 4, 1},
+    // };
 
     // objFunction = {4, 5};
 
@@ -72,13 +79,13 @@ void TwoPhase::Init()
     //     {2, 3, 18, 1},
     // };
 
-    objFunction = {2, 3, 4};
+    // objFunction = {2, 3, 4};
 
-    constraints = {
-        {3, 2, 1, 10, 0},
-        {2, 3, 3, 15, 0},
-        {1, 1, -1, 4, 1},
-    };
+    // constraints = {
+    //     {3, 2, 1, 10, 0},
+    //     {2, 3, 3, 15, 0},
+    //     {1, 1, -1, 4, 1},
+    // };
 
     // objFunction = {3, 2, 3};
 
@@ -641,10 +648,10 @@ void TwoPhase::SolveExtended()
 
     maxObj = twoPhaseMax;
 
-    // // TODO move this output to imgui
     if (ctr == 100)
     {
-        std::cout << "unbounded" << std::endl;
+        // std::cout << "unbounded" << std::endl;
+        solution = "unbounded";
     }
 }
 

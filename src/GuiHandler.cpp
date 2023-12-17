@@ -78,7 +78,7 @@ void GuiHandler::HandelInput()
     }
 
     ImGui::PopStyleColor();
-    ImGui::PushStyleColor(ImGuiCol_FrameBg, accentColor); // Set button color to red
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(32.0f / 255.0f, 33.0f / 255.0f, 36.0f / 255.0f, 1.0f)); // Set button color to red
     ImGui::BeginChild("ScrollingRegion", ImVec2(0, 50), true, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoBackground);
     ImGui::PushItemWidth(50);
 
@@ -119,8 +119,8 @@ void GuiHandler::HandelInput()
     }
 
     ImGui::PopStyleColor();
-    ImGui::PushStyleColor(ImGuiCol_FrameBg, accentColor); // Set button color to red
-    ImGui::BeginChild("ScrollingRegion2", ImVec2(0, 40 * static_cast<int>(constraints.size())), true, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoBackground);
+    ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(32.0f / 255.0f, 33.0f / 255.0f, 36.0f / 255.0f, 1.0f)); // Set button color to red
+    ImGui::BeginChild("ScrollingRegion2", ImVec2(0, 35 * static_cast<int>(constraints.size())), true, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoBackground);
     ImGui::PushItemWidth(50);
 
     for (int i = 0; i < static_cast<int>(constraints.size()); i++)
@@ -144,6 +144,7 @@ void GuiHandler::HandelInput()
 
             if (j == static_cast<int>(objFunction.size() - 1))
             {
+                ImGui::PushItemWidth(35);
                 int index = constraints[i].back();
 
                 // 0 or 1 at the end for <= or >= ... 0 being <= and 1 being >= 2 being =
@@ -152,19 +153,22 @@ void GuiHandler::HandelInput()
 
                 std::string id = std::string("##") + std::to_string(i);
                 ImGui::PushID(id.c_str());
-                if (ImGui::BeginCombo("", currentItem, ImGuiComboFlags_NoArrowButton)) // The second parameter is the label previewed before opening the combo.
-                {
+                ImGui::PushStyleColor(ImGuiCol_FrameBg, accentColor);
+                ImGui::PushStyleColor(ImGuiCol_HeaderHovered, accentColor);
+                ImGui::PushStyleColor(ImGuiCol_Header, ImVec4(32.0f / 255.0f, 33.0f / 255.0f, 36.0f / 255.0f, 1.0f));
 
+                if (ImGui::BeginCombo("", currentItem, ImGuiComboFlags_NoArrowButton))
+                {
                     for (int n = 0; n < IM_ARRAYSIZE(signs); n++)
                     {
-                        bool is_selected = (currentItem == signs[n]); // You can store your selection however you want, outside or inside your objects
-                        if (ImGui::Selectable(signs[n], is_selected))
+                        bool is_selected = (currentItem == signs[n]);
+                        if (ImGui::Selectable(signs[n], is_selected, ImGuiSelectableFlags_None, ImVec2(50, 25)))
                         {
                             constraints[i].back() = n;
                         }
                         if (is_selected)
                         {
-                            ImGui::SetItemDefaultFocus(); // You may set the initial focus when opening the combo (scrolling + for keyboard navigation support)
+                            ImGui::SetItemDefaultFocus();
                         }
                     }
 
@@ -172,9 +176,11 @@ void GuiHandler::HandelInput()
                 }
                 ImGui::PopID();
 
-                // ImGui::PopItemWidth();
-
                 ImGui::SameLine();
+                ImGui::PopStyleColor();
+                ImGui::PopStyleColor();
+                ImGui::PopStyleColor();
+                ImGui::PopItemWidth();
             }
         }
         ImGui::NewLine();
@@ -184,19 +190,104 @@ void GuiHandler::HandelInput()
     ImGui::EndChild();
     ImGui::Spacing();
     ImGui::PopStyleColor();
+
+    // if (ImGui::Button("Solve"))
+    // {
+    // PassInputToSimplex();
+    solve = true;
+    // solve = false;
+    // }
+
+    // if (ImGui::Button("Solve"))
+    // {
+    //     // PassInputToSimplex();
+    //     solve = true;
+    //     // solve = false;
+    // }
 }
 
 void GuiHandler::PassInputToSimplex()
 {
-    //TODO check if it min or max and create new class based on its simplex type and pass constraints and obj function
+    if (solve)
+    {
+        int ctrMax{};
+        int ctrMin{};
+        for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+        {
+            if (constraints[i].back() == 0)
+            {
+                ctrMax++;
+            }
+
+            if (constraints[i].back() == 1)
+            {
+                ctrMin++;
+            }
+        }
+
+        runOnce = solve;
+
+        if (runOnce)
+        {
+            // runOnce = false;
+            if (ctrMax == static_cast<int>(constraints.size()))
+            {
+                PrimalSolver *simplex = new PrimalSolver(objFunction, constraints);
+                SetUpTables(simplex);
+                delete simplex;
+                runOnce = false;
+            }
+            else if (ctrMin == static_cast<int>(constraints.size()))
+            {
+                TwoPhase *simplex = new TwoPhase(objFunction, constraints);
+                SetUpTables(simplex);
+                delete simplex;
+                runOnce = false;
+            }
+            else
+            {
+                TwoPhase *simplex = new TwoPhase(objFunction, constraints, true);
+                SetUpTables(simplex);
+                delete simplex;
+                runOnce = false;
+            }
+        }
+    }
 }
 
-void GuiHandler::SetUpTables()
+void GuiHandler::SetUpTables(PrimalTwoPhaseBase *simplex)
 {
-    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(10.0f, 10.0f));
-    for (int i = 0; i < static_cast<int>(twoPhase.GetTableaus().size()); i++)
+    ImGui::Text("canonical form:");
+    ImGui::Separator();
+    ImGui::NewLine();
+    for (const auto &row : simplex->GetCanonicalForm())
     {
-        DisplayTable(twoPhase.GetTableaus(), i);
+        for (auto element : row)
+        {
+            // ImGui::Text("%s ", element);
+            ImGui::Text("%s ", element.c_str());
+
+            ImGui::SameLine();
+        }
+        ImGui::NewLine();
+    }
+
+    ImGui::NewLine();
+    ImGui::Text("Solution:");
+    ImGui::Separator();
+    ImGui::NewLine();
+
+    ImGui::Text("%s", simplex->GetSolution().c_str());
+
+    ImGui::NewLine();
+    ImGui::Text("Table Output:");
+    ImGui::Separator();
+    ImGui::NewLine();
+
+    ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(10.0f, 10.0f));
+    for (int i = 0; i < static_cast<int>(simplex->GetTableaus().size()); i++)
+    {
+        DisplayTable(simplex->GetTableaus(), i);
         ImGui::Spacing();
         ImGui::Separator();
         ImGui::Spacing();
@@ -260,14 +351,18 @@ void GuiHandler::Draw()
     ImGui::Begin("Lp Solver Tool", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
 
     ImGui::Text("Welcome to Brett's LP Solver Tool");
+    ImGui::Separator();
 
     // ImVec4 color(204.0f / 255.0f, 51.0f / 255.0f, 0.0f, 1.0f);
     HandelInput();
+    // OutPutToConsoleWindow();
+    ImGui::SetWindowFontScale(1.5f);
 
-    OutPutToConsoleWindow();
-    ImGui::Text("Table Output:");
-    ImGui::Separator();
-    SetUpTables();
+    // OutPutToConsoleWindow();
+    // ImGui::Text("Table Output:");
+    // ImGui::Separator();
+    PassInputToSimplex();
+    // SetUpTables();
 
     ImGui::End();
 
@@ -290,7 +385,6 @@ void GuiHandler::MainLoopHelper(void *userData)
 {
     GuiHandler *guiHandler = static_cast<GuiHandler *>(userData);
 
-    // TODO init code here
     guiHandler->Draw();
 }
 

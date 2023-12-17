@@ -12,7 +12,8 @@ class TwoPhase : public PrimalTwoPhaseBase
 {
 public:
     TwoPhase();
-    ~TwoPhase();
+    TwoPhase(std::vector<float> objFunc, std::vector<std::vector<float>> con, bool max = false);
+    virtual ~TwoPhase();
     // std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
     // std::vector<std::vector<std::string>> GetTableau() { return canonical; }
 
@@ -22,5 +23,6 @@ public:
     void PerformPivotOperationsExtended(std::vector<std::vector<float>> tab) override;
     void SolveExtended() override;
     void PrepSolutionDisplayExtended() override;
+
 private:
 };

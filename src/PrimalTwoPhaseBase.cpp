@@ -212,24 +212,11 @@ void PrimalTwoPhaseBase::StandardForm()
     }
 
     standardFormExtended();
-
-    // TODO move display to imgui not through cout
-
-    // display the canonical form temporay here until implemented in imgui
-    std::cout << "canonical form:" << std::endl;
-    for (const auto &row : canonical)
-    {
-        for (auto element : row)
-        {
-            std::cout << element << " ";
-        }
-        std::cout << std::endl;
-    }
 }
 
 void PrimalTwoPhaseBase::standardFormExtended()
 {
-    std::cout << "not ovverriden" << std::endl;
+    // std::cout << "not ovverriden" << std::endl;
 }
 
 void PrimalTwoPhaseBase::BuildTableauMathForm()
@@ -545,15 +532,16 @@ void PrimalTwoPhaseBase::Solve()
         PerformPivotOperations(tableau);
     }
 
-    // TODO move this output to imgui
     if (ctr == 100)
     {
-        std::cout << "unbounded" << std::endl;
+        // std::cout << "unbounded" << std::endl;
+        solution = "unbounded";
     }
 
     if (isSolved)
     {
-        std::cout << "the solution is: " << tableau[0].back() << std::endl;
+        // std::cout << "the solution is: " << tableau[0].back() << std::endl;
+        solution = std::to_string(tableau[0].back());
     }
 }
 

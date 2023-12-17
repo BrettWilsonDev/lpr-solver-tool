@@ -15,10 +15,12 @@ public:
     ~PrimalTwoPhaseBase();
     std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
     std::vector<std::vector<std::vector<float>>> GetTableaus() { return tableaus; }
+    std::string GetSolution() { return solution; }
     void SetObjFunction(std::vector<float> objFunc) { objFunction = objFunc; }
     void SetConstraints(std::vector<std::vector<float>> con) { constraints = con; }
+    void SetMax(bool max) { twoPhaseMax = max; }
 
-    virtual void Init();
+    void Init();
     virtual void StandardForm();
     virtual void standardFormExtended();
     virtual void BuildTableauMathForm();
@@ -44,5 +46,7 @@ public:
 
     std::vector<std::vector<std::vector<float>>> tableaus;
     // std::vector<std::vector<std::vector<float>>> tableausExtended;
+
+    std::string solution{};
 private:
 };

@@ -8,6 +8,7 @@
 
 #include "PrimalSolver.hpp"
 #include "TwoPhase.hpp"
+#include "PrimalTwoPhaseBase.hpp"
 
 #include <iostream>
 #include <sstream>
@@ -62,7 +63,8 @@ public:
     void HandelInput();
     void PassInputToSimplex();
     void ConsoleInfo();
-    void SetUpTables();
+    void SetUpTables(PrimalTwoPhaseBase *simplex);
+    // void SetUpTables();
     void DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr);
     void Draw();
     void Run();
@@ -97,4 +99,9 @@ private:
 
     std::vector<float> tempConstraints = {0.0f, 0.0f, 0.0f, 0.0f};
     std::vector<std::vector<float>> constraints = {tempConstraints, tempConstraints};
+
+    // PrimalTwoPhaseBase *simplex = nullptr;
+
+    bool solve{};
+    bool runOnce{};
 };
