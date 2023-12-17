@@ -560,6 +560,7 @@ void TwoPhase::SolveExtended()
     // while (!isSolved && ctr < 100)
     while (!isSolved && ctr < 100)
     {
+        primalTablesCount.push_back(false);
 
         allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
                                   { return num <= 0; });
@@ -575,51 +576,14 @@ void TwoPhase::SolveExtended()
         ctr++;
         PerformPivotOperationsExtended(tableau);
 
-        // git rid of too many decimal places in the objective rows
-        //  for (int i = 0; i < static_cast<int>(tableau.size()); i++)
-        //  for (int i = 0; i < 1; i++)
-        //  {
-        //      for (int j = 0; j < static_cast<int>(tableau[i].size()); j++)
-        //      {
-        //          int decimalPlaces = 7;
-        //          tableau[i][j] = std::round(tableau[i][j] * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
-        //      }
-        //      // item = std::round(item);
-        //  }
-
         for (auto &row : tableau)
         {
             for (auto &item : row)
             {
                 int decimalPlaces = 7;
                 item = std::round(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
-
-                // int decimalPlaces = 7;
-                // item = std::round(item * std::pow(7, decimalPlaces)) / std::pow(7, decimalPlaces);
-
-                // item = std::ceil(item);
-                // item = std::round(item);
-
-                // int decimalPlaces = 1;
-                // item = std::round(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
-                // item = std::ceil(item * std::pow(10, decimalPlaces)) / std::pow(10, decimalPlaces);
-
-                // std::cout << std::fixed << std::setprecision(decimalPlaces) << item << std::endl;
-
-                // int baseValue = std::pow(10, decimalPlaces);
-                // item = std::round(item * baseValue) / baseValue;
-
-                // std::cout << std::fixed << std::setprecision(decimalPlaces) << item << std::endl;
-
-                // std::ostringstream oss;
-                // oss << std::fixed << std::setprecision(decimalPlaces) << item;
-                // item = std::stod(oss.str());
-
-                // item = static_cast<int>(item);
             }
         }
-        // std::cout << (allPosOrNeg && tableau[0].back() == 0) << std::endl;
-        // std::cout << tableau[0].back() << std::endl;
     }
 
     tableau.erase(tableau.begin());

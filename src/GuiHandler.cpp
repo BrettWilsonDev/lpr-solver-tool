@@ -77,6 +77,10 @@ void GuiHandler::HandelInput()
         }
     }
 
+    ImGui::SameLine();
+
+    ImGui::Text("num of objective functions variables");
+
     ImGui::PopStyleColor();
     ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(32.0f / 255.0f, 33.0f / 255.0f, 36.0f / 255.0f, 1.0f)); // Set button color to red
     ImGui::BeginChild("ScrollingRegion", ImVec2(0, 50), true, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoBackground);
@@ -117,6 +121,10 @@ void GuiHandler::HandelInput()
             constraints.pop_back();
         }
     }
+
+    ImGui::SameLine();
+
+    ImGui::Text("num of constraints");
 
     ImGui::PopStyleColor();
     ImGui::PushStyleColor(ImGuiCol_FrameBg, ImVec4(32.0f / 255.0f, 33.0f / 255.0f, 36.0f / 255.0f, 1.0f)); // Set button color to red
@@ -284,10 +292,11 @@ void GuiHandler::SetUpTables(PrimalTwoPhaseBase *simplex)
     ImGui::Separator();
     ImGui::NewLine();
 
+
     ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(10.0f, 10.0f));
     for (int i = 0; i < static_cast<int>(simplex->GetTableaus().size()); i++)
     {
-        DisplayTable(simplex->GetTableaus(), i, simplex->GetPrimalSolveStep());
+        DisplayTable(simplex->GetTableaus(), i, simplex->GetPrimalSolveStep()[i]);
         ImGui::Spacing();
         ImGui::Separator();
         ImGui::Spacing();
@@ -295,7 +304,7 @@ void GuiHandler::SetUpTables(PrimalTwoPhaseBase *simplex)
     ImGui::PopStyleVar();
 }
 
-void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr, bool primalSolve)
+void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr, bool isPrimalTable)
 {
     // add headings for tables
     std::vector<std::string> headings = {};
@@ -310,9 +319,10 @@ void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, 
     {
         if (constraints[i].back() == 1)
         {
-            if (!primalSolve)
+            if (!isPrimalTable)
             {
                 headings.push_back("A" + std::to_string(ctrOne));
+                // isPrimalTable = false;
             }
 
             headings.push_back("E" + std::to_string(ctrOne));
@@ -339,7 +349,7 @@ void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, 
                               ImGuiTableFlags_BordersInnerV | ImGuiTableFlags_BordersOuterV |
                               ImGuiTableFlags_SizingFixedFit |
                               ImGuiTableFlags_NoKeepColumnsVisible | ImGuiTableFlags_ScrollX,
-                          ImVec2(0, ((18 * (ctr + 1) * 2) * static_cast<int>(tableau[0].size())))))
+                          ImVec2(0, ((32) * static_cast<int>(tableau[0].size())))))
     {
         ImGui::TableNextRow();
         for (int column = 0; column < static_cast<int>(headings.size()); column++)

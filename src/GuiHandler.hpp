@@ -65,7 +65,7 @@ public:
     void ConsoleInfo();
     void SetUpTables(PrimalTwoPhaseBase *simplex);
     // void SetUpTables();
-    void DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr, bool primalSolve = false);
+    void DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr, bool isPrimalTable = false);
     void Draw();
     void Run();
 

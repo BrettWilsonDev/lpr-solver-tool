@@ -16,7 +16,7 @@ public:
     std::vector<std::vector<std::string>> GetCanonicalForm() { return canonical; }
     std::vector<std::vector<std::vector<float>>> GetTableaus() { return tableaus; }
     std::string GetSolution() { return solution; }
-    bool GetPrimalSolveStep() { return primalSolve; }
+    std::vector<bool> GetPrimalSolveStep() { return primalTablesCount; }
     void SetObjFunction(std::vector<float> objFunc) { objFunction = objFunc; }
     void SetConstraints(std::vector<std::vector<float>> con) { constraints = con; }
     void SetMax(bool max) { twoPhaseMax = max; }
@@ -36,7 +36,6 @@ public:
     bool maxObj{};
     bool minMixedObj{};
     bool twoPhaseMax{};
-    bool primalSolve{};
 
     std::vector<float> objFunction;
     std::vector<std::vector<float>> constraints;
@@ -48,6 +47,8 @@ public:
 
     std::vector<std::vector<std::vector<float>>> tableaus;
     // std::vector<std::vector<std::vector<float>>> tableausExtended;
+
+    std::vector<bool> primalTablesCount;
 
     std::string solution{};
 

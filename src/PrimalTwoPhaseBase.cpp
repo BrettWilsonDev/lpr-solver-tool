@@ -21,7 +21,6 @@ void PrimalTwoPhaseBase::Init()
     // };
 
     // twoPhaseMax = true;
-
     StandardForm();
     BuildTableauMathForm();
     Solve();
@@ -496,8 +495,6 @@ void PrimalTwoPhaseBase::Solve()
 {
     SolveExtended();
 
-    primalSolve = true;
-
     // check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
     int ctr{};
     bool allPosOrNeg{};
@@ -505,6 +502,8 @@ void PrimalTwoPhaseBase::Solve()
     while (!isSolved && ctr < 100)
     {
 
+        primalTablesCount.push_back(true);
+        
         if (maxObj)
         {
             // allPosOrNeg = std::all_of(tableau[0].begin(), tableau[0].end() - 1, [](int num)
@@ -533,6 +532,11 @@ void PrimalTwoPhaseBase::Solve()
         ctr++;
         PerformPivotOperations(tableau);
     }
+
+    // primalTablesCount.push_back(true);
+    // primalTablesCount.push_back(false);
+
+    std::cout << primalTablesCount.size() << std::endl;
 
     if (ctr == 100)
     {
