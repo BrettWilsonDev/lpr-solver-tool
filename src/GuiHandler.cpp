@@ -287,7 +287,7 @@ void GuiHandler::SetUpTables(PrimalTwoPhaseBase *simplex)
     ImGui::PushStyleVar(ImGuiStyleVar_CellPadding, ImVec2(10.0f, 10.0f));
     for (int i = 0; i < static_cast<int>(simplex->GetTableaus().size()); i++)
     {
-        DisplayTable(simplex->GetTableaus(), i);
+        DisplayTable(simplex->GetTableaus(), i, simplex->GetPrimalSolveStep());
         ImGui::Spacing();
         ImGui::Separator();
         ImGui::Spacing();
@@ -295,16 +295,59 @@ void GuiHandler::SetUpTables(PrimalTwoPhaseBase *simplex)
     ImGui::PopStyleVar();
 }
 
-void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr)
+void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr, bool primalSolve)
 {
+    // add headings for tables
+    std::vector<std::string> headings = {};
+
+    for (int i = 0; i < static_cast<int>(objFunction.size()); i++)
+    {
+        headings.push_back("X" + std::to_string(i + 1));
+    }
+
+    int ctrOne{1};
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        if (constraints[i].back() == 1)
+        {
+            if (!primalSolve)
+            {
+                headings.push_back("A" + std::to_string(ctrOne));
+            }
+
+            headings.push_back("E" + std::to_string(ctrOne));
+            ctrOne++;
+        }
+    }
+
+    int ctrZero{1};
+    for (int i = 0; i < static_cast<int>(constraints.size()); i++)
+    {
+        if (constraints[i].back() == 0)
+        {
+            headings.push_back("S" + std::to_string(ctrZero));
+            ctrZero++;
+        }
+    }
+
+    headings.push_back("RHS");
+    headings.push_back("Theta");
+
     std::vector<std::vector<float>> tableau = tab[ctr];
-    if (ImGui::BeginTable("table1", static_cast<int>(tableau[0].size() + 1),
+    if (ImGui::BeginTable(("table" + std::to_string(ctr)).c_str(), static_cast<int>(tableau[0].size() + 1),
                           ImGuiTableFlags_BordersInnerH | ImGuiTableFlags_BordersOuterH |
                               ImGuiTableFlags_BordersInnerV | ImGuiTableFlags_BordersOuterV |
                               ImGuiTableFlags_SizingFixedFit |
                               ImGuiTableFlags_NoKeepColumnsVisible | ImGuiTableFlags_ScrollX,
-                          ImVec2(0, (30 * static_cast<int>(tableau[0].size())))))
+                          ImVec2(0, ((18 * (ctr + 1) * 2) * static_cast<int>(tableau[0].size())))))
     {
+        ImGui::TableNextRow();
+        for (int column = 0; column < static_cast<int>(headings.size()); column++)
+        {
+            ImGui::TableNextColumn();
+            ImGui::Text("%s", headings[column].c_str());
+        }
+
         for (int row = 0; row < static_cast<int>(tableau.size()); row++)
         {
             ImGui::TableNextRow();
@@ -316,6 +359,7 @@ void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, 
         }
         ImGui::EndTable();
     }
+    ImGui::NewLine();
 }
 
 void GuiHandler::ConsoleInfo()

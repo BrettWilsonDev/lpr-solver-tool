@@ -496,6 +496,8 @@ void PrimalTwoPhaseBase::Solve()
 {
     SolveExtended();
 
+    primalSolve = true;
+
     // check if the problem is solved by seeing if the objective function is all positive or all negative for max and min problems
     int ctr{};
     bool allPosOrNeg{};
@@ -562,7 +564,7 @@ void PrimalTwoPhaseBase::PrepSolutionDisplay()
     //     }
     // }
 
-    // zero out theta column in last table
+    // // zero out theta column in last table
     // for (int j = 2; j < static_cast<int>(tableaus[0].size()); j++)
     // {
     //     tableaus.back()[j].back() = 0;
