@@ -35,7 +35,7 @@ void GuiHandler::Init()
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
 #endif
 
-    InitWindow(screenWidth, screenHeight, "Liner Programming Solver Tool");
+    InitWindow(screenWidth, screenHeight, "linear Programming Solver Tool");
     // SetTargetFPS(144);
     rlImGuiSetup(true);
     ImGui::GetIO().IniFilename = "";
