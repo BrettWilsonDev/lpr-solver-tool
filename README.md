@@ -84,7 +84,7 @@ cd lpr-solver-tool
 
 ## Acknowledgments
 
-- [Raylib](https://www.raylib.com/) - A C library for creating simple games.
+- [Raylib](https://www.raylib.com/) - A simple and easy-to-use library to enjoy videogames programming 
 
 - [Dear ImGui](https://github.com/ocornut/imgui) - Bloat-free Graphical User interface for C++ with minimal dependencies
 
