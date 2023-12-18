@@ -260,6 +260,7 @@ void GuiHandler::PassInputToSimplex()
                 SetUpTables(simplex);
                 delete simplex;
                 runOnce = false;
+                isTwoPhase = false;
             }
             else if (ctrMin == static_cast<int>(constraints.size()))
             {
@@ -267,6 +268,7 @@ void GuiHandler::PassInputToSimplex()
                 SetUpTables(simplex);
                 delete simplex;
                 runOnce = false;
+                isTwoPhase = true;
             }
             else
             {
@@ -274,6 +276,7 @@ void GuiHandler::PassInputToSimplex()
                 SetUpTables(simplex);
                 delete simplex;
                 runOnce = false;
+                isTwoPhase = true;
             }
         }
     }
@@ -321,6 +324,19 @@ void GuiHandler::SetUpTables(PrimalTwoPhaseBase *simplex)
 
 void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, int ctr, bool isPrimalTable)
 {
+    if (isTwoPhase && !isPrimalTable)
+    {
+        ImGui::Text("Phase One:");
+        ImGui::NewLine();
+    }
+
+    if (isPrimalTable && isTwoPhase)
+    {
+        ImGui::Text("Phase Two:");
+        ImGui::NewLine();
+    }
+    
+
     // add headings for tables
     std::vector<std::string> headings = {};
 

@@ -104,4 +104,5 @@ private:
 
     bool solve{};
     bool runOnce{};
+    bool isTwoPhase{};
 };
