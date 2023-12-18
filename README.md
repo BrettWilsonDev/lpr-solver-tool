@@ -1,6 +1,6 @@
 # Lpr Solver Tool
 
-![Space Invaders Clone](https://www.brettwilsondev.com//assets/images/lpr-solver-tool.webp)
+![lpr solver tool](https://www.brettwilsondev.com//assets/images/lprTool.webp)
 
 ## Description
 
@@ -11,6 +11,14 @@ This is a simple LP Simplex solver tool that makes use of the Primal Simplex and
 ## Web Version
 
 Use the tool online [linear Programming Solver tool](https://www.atbdw.com/lpr-solver-tool)
+
+## Windows
+
+Download [linear Programming Solver tool](https://github.com/BrettWilsonBDW/lpr-solver-tool/releases/download/v1.0.0/lpr-solver-tool.exe)
+
+## Linux
+
+Download [linear Programming Solver tool](https://github.com/BrettWilsonBDW/lpr-solver-tool/releases/download/v1.0.0/lpr-solver-tool)
 
 # Building from Source
 
@@ -40,10 +48,10 @@ cmake -DCMAKE_BUILD_TYPE=Release ..
 ## Build the project using Visual Studio (you can also use Ninja or MinGW)
 cmake --build . --config Release
 
-## Run the game
-.\Release\SpaceInvadersClone.exe
+## Run the tool
+.\Release\lpr-solver-tool.exe
 ## or in bash
-./Release/SpaceInvadersClone
+./lpr-solver-tool
 
 ```
 ## Building for the Web
@@ -72,8 +80,6 @@ cd lpr-solver-tool
 
 ## Run the build script for the web
 .\build_for_web.bat 
-## or in bash 
-./build_for_web.sh
 ```
 
 ## Acknowledgments
