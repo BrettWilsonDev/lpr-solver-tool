@@ -35,12 +35,10 @@ mkdir build
 cd build
 
 ## Run CMake
-cmake ..
+cmake -DCMAKE_BUILD_TYPE=Release ..
 
 ## Build the project using Visual Studio (you can also use Ninja or MinGW)
 cmake --build . --config Release
-## or in bash
-make
 
 ## Run the game
 .\Release\SpaceInvadersClone.exe
@@ -65,6 +63,8 @@ git clone https://github.com/emscripten-core/emsdk.git
 cd emsdk
 ./emsdk install latest
 ./emsdk activate latest --permanent
+
+## add emsdk to path
 
 
 ## Navigate to the project directory
