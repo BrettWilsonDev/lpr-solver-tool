@@ -1,0 +1,35 @@
+_deps/raylib-build/raylib/CMakeFiles/raylib.dir/rtextures.c.o: \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\rtextures.c \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\raylib.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
+  C:\emsdk\upstream\lib\clang\18\include\stdarg.h \
+  C:\emsdk\upstream\lib\clang\18\include\stdbool.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\config.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\utils.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\rlgl.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdlib.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\stdlib.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\features.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\bits\alltypes.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\alloca.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\string.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\string.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\strings.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\math.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\math.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\stdio.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\wasi\api.h \
+  C:\emsdk\upstream\lib\clang\18\include\stddef.h \
+  C:\emsdk\upstream\lib\clang\18\include\stdint.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\stdint.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\bits\stdint.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\external\stb_image.h \
+  C:\emsdk\upstream\lib\clang\18\include\limits.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\limits.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\bits\limits.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\assert.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\external\rl_gputex.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\external\qoi.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\external\stb_image_write.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\external\stb_perlin.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\external\stb_image_resize2.h

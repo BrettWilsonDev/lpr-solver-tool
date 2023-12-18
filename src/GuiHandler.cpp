@@ -1,5 +1,17 @@
 #include "GuiHandler.hpp"
 
+// used for web width and height
+#if defined(PLATFORM_WEB)
+EM_JS(int, getBrowserWidth, (), {
+    return window.innerWidth;
+});
+
+EM_JS(int, getBrowserHeight, (), {
+    return window.innerHeight;
+});
+
+#endif
+
 GuiHandler::GuiHandler()
 {
     Init();
@@ -16,7 +28,13 @@ void GuiHandler::Init()
     screenWidth = 1920 / 2;
     screenHeight = 1080 / 2;
 
+#if defined(PLATFORM_WEB)
+    SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT);
+
+#else
     SetConfigFlags(FLAG_MSAA_4X_HINT | FLAG_VSYNC_HINT | FLAG_WINDOW_RESIZABLE);
+#endif
+
     InitWindow(screenWidth, screenHeight, "Liner Programming Solver Tool");
     // SetTargetFPS(144);
     rlImGuiSetup(true);
@@ -335,7 +353,6 @@ void GuiHandler::DisplayTable(std::vector<std::vector<std::vector<float>>> tab, 
         ImGui::Text("Phase Two:");
         ImGui::NewLine();
     }
-    
 
     // add headings for tables
     std::vector<std::string> headings = {};
@@ -430,6 +447,12 @@ void GuiHandler::OutPutToConsoleWindow()
 
 void GuiHandler::Draw()
 {
+
+// set proper width and height
+#if defined(PLATFORM_WEB)
+    SetWindowSize(getBrowserWidth() - 30, getBrowserHeight() - 30);
+#endif
+
     BeginDrawing();
     ClearBackground(DARKGRAY);
 
@@ -442,6 +465,8 @@ void GuiHandler::Draw()
 
     // ImGui Content stop resizing and remove title bar
     ImGui::Begin("Lp Solver Tool", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar);
+
+    // ImGui::Text("w: %d h: %d", GetScreenWidth(), GetScreenHeight());
 
     ImGui::Text("Welcome to Brett's LP Solver Tool");
     ImGui::Separator();

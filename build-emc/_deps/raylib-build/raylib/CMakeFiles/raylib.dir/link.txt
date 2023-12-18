@@ -1,0 +1,2 @@
+C:\emsdk\upstream\emscripten\emar.bat qc libraylib.a CMakeFiles/raylib.dir/rcore.c.o CMakeFiles/raylib.dir/rmodels.c.o CMakeFiles/raylib.dir/rshapes.c.o CMakeFiles/raylib.dir/rtext.c.o CMakeFiles/raylib.dir/rtextures.c.o CMakeFiles/raylib.dir/utils.c.o CMakeFiles/raylib.dir/raudio.c.o
+C:\emsdk\upstream\emscripten\emranlib.bat libraylib.a

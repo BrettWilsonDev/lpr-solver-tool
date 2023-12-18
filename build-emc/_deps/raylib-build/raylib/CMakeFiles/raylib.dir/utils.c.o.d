@@ -1,0 +1,22 @@
+_deps/raylib-build/raylib/CMakeFiles/raylib.dir/utils.c.o: \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\utils.c \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\raylib.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
+  C:\emsdk\upstream\lib\clang\18\include\stdarg.h \
+  C:\emsdk\upstream\lib\clang\18\include\stdbool.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\config.h \
+  C:\Users\brend\Desktop\web\lpr-solver-tool\build-emc\_deps\raylib-src\src\utils.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdlib.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\stdlib.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\features.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\bits\alltypes.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\alloca.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\stdio.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\wasi\api.h \
+  C:\emsdk\upstream\lib\clang\18\include\stddef.h \
+  C:\emsdk\upstream\lib\clang\18\include\stdint.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\stdint.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\bits\stdint.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\compat\string.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\string.h \
+  C:\emsdk\upstream\emscripten\cache\sysroot\include\strings.h

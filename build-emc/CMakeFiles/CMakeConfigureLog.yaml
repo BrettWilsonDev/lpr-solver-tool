@@ -1,0 +1,47 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.27/Modules/CMakeDetermineSystem.cmake:206 (message)"
+      - "CMakeLists.txt:5 (project)"
+    message: |
+      The target system is: Emscripten - 1 - x86
+      The host system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-3.27/Modules/Internal/CheckSourceCompiles.cmake:101 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-3.27/Modules/Internal/CheckCompilerFlag.cmake:18 (cmake_check_source_compiles)"
+      - "C:/Program Files/CMake/share/cmake-3.27/Modules/CheckCCompilerFlag.cmake:51 (cmake_check_compiler_flag)"
+      - "build-emc/_deps/raylib-src/cmake/AddIfFlagCompiles.cmake:3 (CHECK_C_COMPILER_FLAG)"
+      - "build-emc/_deps/raylib-src/cmake/CompilerFlags.cmake:5 (add_if_flag_compiles)"
+      - "build-emc/_deps/raylib-src/CMakeLists.txt:34 (include)"
+    checks:
+      - "Performing Test COMPILER_HAS_THOSE_TOGGLES"
+    directories:
+      source: "C:/Users/brend/Desktop/web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-6tyttm"
+      binary: "C:/Users/brend/Desktop/web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-6tyttm"
+    cmakeVariables:
+      CMAKE_C_FLAGS: ""
+      CMAKE_EXE_LINKER_FLAGS: "-s USE_GLFW=3"
+      CMAKE_MODULE_PATH: "C:/Users/brend/Desktop/web/lpr-solver-tool/build-emc/_deps/raylib-src/cmake"
+    buildResult:
+      variable: "COMPILER_HAS_THOSE_TOGGLES"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/brend/Desktop/web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-6tyttm'
+        
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/mingw64/bin/mingw32-make.exe -f Makefile cmTC_c706a/fast
+        C:/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_c706a.dir\\build.make CMakeFiles/cmTC_c706a.dir/build
+        mingw32-make.exe[1]: Entering directory 'C:/Users/brend/Desktop/web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-6tyttm'
+        Building C object CMakeFiles/cmTC_c706a.dir/src.c.o
+        C:\\emsdk\\upstream\\emscripten\\emcc.bat -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -MD -MT CMakeFiles/cmTC_c706a.dir/src.c.o -MF CMakeFiles\\cmTC_c706a.dir\\src.c.o.d -o CMakeFiles\\cmTC_c706a.dir\\src.c.o -c C:\\Users\\brend\\Desktop\\web\\lpr-solver-tool\\build-emc\\CMakeFiles\\CMakeScratch\\TryCompile-6tyttm\\src.c
+        Linking C executable cmTC_c706a.js
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_c706a.dir\\link.txt --verbose=1
+        C:\\emsdk\\upstream\\emscripten\\emcc.bat -s USE_GLFW=3  @CMakeFiles\\cmTC_c706a.dir\\objects1.rsp -o cmTC_c706a.js 
+        mingw32-make.exe[1]: Leaving directory 'C:/Users/brend/Desktop/web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-6tyttm'
+        
+      exitCode: 0
+...
