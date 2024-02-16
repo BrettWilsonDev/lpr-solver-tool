@@ -1,7 +1,7 @@
-set(CMAKE_C_COMPILER "C:/emsdk/upstream/emscripten/emcc.bat")
+set(CMAKE_C_COMPILER "C:/devTools/emsdk/upstream/emscripten/emcc.bat")
 set(CMAKE_C_COMPILER_ARG1 "")
 set(CMAKE_C_COMPILER_ID "Clang")
-set(CMAKE_C_COMPILER_VERSION "18.0.0")
+set(CMAKE_C_COMPILER_VERSION "19.0.0")
 set(CMAKE_C_COMPILER_VERSION_INTERNAL "")
 set(CMAKE_C_COMPILER_WRAPPER "")
 set(CMAKE_C_STANDARD_COMPUTED_DEFAULT "11")
@@ -21,11 +21,11 @@ set(CMAKE_C_SIMULATE_VERSION "")
 
 
 
-set(CMAKE_AR "C:/emsdk/upstream/emscripten/emar.bat")
-set(CMAKE_C_COMPILER_AR "C:/emsdk/upstream/emscripten/emar.bat")
-set(CMAKE_RANLIB "C:/emsdk/upstream/emscripten/emranlib.bat")
-set(CMAKE_C_COMPILER_RANLIB "C:/emsdk/upstream/emscripten/emranlib.bat")
-set(CMAKE_LINKER "C:/mingw32/bin/ld.lld.exe")
+set(CMAKE_AR "C:/devTools/emsdk/upstream/emscripten/emar.bat")
+set(CMAKE_C_COMPILER_AR "C:/devTools/emsdk/upstream/emscripten/emar.bat")
+set(CMAKE_RANLIB "C:/devTools/emsdk/upstream/emscripten/emranlib.bat")
+set(CMAKE_C_COMPILER_RANLIB "C:/devTools/emsdk/upstream/emscripten/emranlib.bat")
+set(CMAKE_LINKER "C:/devTools/mingw64/bin/ld.lld.exe")
 set(CMAKE_MT "")
 set(CMAKE_TAPI "CMAKE_TAPI-NOTFOUND")
 set(CMAKE_COMPILER_IS_GNUCC )
@@ -44,7 +44,7 @@ set(CMAKE_C_LINKER_DEPFILE_SUPPORTED )
 # Save compiler ABI information.
 set(CMAKE_C_SIZEOF_DATA_PTR "4")
 set(CMAKE_C_COMPILER_ABI "")
-set(CMAKE_C_BYTE_ORDER "")
+set(CMAKE_C_BYTE_ORDER "LITTLE_ENDIAN")
 set(CMAKE_C_LIBRARY_ARCHITECTURE "")
 
 if(CMAKE_C_SIZEOF_DATA_PTR)
@@ -68,7 +68,7 @@ endif()
 
 
 
-set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "C:/emsdk/upstream/emscripten/cache/sysroot/include")
+set(CMAKE_C_IMPLICIT_INCLUDE_DIRECTORIES "C:/devTools/emsdk/upstream/emscripten/cache/sysroot/include")
 set(CMAKE_C_IMPLICIT_LINK_LIBRARIES "")
 set(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "")
 set(CMAKE_C_IMPLICIT_LINK_FRAMEWORK_DIRECTORIES "")

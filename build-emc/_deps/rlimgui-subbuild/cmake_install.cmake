@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/brend/Desktop/web/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild
+# Install script for directory: C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/brend/Desktop/web/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

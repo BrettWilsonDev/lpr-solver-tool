@@ -1,4 +1,4 @@
-prefix=C:/emsdk/upstream/emscripten/cache/sysroot
+prefix=C:/devTools/emsdk/upstream/emscripten/cache/sysroot
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
