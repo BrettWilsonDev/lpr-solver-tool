@@ -14,11 +14,11 @@ Use the tool online [linear Programming Solver tool](https://www.atbdw.com/lpr-s
 
 ## Windows
 
-Download [linear Programming Solver tool](https://github.com/BrettWilsonBDW/lpr-solver-tool/releases/download/v1.0.0/lpr-solver-tool.exe)
+Download [linear Programming Solver tool](https://github.com/BrettWilsonBDW/lpr-solver-tool/releases/download/v1.0.1/lpr-solver-tool.exe)
 
 ## Linux
 
-Download [linear Programming Solver tool](https://github.com/BrettWilsonBDW/lpr-solver-tool/releases/download/v1.0.0/lpr-solver-tool)
+Download [linear Programming Solver tool](https://github.com/BrettWilsonBDW/lpr-solver-tool/releases/download/v1.0.1/lpr-solver-tool)
 
 # Building from Source
 
