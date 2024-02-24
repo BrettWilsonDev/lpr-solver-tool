@@ -8,9 +8,9 @@
 
 // #include "VirtualKeypad.hpp"
 
-#include "PrimalSolver.hpp"
-#include "TwoPhase.hpp"
-#include "PrimalTwoPhaseBase.hpp"
+#include "../twoPhaseSimplex/PrimalSolver.hpp"
+#include "../twoPhaseSimplex/TwoPhase.hpp"
+#include "../twoPhaseSimplex/PrimalTwoPhaseBase.hpp"
 
 #include <iostream>
 #include <sstream>

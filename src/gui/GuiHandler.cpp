@@ -1,5 +1,5 @@
 #include "GuiHandler.hpp"
-#include "VirtualKeypad.hpp"
+#include "../widgets/VirtualKeypad.hpp"
 
 // used for web width and height
 #if defined(PLATFORM_WEB)
