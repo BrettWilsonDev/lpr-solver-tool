@@ -6,6 +6,8 @@
 #include "imgui.h"
 #include "rlImGui.h"
 
+// #include "VirtualKeypad.hpp"
+
 #include "PrimalSolver.hpp"
 #include "TwoPhase.hpp"
 #include "PrimalTwoPhaseBase.hpp"
@@ -69,6 +71,8 @@ public:
     void Draw();
     void Run();
 
+    bool StringToFloat(const std::string &str, float &result);
+
 private:
     void OutPutToConsoleWindow();
 
@@ -105,4 +109,10 @@ private:
     bool solve{};
     bool runOnce{};
     bool isTwoPhase{};
+
+    // mobile
+    bool isMobile{};
+    std::vector<std::string> objFunctionStr = {"", ""};
+    std::vector<std::vector<std::string>> constraintsStr = {{"", "", "", ""}, {"", "", "", ""}};
+    std::vector<std::string> tempConstraintsStr = {{"", "", "", ""}};
 };

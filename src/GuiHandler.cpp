@@ -1,4 +1,5 @@
 #include "GuiHandler.hpp"
+#include "VirtualKeypad.hpp"
 
 // used for web width and height
 #if defined(PLATFORM_WEB)
@@ -9,7 +10,6 @@ EM_JS(int, getBrowserWidth, (), {
 EM_JS(int, getBrowserHeight, (), {
     return window.innerHeight;
 });
-
 #endif
 
 GuiHandler::GuiHandler()
@@ -71,16 +71,32 @@ void GuiHandler::HandelInput()
     // add and minus buttons for amount of objective functions
     if (ImGui::Button("+"))
     {
-
         objFunctionCtr++;
         objFunctionLabels.push_back("x" + std::to_string(objFunctionCtr));
         objFunction.push_back(0.0f);
+
+        // mobile
+        if (isMobile)
+        {
+            objFunctionStr.push_back("");
+        }
+
         // amount of constraint variables is the amount of objective function variables
         for (int i = 0; i < static_cast<int>(constraints.size()); i++)
         {
             constraints[i].insert(constraints[i].begin() + 2, 0.0f);
+
+            if (isMobile)
+            {
+                constraintsStr[i].insert(constraintsStr[i].begin() + 2, "");
+            }
         }
         tempConstraints.insert(tempConstraints.end() - 1, 0.0f);
+
+        if (isMobile)
+        {
+            tempConstraintsStr.insert(tempConstraintsStr.end() - 1, "");
+        }
     }
 
     ImGui::SameLine();
@@ -92,12 +108,29 @@ void GuiHandler::HandelInput()
             objFunctionCtr--;
             objFunctionLabels.pop_back();
             objFunction.pop_back();
+
+            // mobile
+            if (isMobile)
+            {
+                objFunctionStr.pop_back();
+            }
+
             for (int i = 0; i < static_cast<int>(constraints.size()); i++)
             {
                 // constraints[i].erase(constraints[i].begin() + 2, constraints[i].begin() + 3);
                 constraints[i].erase(constraints[i].begin() + 2);
+
+                if (isMobile)
+                {
+                    constraintsStr[i].erase(constraintsStr[i].begin() + 2);
+                }
             }
             tempConstraints.erase(tempConstraints.end() - 2);
+
+            if (isMobile)
+            {
+                tempConstraintsStr.erase(tempConstraintsStr.end() - 2);
+            }
         }
     }
 
@@ -110,11 +143,33 @@ void GuiHandler::HandelInput()
     ImGui::BeginChild("ScrollingRegion", ImVec2(0, 50), true, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_NoBackground);
     ImGui::PushItemWidth(50);
 
-    // get inputs for constraints
-    for (int i = 0; i < static_cast<int>(objFunction.size()); i++)
+    if (isMobile)
     {
-        ImGui::InputFloat(objFunctionLabels[i].c_str(), &objFunction[i], 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
-        ImGui::SameLine();
+        // get inputs for constraints
+        // objFunctionStr.reserve(objFunction.size());
+        for (int i = 0; i < static_cast<int>(objFunction.size()); i++)
+        {
+
+            // ImGui::KeypadEditString(objFunctionLabels[i].c_str(), &objFunctionStr[i]);
+            ImGui::KeypadEditString(objFunctionLabels[i].c_str(), &objFunctionStr[i]);
+            if (!StringToFloat(objFunctionStr[i], objFunction[i]))
+            {
+                objFunction[i] = 0.0f;
+            }
+
+            // ImGui::InputFloat(objFunctionLabels[i].c_str(), &objFunction[i], 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
+            ImGui::SameLine();
+        }
+        ImGui::PopupKeypad();
+    }
+    else
+    {
+        // get inputs for constraints
+        for (int i = 0; i < static_cast<int>(objFunction.size()); i++)
+        {
+            ImGui::InputFloat(objFunctionLabels[i].c_str(), &objFunction[i], 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
+            ImGui::SameLine();
+        }
     }
 
     ImGui::PopItemWidth();
@@ -135,6 +190,12 @@ void GuiHandler::HandelInput()
     {
         constraintsCtr++;
         constraints.push_back(tempConstraints);
+
+        // mobile
+        if (isMobile)
+        {
+            constraintsStr.push_back(tempConstraintsStr);
+        }
     }
 
     ImGui::SameLine();
@@ -146,6 +207,12 @@ void GuiHandler::HandelInput()
         {
             constraintsCtr--;
             constraints.pop_back();
+
+            // mobile
+            if (isMobile)
+            {
+                constraintsStr.pop_back();
+            }
         }
     }
 
@@ -164,11 +231,25 @@ void GuiHandler::HandelInput()
 
         for (int j = 0; j < static_cast<int>(constraints[i].size() - 1); j++)
         {
-            std::string identifier = std::string("##") + std::to_string(i) + std::to_string(j);
-            ImGui::PushID(identifier.c_str());
-            ImGui::InputFloat("", &constraints[i][j], 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
-            ImGui::PopID();
-            ImGui::SameLine();
+            // mobile keypad
+            if (isMobile)
+            {
+                std::string identifierStr = std::string("##") + std::to_string(i) + std::to_string(j);
+                ImGui::KeypadEditString(identifierStr.c_str(), &constraintsStr[i][j]);
+                if (!StringToFloat(constraintsStr[i][j], constraints[i][j]))
+                {
+                    constraints[i][j] = 0.0f;
+                }
+                ImGui::SameLine();
+            }
+            else
+            {
+                std::string identifier = std::string("##") + std::to_string(i) + std::to_string(j);
+                ImGui::PushID(identifier.c_str());
+                ImGui::InputFloat("", &constraints[i][j], 0.0f, 0.0f, "%.2f", ImGuiInputTextFlags_CharsDecimal);
+                ImGui::PopID();
+                ImGui::SameLine();
+            }
 
             if (ctr != static_cast<int>(objFunction.size() + 1))
             {
@@ -218,7 +299,12 @@ void GuiHandler::HandelInput()
                 ImGui::PopItemWidth();
             }
         }
+
         ImGui::NewLine();
+    }
+    if (isMobile)
+    {
+        ImGui::PopupKeypad();
     }
 
     ImGui::PopItemWidth();
@@ -240,6 +326,14 @@ void GuiHandler::HandelInput()
         objFunction = {0.0f, 0.0f};
         constraints = {{0.0f, 0.0f, 0.0f, 0.0f}};
         tempConstraints = {0.0f, 0.0f, 0.0f, 0.0f};
+
+        // mobile
+        if (isMobile)
+        {
+            std::vector<std::string> objFunctionStr = {"", ""};
+            std::vector<std::vector<std::string>> constraintsStr = {{"", "", "", ""}, {"", "", "", ""}};
+            std::vector<std::string> tempConstraintsStr = {{"", "", "", ""}};
+        }
     }
 
     ImGui::NewLine();
@@ -451,6 +545,16 @@ void GuiHandler::Draw()
 // set proper width and height
 #if defined(PLATFORM_WEB)
     SetWindowSize(getBrowserWidth() - 30, getBrowserHeight() - 30);
+
+    if (GetScreenWidth() < GetScreenHeight())
+    {
+        isMobile = true;
+    }
+    else
+    {
+        isMobile = false;
+    }
+    
 #endif
 
     BeginDrawing();
@@ -521,4 +625,14 @@ void GuiHandler::Run()
         MainLoopHelper(this);
     }
 #endif
+}
+
+bool GuiHandler::StringToFloat(const std::string &str, float &result)
+{
+    std::istringstream iss(str);
+    if (!(iss >> result))
+    {
+        return false; // Conversion failed
+    }
+    return true; // Conversion succeeded
 }
