@@ -7,27 +7,16 @@ set(CMAKE_DEPENDS_GENERATOR "MinGW Makefiles")
 # The top level Makefile was generated from the following files:
 set(CMAKE_MAKEFILE_DEPENDS
   "CMakeCache.txt"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeCCompiler.cmake.in"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeCInformation.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeCXXCompiler.cmake.in"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeCXXInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeCheckCompilerFlagCommonPatterns.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeCommonLanguageInclude.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDependentOption.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCCompiler.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCXXCompiler.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineCompiler.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeFindBinUtils.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeGenericSystem.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeInitializeConfigs.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeLanguageInformation.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeMinGWFindMake.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeSystem.cmake.in"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeSystemSpecificInformation.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeSystemSpecificInitialize.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeTestCCompiler.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeTestCXXCompiler.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CPack.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CPackComponent.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/CheckCCompilerFlag.cmake"
@@ -35,7 +24,6 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/CMake/share/cmake-3.28/Modules/Compiler/CMakeCommonCompilerMacros.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/Compiler/Clang-C.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/Compiler/Clang-CXX.cmake"
-  "C:/Program Files/CMake/share/cmake-3.28/Modules/Compiler/Clang-FindBinUtils.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/Compiler/Clang.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/Compiler/GNU.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/ExternalProject/shared_internal_commands.cmake"
@@ -49,7 +37,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/CMake/share/cmake-3.28/Modules/Internal/CheckFlagCommonConfig.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Templates/CPackConfig.cmake.in"
-  "C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/CMakeLists.txt"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/CMakeLists.txt"
   "CMakeFiles/3.28.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeSystem.cmake"
@@ -83,13 +71,10 @@ set(CMAKE_MAKEFILE_OUTPUTS
 
 # Byproducts of CMake generate step:
 set(CMAKE_MAKEFILE_PRODUCTS
-  "CMakeFiles/3.28.3/CMakeSystem.cmake"
-  "CMakeFiles/3.28.3/CMakeCXXCompiler.cmake"
   "_deps/raylib-subbuild/CMakeLists.txt"
   "_deps/rlimgui-subbuild/CMakeLists.txt"
   "_deps/imgui-subbuild/CMakeLists.txt"
   "CMakeFiles/CMakeDirectoryInformation.cmake"
-  "CMakeFiles/3.28.3/CMakeCCompiler.cmake"
   "_deps/raylib-build/cmake_uninstall.cmake"
   "_deps/raylib-build/CMakeFiles/CMakeDirectoryInformation.cmake"
   "_deps/raylib-build/raylib/raylib.pc"
@@ -101,7 +86,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/lpr-solver-tool.dir/DependInfo.cmake"
+  "CMakeFiles/lpr-solver-tool-web.dir/DependInfo.cmake"
   "_deps/raylib-build/CMakeFiles/uninstall.dir/DependInfo.cmake"
   "_deps/raylib-build/raylib/CMakeFiles/raylib.dir/DependInfo.cmake"
   )

@@ -28,8 +28,8 @@ set_property(GLOBAL PROPERTY _CMAKE_FindGit_GIT_EXECUTABLE_VERSION
 include(ExternalProject)
 ExternalProject_Add(rlimgui-populate
                      "UPDATE_DISCONNECTED" "False" "GIT_REPOSITORY" "https://github.com/raylib-extras/rlImGui.git" "EXTERNALPROJECT_INTERNAL_ARGUMENT_SEPARATOR" "GIT_TAG" "head" "GIT_SHALLOW" "TRUE" "GIT_PROGRESS" "TRUE"
-                    SOURCE_DIR          "C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/_deps/rlimgui-src"
-                    BINARY_DIR          "C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/_deps/rlimgui-build"
+                    SOURCE_DIR          "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-src"
+                    BINARY_DIR          "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-build"
                     CONFIGURE_COMMAND   ""
                     BUILD_COMMAND       ""
                     INSTALL_COMMAND     ""

@@ -5,7 +5,7 @@ events:
     kind: "message-v1"
     backtrace:
       - "C:/Program Files/CMake/share/cmake-3.28/Modules/CMakeDetermineSystem.cmake:228 (message)"
-      - "CMakeLists.txt:5 (project)"
+      - "CMakeLists.txt:3 (project)"
     message: |
       The target system is: Emscripten - 1 - x86
       The host system is: Windows - 10.0.19045 - AMD64
@@ -21,28 +21,28 @@ events:
     checks:
       - "Performing Test COMPILER_HAS_THOSE_TOGGLES"
     directories:
-      source: "C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-5x4l77"
-      binary: "C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-5x4l77"
+      source: "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w"
+      binary: "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/devTools/mingw64/bin/clang-scan-deps.exe"
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: "-s USE_GLFW=3"
-      CMAKE_MODULE_PATH: "C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/_deps/raylib-src/cmake"
+      CMAKE_MODULE_PATH: "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/raylib-src/cmake"
     buildResult:
       variable: "COMPILER_HAS_THOSE_TOGGLES"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-5x4l77'
+        Change Dir: 'C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w'
         
-        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/devTools/mingw64/bin/mingw32-make.exe -f Makefile cmTC_fb51d/fast
-        C:/devTools/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_fb51d.dir\\build.make CMakeFiles/cmTC_fb51d.dir/build
-        mingw32-make[1]: Entering directory 'C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-5x4l77'
-        Building C object CMakeFiles/cmTC_fb51d.dir/src.c.o
-        C:\\devTools\\emsdk\\upstream\\emscripten\\emcc.bat -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -MD -MT CMakeFiles/cmTC_fb51d.dir/src.c.o -MF CMakeFiles\\cmTC_fb51d.dir\\src.c.o.d -o CMakeFiles\\cmTC_fb51d.dir\\src.c.o -c C:\\Users\\Brett\\Nextcloud\\sources\\repos\\cpp\\lpr\\lpr-web\\lpr-solver-tool\\build-emc\\CMakeFiles\\CMakeScratch\\TryCompile-5x4l77\\src.c
-        Linking C executable cmTC_fb51d.js
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_fb51d.dir\\link.txt --verbose=1
-        C:\\devTools\\emsdk\\upstream\\emscripten\\emcc.bat -s USE_GLFW=3  @CMakeFiles\\cmTC_fb51d.dir\\objects1.rsp -o cmTC_fb51d.js 
-        mingw32-make[1]: Leaving directory 'C:/Users/Brett/Nextcloud/sources/repos/cpp/lpr/lpr-web/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-5x4l77'
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/devTools/mingw64/bin/mingw32-make.exe -f Makefile cmTC_b7db1/fast
+        C:/devTools/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_b7db1.dir\\build.make CMakeFiles/cmTC_b7db1.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w'
+        Building C object CMakeFiles/cmTC_b7db1.dir/src.c.o
+        C:\\devTools\\emsdk\\upstream\\emscripten\\emcc.bat -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -MD -MT CMakeFiles/cmTC_b7db1.dir/src.c.o -MF CMakeFiles\\cmTC_b7db1.dir\\src.c.o.d -o CMakeFiles\\cmTC_b7db1.dir\\src.c.o -c C:\\Users\\Brett\\Desktop\\devFiles\\lpr\\lpr-solver-tool-web\\build-emc\\CMakeFiles\\CMakeScratch\\TryCompile-lc9b1w\\src.c
+        Linking C executable cmTC_b7db1.js
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_b7db1.dir\\link.txt --verbose=1
+        C:\\devTools\\emsdk\\upstream\\emscripten\\emcc.bat -s USE_GLFW=3  @CMakeFiles\\cmTC_b7db1.dir\\objects1.rsp -o cmTC_b7db1.js 
+        mingw32-make[1]: Leaving directory 'C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w'
         
       exitCode: 0
 ...

@@ -1,1 +1,0 @@
-C:\devTools\emsdk\upstream\emscripten\em++.bat  -Wall -Os -O3 -DNDEBUG -s USE_GLFW=3 -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -Os -Wall -s TOTAL_MEMORY=67108864 -s FORCE_FILESYSTEM=1 --shell-file ../src/minshell.html @CMakeFiles\lpr-solver-tool.dir\objects1.rsp -o lpr-solver-tool.html @CMakeFiles\lpr-solver-tool.dir\linkLibs.rsp

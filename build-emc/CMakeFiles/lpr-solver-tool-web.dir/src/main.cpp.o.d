@@ -1,7 +1,7 @@
-CMakeFiles/lpr-solver-tool.dir/src/GuiHandler.cpp.o: \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\src\GuiHandler.cpp \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\src\GuiHandler.hpp \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\build-emc\_deps\raylib-src\src\raylib.h \
+CMakeFiles/lpr-solver-tool-web.dir/src/main.cpp.o: \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\main.cpp \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\gui\GuiHandler.hpp \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\_deps\raylib-src\src\raylib.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
   C:\devTools\emsdk\upstream\lib\clang\19\include\stdarg.h \
   C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg___gnuc_va_list.h \
@@ -9,8 +9,8 @@ CMakeFiles/lpr-solver-tool.dir/src/GuiHandler.cpp.o: \
   C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg_va_arg.h \
   C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg___va_copy.h \
   C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg_va_copy.h \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\src\imgui\imgui.h \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\src\imgui\imconfig.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\imgui\imgui.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\imgui\imconfig.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\float.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config_site \
@@ -32,9 +32,9 @@ CMakeFiles/lpr-solver-tool.dir/src/GuiHandler.cpp.o: \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\bits\alltypes.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\strings.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\assert.h \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\src\imgui\rlImGui.h \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\src\imgui\extras\IconsFontAwesome6.h \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\src\PrimalSolver.hpp \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\imgui\rlImGui.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\imgui\extras\IconsFontAwesome6.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\gui\..\twoPhaseSimplex\PrimalSolver.hpp \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iostream \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__assert \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__verbose_abort \
@@ -742,9 +742,9 @@ CMakeFiles/lpr-solver-tool.dir/src/GuiHandler.cpp.o: \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\array \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__memory\temp_value.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__split_buffer \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\src\PrimalTwoPhaseBase.hpp \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\gui\..\twoPhaseSimplex\PrimalTwoPhaseBase.hpp \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iomanip \
-  C:\Users\Brett\Nextcloud\sources\repos\cpp\lpr\lpr-web\lpr-solver-tool\src\TwoPhase.hpp \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\gui\..\twoPhaseSimplex\TwoPhase.hpp \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\sstream \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\emscripten.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\em_asm.h \
