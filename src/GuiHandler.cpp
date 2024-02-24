@@ -554,7 +554,7 @@ void GuiHandler::Draw()
     {
         isMobile = false;
     }
-    
+
 #endif
 
     BeginDrawing();
@@ -572,19 +572,33 @@ void GuiHandler::Draw()
 
     // ImGui::Text("w: %d h: %d", GetScreenWidth(), GetScreenHeight());
 
+    // welcome text and redirects
     ImGui::Text("Welcome to Brett's LP Solver Tool");
+    ImGui::SameLine();
+    ImGui::PushStyleColor(ImGuiCol_Button, accentColor);
+    ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 100);
+    if (ImGui::Button("WebSite", ImVec2(0, 25)))
+    {
+        OpenURL("https://atbdw.com");
+    }
+    ImGui::SameLine();
+    ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 40);
+    if (ImGui::Button("GitHub", ImVec2(0, 25)))
+    {
+        OpenURL("https://github.com/brettwilsonbdw/lpr-solver-tool");
+    }
     ImGui::Separator();
+    // std::string usingKeypad = isMobile ? "OFF" : "ON";
+    // if (ImGui::Button((("Virtual keypad " + usingKeypad).c_str()), ImVec2(0, 25)))
+    // {
+    //     isMobile = !isMobile;
+    // }
+    ImGui::PopStyleColor();
 
-    // ImVec4 color(204.0f / 255.0f, 51.0f / 255.0f, 0.0f, 1.0f);
     HandelInput();
-    // OutPutToConsoleWindow();
     ImGui::SetWindowFontScale(1.5f);
 
-    // OutPutToConsoleWindow();
-    // ImGui::Text("Table Output:");
-    // ImGui::Separator();
     PassInputToSimplex();
-    // SetUpTables();
 
     ImGui::End();
 
