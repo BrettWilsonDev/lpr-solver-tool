@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild
+# Install script for directory: C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

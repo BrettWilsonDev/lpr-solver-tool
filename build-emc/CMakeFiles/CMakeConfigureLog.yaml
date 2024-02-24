@@ -21,28 +21,28 @@ events:
     checks:
       - "Performing Test COMPILER_HAS_THOSE_TOGGLES"
     directories:
-      source: "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w"
-      binary: "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w"
+      source: "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-4j6531"
+      binary: "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-4j6531"
     cmakeVariables:
       CMAKE_CXX_COMPILER_CLANG_SCAN_DEPS: "C:/devTools/mingw64/bin/clang-scan-deps.exe"
       CMAKE_C_FLAGS: ""
       CMAKE_EXE_LINKER_FLAGS: "-s USE_GLFW=3"
-      CMAKE_MODULE_PATH: "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/raylib-src/cmake"
+      CMAKE_MODULE_PATH: "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/raylib-src/cmake"
     buildResult:
       variable: "COMPILER_HAS_THOSE_TOGGLES"
       cached: true
       stdout: |
-        Change Dir: 'C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w'
+        Change Dir: 'C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-4j6531'
         
-        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/devTools/mingw64/bin/mingw32-make.exe -f Makefile cmTC_b7db1/fast
-        C:/devTools/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_b7db1.dir\\build.make CMakeFiles/cmTC_b7db1.dir/build
-        mingw32-make[1]: Entering directory 'C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w'
-        Building C object CMakeFiles/cmTC_b7db1.dir/src.c.o
-        C:\\devTools\\emsdk\\upstream\\emscripten\\emcc.bat -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -MD -MT CMakeFiles/cmTC_b7db1.dir/src.c.o -MF CMakeFiles\\cmTC_b7db1.dir\\src.c.o.d -o CMakeFiles\\cmTC_b7db1.dir\\src.c.o -c C:\\Users\\Brett\\Desktop\\devFiles\\lpr\\lpr-solver-tool-web\\build-emc\\CMakeFiles\\CMakeScratch\\TryCompile-lc9b1w\\src.c
-        Linking C executable cmTC_b7db1.js
-        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_b7db1.dir\\link.txt --verbose=1
-        C:\\devTools\\emsdk\\upstream\\emscripten\\emcc.bat -s USE_GLFW=3  @CMakeFiles\\cmTC_b7db1.dir\\objects1.rsp -o cmTC_b7db1.js 
-        mingw32-make[1]: Leaving directory 'C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/CMakeScratch/TryCompile-lc9b1w'
+        Run Build Command(s): "C:/Program Files/CMake/bin/cmake.exe" -E env VERBOSE=1 C:/devTools/mingw64/bin/mingw32-make.exe -f Makefile cmTC_262c6/fast
+        C:/devTools/mingw64/bin/mingw32-make.exe  -f CMakeFiles\\cmTC_262c6.dir\\build.make CMakeFiles/cmTC_262c6.dir/build
+        mingw32-make[1]: Entering directory 'C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-4j6531'
+        Building C object CMakeFiles/cmTC_262c6.dir/src.c.o
+        C:\\devTools\\emsdk\\upstream\\emscripten\\emcc.bat -DCOMPILER_HAS_THOSE_TOGGLES  -Werror=pointer-arith -MD -MT CMakeFiles/cmTC_262c6.dir/src.c.o -MF CMakeFiles\\cmTC_262c6.dir\\src.c.o.d -o CMakeFiles\\cmTC_262c6.dir\\src.c.o -c C:\\Users\\Brett\\Desktop\\devFiles\\lpr\\lpr-solver-tool\\build-emc\\CMakeFiles\\CMakeScratch\\TryCompile-4j6531\\src.c
+        Linking C executable cmTC_262c6.js
+        "C:\\Program Files\\CMake\\bin\\cmake.exe" -E cmake_link_script CMakeFiles\\cmTC_262c6.dir\\link.txt --verbose=1
+        C:\\devTools\\emsdk\\upstream\\emscripten\\emcc.bat -s USE_GLFW=3  @CMakeFiles\\cmTC_262c6.dir\\objects1.rsp -o cmTC_262c6.js 
+        mingw32-make[1]: Leaving directory 'C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/CMakeFiles/CMakeScratch/TryCompile-4j6531'
         
       exitCode: 0
 ...

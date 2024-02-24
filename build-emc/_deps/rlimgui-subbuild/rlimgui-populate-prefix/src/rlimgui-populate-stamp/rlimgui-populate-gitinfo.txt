@@ -3,9 +3,9 @@
 # No other meaning or use of this file is supported.
 
 method=git
-command=C:/Program Files/CMake/bin/cmake.exe;-P;C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/tmp/rlimgui-populate-gitclone.cmake
-source_dir=C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-src
-work_dir=C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps
+command=C:/Program Files/CMake/bin/cmake.exe;-P;C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/tmp/rlimgui-populate-gitclone.cmake
+source_dir=C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-src
+work_dir=C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps
 repository=https://github.com/raylib-extras/rlImGui.git
 remote=origin
 init_submodules=TRUE

@@ -2,37 +2,37 @@
 	"sources" : 
 	[
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/CMakeFiles/rlimgui-populate"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/CMakeFiles/rlimgui-populate"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/CMakeFiles/rlimgui-populate.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/CMakeFiles/rlimgui-populate.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/CMakeFiles/rlimgui-populate-complete.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/CMakeFiles/rlimgui-populate-complete.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-build.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-build.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-configure.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-configure.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-download.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-download.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-install.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-install.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-mkdir.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-mkdir.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-patch.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-patch.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-test.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-test.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-update.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/rlimgui-subbuild/rlimgui-populate-prefix/src/rlimgui-populate-stamp/rlimgui-populate-update.rule"
 		}
 	],
 	"target" : 

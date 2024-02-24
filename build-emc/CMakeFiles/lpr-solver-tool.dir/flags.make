@@ -4,7 +4,7 @@
 # compile CXX with C:/devTools/emsdk/upstream/emscripten/em++.bat
 CXX_DEFINES = -DGRAPHICS_API_OPENGL_ES2 -DPLATFORM_WEB
 
-CXX_INCLUDES = @CMakeFiles/lpr-solver-tool-web.dir/includes_CXX.rsp
+CXX_INCLUDES = @CMakeFiles/lpr-solver-tool.dir/includes_CXX.rsp
 
 CXX_FLAGS =  -O3 -Wall -Os -O3 -DNDEBUG -std=gnu++20
 

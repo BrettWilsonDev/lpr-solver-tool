@@ -1,6 +1,6 @@
 _deps/raylib-build/raylib/CMakeFiles/raylib.dir/rtext.c.o: \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\_deps\raylib-src\src\rtext.c \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\_deps\raylib-src\src\raylib.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\_deps\raylib-src\src\rtext.c \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\_deps\raylib-src\src\raylib.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
   C:\devTools\emsdk\upstream\lib\clang\19\include\stdarg.h \
   C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg___gnuc_va_list.h \
@@ -9,9 +9,9 @@ _deps/raylib-build/raylib/CMakeFiles/raylib.dir/rtext.c.o: \
   C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg___va_copy.h \
   C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg_va_copy.h \
   C:\devTools\emsdk\upstream\lib\clang\19\include\stdbool.h \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\_deps\raylib-src\src\config.h \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\_deps\raylib-src\src\utils.h \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\_deps\raylib-src\src\rlgl.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\_deps\raylib-src\src\config.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\_deps\raylib-src\src\utils.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\_deps\raylib-src\src\rlgl.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdlib.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\stdlib.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\features.h \
@@ -32,8 +32,8 @@ _deps/raylib-build/raylib/CMakeFiles/raylib.dir/rtext.c.o: \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\string.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\strings.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\ctype.h \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\_deps\raylib-src\src\external\stb_rect_pack.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\_deps\raylib-src\src\external\stb_rect_pack.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\assert.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\compat\math.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\math.h \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\_deps\raylib-src\src\external\stb_truetype.h
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\_deps\raylib-src\src\external\stb_truetype.h

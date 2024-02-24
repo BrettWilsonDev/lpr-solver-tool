@@ -3,21 +3,21 @@
 cmake_policy(SET CMP0009 NEW)
 
 # PROJECT_SOURCES at CMakeLists.txt:124 (file)
-file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/*.cpp")
+file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/*.cpp")
 set(OLD_GLOB
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/gui/GuiHandler.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/imgui/imgui.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/imgui/imgui_demo.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/imgui/imgui_draw.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/imgui/imgui_tables.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/imgui/imgui_widgets.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/imgui/rlImGui.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/main.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/twoPhaseSimplex/PrimalSolver.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/src/twoPhaseSimplex/TwoPhase.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/gui/GuiHandler.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/imgui/imgui.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/imgui/imgui_demo.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/imgui/imgui_draw.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/imgui/imgui_tables.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/imgui/imgui_widgets.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/imgui/rlImGui.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/main.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/twoPhaseSimplex/PrimalSolver.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/src/twoPhaseSimplex/TwoPhase.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
-  file(TOUCH_NOCREATE "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CMakeFiles/cmake.verify_globs")
+  file(TOUCH_NOCREATE "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/CMakeFiles/cmake.verify_globs")
 endif()

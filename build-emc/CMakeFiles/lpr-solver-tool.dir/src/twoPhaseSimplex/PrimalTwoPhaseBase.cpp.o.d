@@ -1,6 +1,6 @@
-CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.o: \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\twoPhaseSimplex\PrimalTwoPhaseBase.cpp \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\twoPhaseSimplex\PrimalTwoPhaseBase.hpp \
+CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.o: \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\twoPhaseSimplex\PrimalTwoPhaseBase.cpp \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\twoPhaseSimplex\PrimalTwoPhaseBase.hpp \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iostream \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__assert \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config \

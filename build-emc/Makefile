@@ -56,10 +56,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web
+CMAKE_SOURCE_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc
+CMAKE_BINARY_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -77,7 +77,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	"C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CPackSourceConfig.cmake
+	"C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -151,9 +151,9 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -177,22 +177,22 @@ preinstall/fast:
 
 # clear depends
 depend:
-	$(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles\VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles\VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named lpr-solver-tool-web
+# Target rules for targets named lpr-solver-tool
 
 # Build rule for target.
-lpr-solver-tool-web: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lpr-solver-tool-web
-.PHONY : lpr-solver-tool-web
+lpr-solver-tool: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 lpr-solver-tool
+.PHONY : lpr-solver-tool
 
 # fast build rule for target.
-lpr-solver-tool-web/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/build
-.PHONY : lpr-solver-tool-web/fast
+lpr-solver-tool/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/build
+.PHONY : lpr-solver-tool/fast
 
 #=============================================================================
 # Target rules for targets named uninstall
@@ -225,7 +225,7 @@ src/gui/GuiHandler.o: src/gui/GuiHandler.cpp.o
 
 # target to build an object file
 src/gui/GuiHandler.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/gui/GuiHandler.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/gui/GuiHandler.cpp.o
 .PHONY : src/gui/GuiHandler.cpp.o
 
 src/gui/GuiHandler.i: src/gui/GuiHandler.cpp.i
@@ -233,7 +233,7 @@ src/gui/GuiHandler.i: src/gui/GuiHandler.cpp.i
 
 # target to preprocess a source file
 src/gui/GuiHandler.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/gui/GuiHandler.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/gui/GuiHandler.cpp.i
 .PHONY : src/gui/GuiHandler.cpp.i
 
 src/gui/GuiHandler.s: src/gui/GuiHandler.cpp.s
@@ -241,7 +241,7 @@ src/gui/GuiHandler.s: src/gui/GuiHandler.cpp.s
 
 # target to generate assembly for a file
 src/gui/GuiHandler.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/gui/GuiHandler.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/gui/GuiHandler.cpp.s
 .PHONY : src/gui/GuiHandler.cpp.s
 
 src/imgui/imgui.o: src/imgui/imgui.cpp.o
@@ -249,7 +249,7 @@ src/imgui/imgui.o: src/imgui/imgui.cpp.o
 
 # target to build an object file
 src/imgui/imgui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui.cpp.o
 .PHONY : src/imgui/imgui.cpp.o
 
 src/imgui/imgui.i: src/imgui/imgui.cpp.i
@@ -257,7 +257,7 @@ src/imgui/imgui.i: src/imgui/imgui.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui.cpp.i
 .PHONY : src/imgui/imgui.cpp.i
 
 src/imgui/imgui.s: src/imgui/imgui.cpp.s
@@ -265,7 +265,7 @@ src/imgui/imgui.s: src/imgui/imgui.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui.cpp.s
 .PHONY : src/imgui/imgui.cpp.s
 
 src/imgui/imgui_demo.o: src/imgui/imgui_demo.cpp.o
@@ -273,7 +273,7 @@ src/imgui/imgui_demo.o: src/imgui/imgui_demo.cpp.o
 
 # target to build an object file
 src/imgui/imgui_demo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_demo.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_demo.cpp.o
 .PHONY : src/imgui/imgui_demo.cpp.o
 
 src/imgui/imgui_demo.i: src/imgui/imgui_demo.cpp.i
@@ -281,7 +281,7 @@ src/imgui/imgui_demo.i: src/imgui/imgui_demo.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_demo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_demo.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_demo.cpp.i
 .PHONY : src/imgui/imgui_demo.cpp.i
 
 src/imgui/imgui_demo.s: src/imgui/imgui_demo.cpp.s
@@ -289,7 +289,7 @@ src/imgui/imgui_demo.s: src/imgui/imgui_demo.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_demo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_demo.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_demo.cpp.s
 .PHONY : src/imgui/imgui_demo.cpp.s
 
 src/imgui/imgui_draw.o: src/imgui/imgui_draw.cpp.o
@@ -297,7 +297,7 @@ src/imgui/imgui_draw.o: src/imgui/imgui_draw.cpp.o
 
 # target to build an object file
 src/imgui/imgui_draw.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_draw.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_draw.cpp.o
 .PHONY : src/imgui/imgui_draw.cpp.o
 
 src/imgui/imgui_draw.i: src/imgui/imgui_draw.cpp.i
@@ -305,7 +305,7 @@ src/imgui/imgui_draw.i: src/imgui/imgui_draw.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_draw.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_draw.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_draw.cpp.i
 .PHONY : src/imgui/imgui_draw.cpp.i
 
 src/imgui/imgui_draw.s: src/imgui/imgui_draw.cpp.s
@@ -313,7 +313,7 @@ src/imgui/imgui_draw.s: src/imgui/imgui_draw.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_draw.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_draw.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_draw.cpp.s
 .PHONY : src/imgui/imgui_draw.cpp.s
 
 src/imgui/imgui_tables.o: src/imgui/imgui_tables.cpp.o
@@ -321,7 +321,7 @@ src/imgui/imgui_tables.o: src/imgui/imgui_tables.cpp.o
 
 # target to build an object file
 src/imgui/imgui_tables.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_tables.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_tables.cpp.o
 .PHONY : src/imgui/imgui_tables.cpp.o
 
 src/imgui/imgui_tables.i: src/imgui/imgui_tables.cpp.i
@@ -329,7 +329,7 @@ src/imgui/imgui_tables.i: src/imgui/imgui_tables.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_tables.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_tables.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_tables.cpp.i
 .PHONY : src/imgui/imgui_tables.cpp.i
 
 src/imgui/imgui_tables.s: src/imgui/imgui_tables.cpp.s
@@ -337,7 +337,7 @@ src/imgui/imgui_tables.s: src/imgui/imgui_tables.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_tables.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_tables.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_tables.cpp.s
 .PHONY : src/imgui/imgui_tables.cpp.s
 
 src/imgui/imgui_widgets.o: src/imgui/imgui_widgets.cpp.o
@@ -345,7 +345,7 @@ src/imgui/imgui_widgets.o: src/imgui/imgui_widgets.cpp.o
 
 # target to build an object file
 src/imgui/imgui_widgets.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_widgets.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_widgets.cpp.o
 .PHONY : src/imgui/imgui_widgets.cpp.o
 
 src/imgui/imgui_widgets.i: src/imgui/imgui_widgets.cpp.i
@@ -353,7 +353,7 @@ src/imgui/imgui_widgets.i: src/imgui/imgui_widgets.cpp.i
 
 # target to preprocess a source file
 src/imgui/imgui_widgets.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_widgets.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_widgets.cpp.i
 .PHONY : src/imgui/imgui_widgets.cpp.i
 
 src/imgui/imgui_widgets.s: src/imgui/imgui_widgets.cpp.s
@@ -361,7 +361,7 @@ src/imgui/imgui_widgets.s: src/imgui/imgui_widgets.cpp.s
 
 # target to generate assembly for a file
 src/imgui/imgui_widgets.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/imgui_widgets.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/imgui_widgets.cpp.s
 .PHONY : src/imgui/imgui_widgets.cpp.s
 
 src/imgui/rlImGui.o: src/imgui/rlImGui.cpp.o
@@ -369,7 +369,7 @@ src/imgui/rlImGui.o: src/imgui/rlImGui.cpp.o
 
 # target to build an object file
 src/imgui/rlImGui.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/rlImGui.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/rlImGui.cpp.o
 .PHONY : src/imgui/rlImGui.cpp.o
 
 src/imgui/rlImGui.i: src/imgui/rlImGui.cpp.i
@@ -377,7 +377,7 @@ src/imgui/rlImGui.i: src/imgui/rlImGui.cpp.i
 
 # target to preprocess a source file
 src/imgui/rlImGui.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/rlImGui.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/rlImGui.cpp.i
 .PHONY : src/imgui/rlImGui.cpp.i
 
 src/imgui/rlImGui.s: src/imgui/rlImGui.cpp.s
@@ -385,7 +385,7 @@ src/imgui/rlImGui.s: src/imgui/rlImGui.cpp.s
 
 # target to generate assembly for a file
 src/imgui/rlImGui.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/imgui/rlImGui.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/imgui/rlImGui.cpp.s
 .PHONY : src/imgui/rlImGui.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -393,7 +393,7 @@ src/main.o: src/main.cpp.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -401,7 +401,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -409,7 +409,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 src/twoPhaseSimplex/PrimalSolver.o: src/twoPhaseSimplex/PrimalSolver.cpp.o
@@ -417,7 +417,7 @@ src/twoPhaseSimplex/PrimalSolver.o: src/twoPhaseSimplex/PrimalSolver.cpp.o
 
 # target to build an object file
 src/twoPhaseSimplex/PrimalSolver.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/PrimalSolver.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/PrimalSolver.cpp.o
 .PHONY : src/twoPhaseSimplex/PrimalSolver.cpp.o
 
 src/twoPhaseSimplex/PrimalSolver.i: src/twoPhaseSimplex/PrimalSolver.cpp.i
@@ -425,7 +425,7 @@ src/twoPhaseSimplex/PrimalSolver.i: src/twoPhaseSimplex/PrimalSolver.cpp.i
 
 # target to preprocess a source file
 src/twoPhaseSimplex/PrimalSolver.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/PrimalSolver.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/PrimalSolver.cpp.i
 .PHONY : src/twoPhaseSimplex/PrimalSolver.cpp.i
 
 src/twoPhaseSimplex/PrimalSolver.s: src/twoPhaseSimplex/PrimalSolver.cpp.s
@@ -433,7 +433,7 @@ src/twoPhaseSimplex/PrimalSolver.s: src/twoPhaseSimplex/PrimalSolver.cpp.s
 
 # target to generate assembly for a file
 src/twoPhaseSimplex/PrimalSolver.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/PrimalSolver.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/PrimalSolver.cpp.s
 .PHONY : src/twoPhaseSimplex/PrimalSolver.cpp.s
 
 src/twoPhaseSimplex/PrimalTwoPhaseBase.o: src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.o
@@ -441,7 +441,7 @@ src/twoPhaseSimplex/PrimalTwoPhaseBase.o: src/twoPhaseSimplex/PrimalTwoPhaseBase
 
 # target to build an object file
 src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.o
 .PHONY : src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.o
 
 src/twoPhaseSimplex/PrimalTwoPhaseBase.i: src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.i
@@ -449,7 +449,7 @@ src/twoPhaseSimplex/PrimalTwoPhaseBase.i: src/twoPhaseSimplex/PrimalTwoPhaseBase
 
 # target to preprocess a source file
 src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.i
 .PHONY : src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.i
 
 src/twoPhaseSimplex/PrimalTwoPhaseBase.s: src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.s
@@ -457,7 +457,7 @@ src/twoPhaseSimplex/PrimalTwoPhaseBase.s: src/twoPhaseSimplex/PrimalTwoPhaseBase
 
 # target to generate assembly for a file
 src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.s
 .PHONY : src/twoPhaseSimplex/PrimalTwoPhaseBase.cpp.s
 
 src/twoPhaseSimplex/TwoPhase.o: src/twoPhaseSimplex/TwoPhase.cpp.o
@@ -465,7 +465,7 @@ src/twoPhaseSimplex/TwoPhase.o: src/twoPhaseSimplex/TwoPhase.cpp.o
 
 # target to build an object file
 src/twoPhaseSimplex/TwoPhase.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/TwoPhase.cpp.o
 .PHONY : src/twoPhaseSimplex/TwoPhase.cpp.o
 
 src/twoPhaseSimplex/TwoPhase.i: src/twoPhaseSimplex/TwoPhase.cpp.i
@@ -473,7 +473,7 @@ src/twoPhaseSimplex/TwoPhase.i: src/twoPhaseSimplex/TwoPhase.cpp.i
 
 # target to preprocess a source file
 src/twoPhaseSimplex/TwoPhase.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/TwoPhase.cpp.i
 .PHONY : src/twoPhaseSimplex/TwoPhase.cpp.i
 
 src/twoPhaseSimplex/TwoPhase.s: src/twoPhaseSimplex/TwoPhase.cpp.s
@@ -481,7 +481,7 @@ src/twoPhaseSimplex/TwoPhase.s: src/twoPhaseSimplex/TwoPhase.cpp.s
 
 # target to generate assembly for a file
 src/twoPhaseSimplex/TwoPhase.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/src/twoPhaseSimplex/TwoPhase.cpp.s
 .PHONY : src/twoPhaseSimplex/TwoPhase.cpp.s
 
 # Help Target
@@ -499,7 +499,7 @@ help:
 	@echo ... package_source
 	@echo ... rebuild_cache
 	@echo ... uninstall
-	@echo ... lpr-solver-tool-web
+	@echo ... lpr-solver-tool
 	@echo ... raylib
 	@echo ... src/gui/GuiHandler.o
 	@echo ... src/gui/GuiHandler.i
@@ -545,7 +545,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles\VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles\VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

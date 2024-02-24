@@ -37,7 +37,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "C:/Program Files/CMake/share/cmake-3.28/Modules/Internal/CheckFlagCommonConfig.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Modules/Internal/CheckSourceCompiles.cmake"
   "C:/Program Files/CMake/share/cmake-3.28/Templates/CPackConfig.cmake.in"
-  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/CMakeLists.txt"
+  "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/CMakeLists.txt"
   "CMakeFiles/3.28.3/CMakeCCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeCXXCompiler.cmake"
   "CMakeFiles/3.28.3/CMakeSystem.cmake"
@@ -86,7 +86,7 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/lpr-solver-tool-web.dir/DependInfo.cmake"
+  "CMakeFiles/lpr-solver-tool.dir/DependInfo.cmake"
   "_deps/raylib-build/CMakeFiles/uninstall.dir/DependInfo.cmake"
   "_deps/raylib-build/raylib/CMakeFiles/raylib.dir/DependInfo.cmake"
   )

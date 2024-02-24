@@ -56,10 +56,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web
+CMAKE_SOURCE_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc
+CMAKE_BINARY_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -67,7 +67,7 @@ CMAKE_BINARY_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build
 # Special rule for the target package
 package: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool..."
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && "C:\Program Files\CMake\bin\cpack.exe" --config ./CPackConfig.cmake
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && "C:\Program Files\CMake\bin\cpack.exe" --config ./CPackConfig.cmake
 .PHONY : package
 
 # Special rule for the target package
@@ -77,7 +77,7 @@ package/fast: package
 # Special rule for the target package_source
 package_source:
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --cyan "Run CPack packaging tool for source..."
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && "C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/CPackSourceConfig.cmake
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && "C:\Program Files\CMake\bin\cpack.exe" --config ./CPackSourceConfig.cmake C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/CPackSourceConfig.cmake
 .PHONY : package_source
 
 # Special rule for the target package_source
@@ -151,14 +151,14 @@ install/strip/fast: preinstall/fast
 
 # The main all target
 all: cmake_check_build_system
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\_deps\raylib-build\\CMakeFiles\progress.marks
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles 0
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\_deps\raylib-build\\CMakeFiles\progress.marks
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/clean
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/clean
 .PHONY : clean
 
 # The main clean target
@@ -167,23 +167,23 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/preinstall
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/preinstall
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles\VerifyGlobs.cmake
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles\VerifyGlobs.cmake
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 _deps/raylib-build/CMakeFiles/uninstall.dir/rule:
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/CMakeFiles/uninstall.dir/rule
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/CMakeFiles/uninstall.dir/rule
 .PHONY : _deps/raylib-build/CMakeFiles/uninstall.dir/rule
 
 # Convenience name for target.
@@ -192,7 +192,7 @@ uninstall: _deps/raylib-build/CMakeFiles/uninstall.dir/rule
 
 # fast build rule for target.
 uninstall/fast:
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(MAKE) $(MAKESILENT) -f _deps\raylib-build\CMakeFiles\uninstall.dir\build.make _deps/raylib-build/CMakeFiles/uninstall.dir/build
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(MAKE) $(MAKESILENT) -f _deps\raylib-build\CMakeFiles\uninstall.dir\build.make _deps/raylib-build/CMakeFiles/uninstall.dir/build
 .PHONY : uninstall/fast
 
 # Help Target
@@ -221,7 +221,7 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles\VerifyGlobs.cmake
-	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles\VerifyGlobs.cmake
+	cd /d C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

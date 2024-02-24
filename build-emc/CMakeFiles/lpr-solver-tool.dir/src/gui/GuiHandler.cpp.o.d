@@ -1,10 +1,42 @@
-CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.o: \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\twoPhaseSimplex\TwoPhase.cpp \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\twoPhaseSimplex\TwoPhase.hpp \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iostream \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__assert \
+CMakeFiles/lpr-solver-tool.dir/src/gui/GuiHandler.cpp.o: \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\gui\GuiHandler.cpp \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\gui\GuiHandler.hpp \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\_deps\raylib-src\src\raylib.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\stdarg.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg___gnuc_va_list.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg_va_list.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg_va_arg.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg___va_copy.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg_va_copy.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\imgui\imgui.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\imgui\imconfig.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\float.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__config_site \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\float.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\float.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\stddef.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\stddef.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_ptrdiff_t.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_size_t.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_wchar_t.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_null.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_nullptr_t.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_max_align_t.h \
+  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_offsetof.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\compat\string.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\string.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\string.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\features.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\bits\alltypes.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\strings.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\assert.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\imgui\rlImGui.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\imgui\extras\IconsFontAwesome6.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\gui\..\twoPhaseSimplex\PrimalSolver.hpp \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iostream \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__assert \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__verbose_abort \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__availability \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\version \
@@ -21,7 +53,6 @@ CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.o: \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__fwd\streambuf.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__std_mbstate_t.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__mbstate_t.h \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\bits\alltypes.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__locale \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__memory\shared_ptr.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__compare\compare_three_way.h \
@@ -36,15 +67,6 @@ CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.o: \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__type_traits\remove_cv.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__type_traits\remove_const.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__type_traits\remove_volatile.h \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\stddef.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\stddef.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_ptrdiff_t.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_size_t.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_wchar_t.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_null.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_nullptr_t.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_max_align_t.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stddef_offsetof.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__concepts\common_reference_with.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__concepts\convertible_to.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__type_traits\is_convertible.h \
@@ -113,7 +135,6 @@ CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.o: \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdlib.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\stdlib.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\stdlib.h \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\features.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\alloca.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\exception \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__exception\exception_ptr.h \
@@ -303,10 +324,6 @@ CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.o: \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__memory\unique_ptr.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\hash.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\cstring \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\compat\string.h \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\string.h \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\string.h \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\strings.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\stdexcept \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\typeinfo \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__atomic\memory_order.h \
@@ -698,13 +715,6 @@ CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.o: \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\streambuf \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__locale_dir\locale_base_api\bsd_locale_fallbacks.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__locale_dir\locale_base_api\locale_guard.h \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\compat\stdarg.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\stdarg.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg___gnuc_va_list.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg_va_list.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg_va_arg.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg___va_copy.h \
-  C:\devTools\emsdk\upstream\lib\clang\19\include\__stdarg_va_copy.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\cstdarg \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\vector \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__format\formatter.h \
@@ -732,5 +742,44 @@ CMakeFiles/lpr-solver-tool-web.dir/src/twoPhaseSimplex/TwoPhase.cpp.o: \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\array \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__memory\temp_value.h \
   C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__split_buffer \
-  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\src\twoPhaseSimplex\PrimalTwoPhaseBase.hpp \
-  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iomanip
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\gui\..\twoPhaseSimplex\PrimalTwoPhaseBase.hpp \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\iomanip \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\gui\..\twoPhaseSimplex\TwoPhase.hpp \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\sstream \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\emscripten.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\em_asm.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\em_macros.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\em_types.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\em_js.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\promise.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\wget.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\emscripten\version.h \
+  C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\src\gui\..\widgets\VirtualKeypad.hpp \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\map \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\is_transparent.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__iterator\ranges_iterator_traits.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__node_handle \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\optional \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__tree \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\functional \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\binary_negate.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\bind.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\bind_back.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\perfect_forward.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\bind_front.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\binder1st.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\binder2nd.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\boyer_moore_searcher.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\unordered_map \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__hash_table \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\compose.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\default_searcher.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\function.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__memory\builtin_new_allocator.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__type_traits\strip_signature.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\mem_fn.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\mem_fun_ref.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\not_fn.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\pointer_to_binary_function.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\pointer_to_unary_function.h \
+  C:\devTools\emsdk\upstream\emscripten\cache\sysroot\include\c++\v1\__functional\unary_negate.h

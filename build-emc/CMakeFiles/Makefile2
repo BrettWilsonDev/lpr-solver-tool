@@ -53,16 +53,16 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web
+CMAKE_SOURCE_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc
+CMAKE_BINARY_DIR = C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/lpr-solver-tool-web.dir/all
+all: CMakeFiles/lpr-solver-tool.dir/all
 all: _deps/raylib-build/all
 .PHONY : all
 
@@ -71,7 +71,7 @@ preinstall: _deps/raylib-build/preinstall
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/lpr-solver-tool-web.dir/clean
+clean: CMakeFiles/lpr-solver-tool.dir/clean
 clean: _deps/raylib-build/clean
 .PHONY : clean
 
@@ -107,30 +107,30 @@ _deps/raylib-build/raylib/clean: _deps/raylib-build/raylib/CMakeFiles/raylib.dir
 .PHONY : _deps/raylib-build/raylib/clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/lpr-solver-tool-web.dir
+# Target rules for target CMakeFiles/lpr-solver-tool.dir
 
 # All Build rule for target.
-CMakeFiles/lpr-solver-tool-web.dir/all: _deps/raylib-build/raylib/CMakeFiles/raylib.dir/all
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target lpr-solver-tool-web"
-.PHONY : CMakeFiles/lpr-solver-tool-web.dir/all
+CMakeFiles/lpr-solver-tool.dir/all: _deps/raylib-build/raylib/CMakeFiles/raylib.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10,11,12 "Built target lpr-solver-tool"
+.PHONY : CMakeFiles/lpr-solver-tool.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/lpr-solver-tool-web.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles 20
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/lpr-solver-tool-web.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles 0
-.PHONY : CMakeFiles/lpr-solver-tool-web.dir/rule
+CMakeFiles/lpr-solver-tool.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles 20
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/lpr-solver-tool.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles 0
+.PHONY : CMakeFiles/lpr-solver-tool.dir/rule
 
 # Convenience name for target.
-lpr-solver-tool-web: CMakeFiles/lpr-solver-tool-web.dir/rule
-.PHONY : lpr-solver-tool-web
+lpr-solver-tool: CMakeFiles/lpr-solver-tool.dir/rule
+.PHONY : lpr-solver-tool
 
 # clean rule for target.
-CMakeFiles/lpr-solver-tool-web.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool-web.dir\build.make CMakeFiles/lpr-solver-tool-web.dir/clean
-.PHONY : CMakeFiles/lpr-solver-tool-web.dir/clean
+CMakeFiles/lpr-solver-tool.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\lpr-solver-tool.dir\build.make CMakeFiles/lpr-solver-tool.dir/clean
+.PHONY : CMakeFiles/lpr-solver-tool.dir/clean
 
 #=============================================================================
 # Target rules for target _deps/raylib-build/CMakeFiles/uninstall.dir
@@ -139,14 +139,14 @@ CMakeFiles/lpr-solver-tool-web.dir/clean:
 _deps/raylib-build/CMakeFiles/uninstall.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps\raylib-build\CMakeFiles\uninstall.dir\build.make _deps/raylib-build/CMakeFiles/uninstall.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\raylib-build\CMakeFiles\uninstall.dir\build.make _deps/raylib-build/CMakeFiles/uninstall.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles --progress-num= "Built target uninstall"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles --progress-num= "Built target uninstall"
 .PHONY : _deps/raylib-build/CMakeFiles/uninstall.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/raylib-build/CMakeFiles/uninstall.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles 0
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/CMakeFiles/uninstall.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles 0
 .PHONY : _deps/raylib-build/CMakeFiles/uninstall.dir/rule
 
 # Convenience name for target.
@@ -165,14 +165,14 @@ _deps/raylib-build/CMakeFiles/uninstall.dir/clean:
 _deps/raylib-build/raylib/CMakeFiles/raylib.dir/all:
 	$(MAKE) $(MAKESILENT) -f _deps\raylib-build\raylib\CMakeFiles\raylib.dir\build.make _deps/raylib-build/raylib/CMakeFiles/raylib.dir/depend
 	$(MAKE) $(MAKESILENT) -f _deps\raylib-build\raylib\CMakeFiles\raylib.dir\build.make _deps/raylib-build/raylib/CMakeFiles/raylib.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles --progress-num=13,14,15,16,17,18,19,20 "Built target raylib"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --progress-dir=C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles --progress-num=13,14,15,16,17,18,19,20 "Built target raylib"
 .PHONY : _deps/raylib-build/raylib/CMakeFiles/raylib.dir/all
 
 # Build rule for subdir invocation for target.
 _deps/raylib-build/raylib/CMakeFiles/raylib.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles 8
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles 8
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 _deps/raylib-build/raylib/CMakeFiles/raylib.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles 0
 .PHONY : _deps/raylib-build/raylib/CMakeFiles/raylib.dir/rule
 
 # Convenience name for target.
@@ -191,7 +191,7 @@ _deps/raylib-build/raylib/CMakeFiles/raylib.dir/clean:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	$(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool-web\build-emc\CMakeFiles\VerifyGlobs.cmake
+	$(CMAKE_COMMAND) -P C:\Users\Brett\Desktop\devFiles\lpr\lpr-solver-tool\build-emc\CMakeFiles\VerifyGlobs.cmake
 	$(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles\Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

@@ -2,37 +2,37 @@
 	"sources" : 
 	[
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/CMakeFiles/imgui-populate"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/CMakeFiles/imgui-populate"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/CMakeFiles/imgui-populate.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/CMakeFiles/imgui-populate.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/CMakeFiles/imgui-populate-complete.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/CMakeFiles/imgui-populate-complete.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-build.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-build.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-configure.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-configure.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-download.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-download.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-install.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-install.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-mkdir.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-mkdir.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-patch.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-patch.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-test.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-test.rule"
 		},
 		{
-			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool-web/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-update.rule"
+			"file" : "C:/Users/Brett/Desktop/devFiles/lpr/lpr-solver-tool/build-emc/_deps/imgui-subbuild/imgui-populate-prefix/src/imgui-populate-stamp/imgui-populate-update.rule"
 		}
 	],
 	"target" : 
