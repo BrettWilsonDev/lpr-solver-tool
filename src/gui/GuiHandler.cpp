@@ -579,7 +579,7 @@ void GuiHandler::Draw()
     ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 100);
     if (ImGui::Button("WebSite", ImVec2(0, 25)))
     {
-        OpenURL("https://atbdw.com");
+        OpenURL("https://brettwilsondev.com");
     }
     ImGui::SameLine();
     ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 40);
