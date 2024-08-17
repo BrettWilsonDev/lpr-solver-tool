@@ -1,5 +1,7 @@
 # Lpr Solver Tool
 
+⚠️**Archived in favour of** [Linear Programming Prototype Python Apps](https://github.com/BrettWilsonBDW/LP-Prototype-Py-Apps)⚠️
+
 ![lpr solver tool](https://www.brettwilsondev.com//assets/images/lprTool.webp)
 
 ## Description
