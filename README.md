@@ -1,6 +1,6 @@
 # Lpr Solver Tool
 
-⚠️**Archived in favour of** [Linear Programming Prototype Python Apps](https://github.com/BrettWilsonBDW/LP-Prototype-Py-Apps)⚠️
+⚠️**Archived in favour of** [Linear Programming Prototype Python Apps](https://github.com/BrettWilsonDev/LP-Prototype-Py-Apps)⚠️
 
 ![lpr solver tool](https://www.brettwilsondev.com//assets/images/lprTool.webp)
 
@@ -16,11 +16,11 @@ Use the tool online [linear Programming Solver tool](https://www.atbdw.com/lpr-s
 
 ## Windows
 
-Download [linear Programming Solver tool](https://github.com/BrettWilsonBDW/lpr-solver-tool/releases/download/v1.0.1/lpr-solver-tool.exe)
+Download [linear Programming Solver tool](https://github.com/BrettWilsonDev/lpr-solver-tool/releases/download/v1.0.1/lpr-solver-tool.exe)
 
 ## Linux
 
-Download [linear Programming Solver tool](https://github.com/BrettWilsonBDW/lpr-solver-tool/releases/download/v1.0.1/lpr-solver-tool)
+Download [linear Programming Solver tool](https://github.com/BrettWilsonDev/lpr-solver-tool/releases/download/v1.0.1/lpr-solver-tool)
 
 # Building from Source
 
