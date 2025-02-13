@@ -585,7 +585,7 @@ void GuiHandler::Draw()
     ImGui::SetCursorPosX(ImGui::GetCursorPosX() + 40);
     if (ImGui::Button("GitHub", ImVec2(0, 25)))
     {
-        OpenURL("https://github.com/brettwilsonbdw/lpr-solver-tool");
+        OpenURL("https://github.com/brettwilsondev/lpr-solver-tool");
     }
     ImGui::Separator();
     // std::string usingKeypad = isMobile ? "OFF" : "ON";
