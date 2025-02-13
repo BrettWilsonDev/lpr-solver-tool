@@ -33,7 +33,7 @@ Download [linear Programming Solver tool](https://github.com/BrettWilsonBDW/lpr-
 
 ```bash
 ## Clone the repository
-git clone https://github.com/BrettWilsonBDW/lpr-solver-tool
+git clone https://github.com/BrettWilsonDev/lpr-solver-tool
 
 ## Navigate to the project directory
 cd lpr-solver-tool
